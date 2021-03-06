@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cantStop", "cantStop\cantStop.csproj", "{E8030D43-69F2-4F78-9D56-D2288180A36C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8030D43-69F2-4F78-9D56-D2288180A36C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8030D43-69F2-4F78-9D56-D2288180A36C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8030D43-69F2-4F78-9D56-D2288180A36C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8030D43-69F2-4F78-9D56-D2288180A36C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CABF57A7-8CCE-4B67-9BA2-D0BF8988719F}
+	EndGlobalSection
+EndGlobal

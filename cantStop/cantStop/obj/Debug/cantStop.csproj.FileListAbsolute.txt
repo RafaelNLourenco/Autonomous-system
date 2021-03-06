@@ -1,0 +1,8 @@
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\bin\Debug\cantStop.exe.config
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\bin\Debug\cantStop.exe
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\bin\Debug\cantStop.pdb
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\obj\Debug\cantStop.Properties.Resources.resources
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\obj\Debug\cantStop.csproj.GenerateResource.cache
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\obj\Debug\cantStop.csproj.CoreCompileInputs.cache
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\obj\Debug\cantStop.exe
+C:\Users\rafaz\source\repos\Sistema-autonomo\cantStop\cantStop\obj\Debug\cantStop.pdb
