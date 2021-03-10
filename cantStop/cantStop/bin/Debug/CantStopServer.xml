@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CantStopServer</name>
+    </assembly>
+    <members>
+        <member name="F:CantStopServer.Jogo.Versao">
+            <summary>
+            Exibe a versão do jogo
+            </summary>
+        </member>
+        <member name="M:CantStopServer.Jogo.ListarPartidas(System.String)">
+            <summary>
+            Retorna a lista de partidas do tipo solicitado
+            </summary>
+            <param name="status">Envie um caracter: (T)odas, (A)bertas, (J)ogando, (E)ncerradas</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.CriarPartida(System.String,System.String)">
+            <summary>
+            Cria uma nova partida
+            </summary>
+            <param name="nome">Nome da partida (deve ser único)</param>
+            <param name="senha">Senha da partida (até 10 caracteres)</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.ListarJogadores(System.Int32)">
+            <summary>
+            Lista de jogadores de uma determinada partida
+            </summary>
+            <param name="idPartida">Id da partida</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.EntrarPartida(System.Int32,System.String,System.String)">
+            <summary>
+            Cria um jogador e entra em uma partida
+            </summary>
+            <param name="idPartida">Id da partida</param>
+            <param name="nome">Nome do Jogador</param>
+            <param name="senha">Senha da Partida</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.IniciarPartida(System.Int32,System.String)">
+            <summary>
+            Inicia uma partida, mudando seu status para J
+            </summary>
+            <param name="idJogador"></param>
+            <param name="senha"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.Mover(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Move um alpinista nas trilhas desejadas
+            </summary>
+            <param name="idJogador">Id do Jogador</param>
+            <param name="senha">Senha do Jogador</param>
+            <param name="ordem">Ordem dos dados</param>
+            <param name="trilha">Trilhas que devem avançar</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.ExibirTabuleiro(System.Int32)">
+            <summary>
+            Retorna a situação atual do tabuleiro
+            </summary>
+            <param name="idPartida">Id da Partida</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.VerificarVez(System.Int32)">
+            <summary>
+            Retorna o status da partida e o código do jogador que é a vez.
+            </summary>
+            <param name="idPartida">Id da Partida</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.ExibirHistorico(System.Int32)">
+            <summary>
+            Retorna o que já aconteceu na partida
+            </summary>
+            <param name="idPartida"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
