@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace cantStop
 {
-    public partial class Form1 : Form
+    public partial class Tabuleiro : Form
     {
-        public Form1()
+        public Tabuleiro()
         {
+            Lobby lobby = new Lobby();
+            lobby.ShowDialog();
             InitializeComponent();
+        }
+
+        private void Tabuleiro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
