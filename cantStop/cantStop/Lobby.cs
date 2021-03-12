@@ -13,7 +13,6 @@ namespace cantStop
 {
     public partial class Lobby : Form
     {
-
         private List<Partida> listaPartidas = new List<Partida>();
         public Lobby()
         {
@@ -43,12 +42,18 @@ namespace cantStop
 
         private void btnCriarSala_Click(object sender, EventArgs e)
         {
-
+            string nome = txbNome.Text;
+            string senha = txbSenha.Text;
+            Jogo.CriarPartida(nome, senha);
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-
+            Partida partida = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
+            string nome = txbNome.Text;
+            string senha = txbSenha.Text;
+            int idPartida = 19;
+            Jogo.EntrarPartida(idPartida,nome, senha);
         }
 
         private void ListarPartidas()
@@ -80,7 +85,7 @@ namespace cantStop
             }
 
             dgvListaPartidas.DataSource = this.listaPartidas;
-            dgvListaPartidas.Columns[0].Visible = false;
+            //dgvListaPartidas.Columns[0].Visible = false;
             dgvListaPartidas.Columns[3].Visible = false;
 
             dgvListaPartidas.Columns[2].Width = 50;
@@ -109,6 +114,26 @@ namespace cantStop
             dgvJogadores.DataSource = jogadores;
             dgvJogadores.Columns[0].Width = 20;
             dgvJogadores.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomCenter;
+        }
+
+        private void dgvJogadores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbNome_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
