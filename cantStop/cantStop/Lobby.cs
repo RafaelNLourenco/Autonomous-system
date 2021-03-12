@@ -52,7 +52,7 @@ namespace cantStop
             Partida partida = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
             string nome = txbNome.Text;
             string senha = txbSenha.Text;
-            int idPartida = 19;
+            int idPartida = (int)partida.id;
             Jogo.EntrarPartida(idPartida,nome, senha);
         }
 
@@ -94,10 +94,12 @@ namespace cantStop
 
         private void dgvListaPartidas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int index = this.dgvListaPartidas.SelectedCells[0].RowIndex;
+            //int index = this.dgvListaPartidas.SelectedCells[0].RowIndex;
+
+            Partida partida = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
 
             List<Jogador> jogadores = new List<Jogador>();
-            string retorno = Jogo.ListarJogadores(index);
+            string retorno = Jogo.ListarJogadores((int)partida.id);
             retorno = retorno.Replace("\r", "");
             string[] linhas = retorno.Split('\n');
 
