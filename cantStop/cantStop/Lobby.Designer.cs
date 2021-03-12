@@ -34,8 +34,10 @@ namespace cantStop
             this.dgvListaPartidas = new System.Windows.Forms.DataGridView();
             this.btnEntrar = new System.Windows.Forms.Button();
             this.dgvJogadores = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblNome = new System.Windows.Forms.Label();
+            this.txbNome = new System.Windows.Forms.TextBox();
+            this.lblSenha = new System.Windows.Forms.Label();
+            this.txbSenha = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJogadores)).BeginInit();
             this.SuspendLayout();
@@ -66,12 +68,17 @@ namespace cantStop
             this.dgvListaPartidas.AllowUserToDeleteRows = false;
             this.dgvListaPartidas.AllowUserToResizeColumns = false;
             this.dgvListaPartidas.AllowUserToResizeRows = false;
+            this.dgvListaPartidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvListaPartidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvListaPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaPartidas.Location = new System.Drawing.Point(12, 36);
+            this.dgvListaPartidas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvListaPartidas.Location = new System.Drawing.Point(12, 24);
+            this.dgvListaPartidas.MultiSelect = false;
             this.dgvListaPartidas.Name = "dgvListaPartidas";
             this.dgvListaPartidas.ReadOnly = true;
             this.dgvListaPartidas.RowHeadersVisible = false;
             this.dgvListaPartidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvListaPartidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaPartidas.Size = new System.Drawing.Size(318, 305);
             this.dgvListaPartidas.TabIndex = 6;
             this.dgvListaPartidas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListaPartidas_CellMouseClick);
@@ -94,38 +101,63 @@ namespace cantStop
             this.dgvJogadores.AllowUserToResizeRows = false;
             this.dgvJogadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvJogadores.Location = new System.Drawing.Point(336, 23);
+            this.dgvJogadores.MultiSelect = false;
             this.dgvJogadores.Name = "dgvJogadores";
             this.dgvJogadores.ReadOnly = true;
             this.dgvJogadores.RowHeadersVisible = false;
             this.dgvJogadores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvJogadores.Size = new System.Drawing.Size(280, 249);
+            this.dgvJogadores.Size = new System.Drawing.Size(280, 172);
             this.dgvJogadores.TabIndex = 8;
+            this.dgvJogadores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJogadores_CellContentClick);
             // 
-            // label1
+            // lblNome
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(332, 275);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 24);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Senha";
+            this.lblNome.AutoSize = true;
+            this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.lblNome.Location = new System.Drawing.Point(336, 199);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(62, 24);
+            this.lblNome.TabIndex = 9;
+            this.lblNome.Text = "Nome";
+            this.lblNome.Click += new System.EventHandler(this.label1_Click);
             // 
-            // textBox1
+            // txbNome
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(335, 302);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(281, 26);
-            this.textBox1.TabIndex = 10;
+            this.txbNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txbNome.Location = new System.Drawing.Point(336, 231);
+            this.txbNome.Name = "txbNome";
+            this.txbNome.Size = new System.Drawing.Size(281, 26);
+            this.txbNome.TabIndex = 10;
+            this.txbNome.TextChanged += new System.EventHandler(this.txbNome_TextChanged);
+            // 
+            // lblSenha
+            // 
+            this.lblSenha.AutoSize = true;
+            this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.lblSenha.Location = new System.Drawing.Point(336, 265);
+            this.lblSenha.Name = "lblSenha";
+            this.lblSenha.Size = new System.Drawing.Size(65, 24);
+            this.lblSenha.TabIndex = 11;
+            this.lblSenha.Text = "Senha";
+            // 
+            // txbSenha
+            // 
+            this.txbSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txbSenha.Location = new System.Drawing.Point(335, 296);
+            this.txbSenha.Name = "txbSenha";
+            this.txbSenha.Size = new System.Drawing.Size(281, 26);
+            this.txbSenha.TabIndex = 12;
+            this.txbSenha.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 376);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txbSenha);
+            this.Controls.Add(this.lblSenha);
+            this.Controls.Add(this.txbNome);
+            this.Controls.Add(this.lblNome);
             this.Controls.Add(this.dgvJogadores);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.dgvListaPartidas);
@@ -149,8 +181,10 @@ namespace cantStop
         private System.Windows.Forms.DataGridView dgvListaPartidas;
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.DataGridView dgvJogadores;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblNome;
+        private System.Windows.Forms.TextBox txbNome;
+        private System.Windows.Forms.Label lblSenha;
+        private System.Windows.Forms.TextBox txbSenha;
     }
 }
 
