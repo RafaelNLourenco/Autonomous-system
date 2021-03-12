@@ -68,14 +68,17 @@ namespace cantStop
             this.dgvListaPartidas.AllowUserToDeleteRows = false;
             this.dgvListaPartidas.AllowUserToResizeColumns = false;
             this.dgvListaPartidas.AllowUserToResizeRows = false;
+            this.dgvListaPartidas.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvListaPartidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvListaPartidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvListaPartidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvListaPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaPartidas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvListaPartidas.Location = new System.Drawing.Point(12, 24);
             this.dgvListaPartidas.MultiSelect = false;
             this.dgvListaPartidas.Name = "dgvListaPartidas";
             this.dgvListaPartidas.ReadOnly = true;
+            this.dgvListaPartidas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvListaPartidas.RowHeadersVisible = false;
             this.dgvListaPartidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvListaPartidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -99,42 +102,47 @@ namespace cantStop
             this.dgvJogadores.AllowUserToDeleteRows = false;
             this.dgvJogadores.AllowUserToResizeColumns = false;
             this.dgvJogadores.AllowUserToResizeRows = false;
+            this.dgvJogadores.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvJogadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvJogadores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvJogadores.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dgvJogadores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvJogadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJogadores.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvJogadores.Location = new System.Drawing.Point(336, 23);
             this.dgvJogadores.MultiSelect = false;
             this.dgvJogadores.Name = "dgvJogadores";
             this.dgvJogadores.ReadOnly = true;
+            this.dgvJogadores.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvJogadores.RowHeadersVisible = false;
             this.dgvJogadores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvJogadores.Size = new System.Drawing.Size(280, 172);
+            this.dgvJogadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvJogadores.Size = new System.Drawing.Size(280, 188);
             this.dgvJogadores.TabIndex = 8;
-            this.dgvJogadores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJogadores_CellContentClick);
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lblNome.Location = new System.Drawing.Point(336, 199);
+            this.lblNome.Location = new System.Drawing.Point(336, 214);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(62, 24);
             this.lblNome.TabIndex = 9;
             this.lblNome.Text = "Nome";
-            this.lblNome.Click += new System.EventHandler(this.label1_Click);
             // 
             // txbNome
             // 
             this.txbNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txbNome.Location = new System.Drawing.Point(336, 231);
+            this.txbNome.Location = new System.Drawing.Point(336, 241);
             this.txbNome.Name = "txbNome";
             this.txbNome.Size = new System.Drawing.Size(281, 26);
             this.txbNome.TabIndex = 10;
-            this.txbNome.TextChanged += new System.EventHandler(this.txbNome_TextChanged);
             // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lblSenha.Location = new System.Drawing.Point(336, 265);
+            this.lblSenha.Location = new System.Drawing.Point(335, 272);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(65, 24);
             this.lblSenha.TabIndex = 11;
@@ -143,11 +151,10 @@ namespace cantStop
             // txbSenha
             // 
             this.txbSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txbSenha.Location = new System.Drawing.Point(335, 296);
+            this.txbSenha.Location = new System.Drawing.Point(335, 299);
             this.txbSenha.Name = "txbSenha";
             this.txbSenha.Size = new System.Drawing.Size(281, 26);
             this.txbSenha.TabIndex = 12;
-            this.txbSenha.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Lobby
             // 
@@ -166,8 +173,7 @@ namespace cantStop
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Lobby";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Lobby";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPartidas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJogadores)).EndInit();
             this.ResumeLayout(false);
