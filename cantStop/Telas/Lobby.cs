@@ -73,7 +73,7 @@ namespace cantStop
 
             dgvListaPartidas.Columns[1].Width = 101;
             dgvListaPartidas.Columns[2].Width = 99;
-            dgvListaPartidas.Columns[4].Width = 101;
+            dgvListaPartidas.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
         }
 
