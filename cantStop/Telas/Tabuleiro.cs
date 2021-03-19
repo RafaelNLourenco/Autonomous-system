@@ -23,9 +23,12 @@ namespace cantStop
             InitializeComponent();
             this.meuJogador = lobby.jogadorCriado;
             lblVersao.Text = Jogo.Versao;
-            lblJogador.Text = this.meuJogador.nome;
-            lblCorJogador.Text = this.meuJogador.cor;
-            lblSenha.Text = this.meuJogador.senha;
+            if (this.meuJogador != null)
+            {
+                lblJogador.Text = this.meuJogador.nome;
+                lblCorJogador.Text = this.meuJogador.cor;
+                lblSenha.Text = this.meuJogador.senha;
+            }
             timer1.Start();
         }
 
