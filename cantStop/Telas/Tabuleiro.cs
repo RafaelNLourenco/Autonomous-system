@@ -26,6 +26,7 @@ namespace cantStop
             lblJogador.Text = this.meuJogador.nome;
             lblCorJogador.Text = this.meuJogador.cor;
             lblSenha.Text = this.meuJogador.senha;
+            timer1.Start();
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
@@ -43,7 +44,13 @@ namespace cantStop
             else
             {
                 btnIniciarPartida.Hide();
+                lblPartidaIniciada.Text = "Iniciada";
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
         }
     }
 }

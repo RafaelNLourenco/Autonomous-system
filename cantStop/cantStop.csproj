@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CantStopServer">
-      <HintPath>..\..\CantStopServer.dll</HintPath>
+      <HintPath>..\CantStopServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

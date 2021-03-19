@@ -29,26 +29,30 @@ namespace cantStop
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblVersao = new System.Windows.Forms.Label();
             this.btnIniciarPartida = new System.Windows.Forms.Button();
             this.lblJogador = new System.Windows.Forms.Label();
             this.lblSenha = new System.Windows.Forms.Label();
             this.lblCorJogador = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblPartidaIniciada = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblVersao
             // 
             this.lblVersao.AutoSize = true;
-            this.lblVersao.Location = new System.Drawing.Point(1166, 561);
+            this.lblVersao.Location = new System.Drawing.Point(1280, 624);
             this.lblVersao.Name = "lblVersao";
-            this.lblVersao.Size = new System.Drawing.Size(0, 13);
+            this.lblVersao.Size = new System.Drawing.Size(40, 13);
             this.lblVersao.TabIndex = 0;
+            this.lblVersao.Text = "Versão";
             // 
             // btnIniciarPartida
             // 
-            this.btnIniciarPartida.Location = new System.Drawing.Point(345, 12);
+            this.btnIniciarPartida.Location = new System.Drawing.Point(15, 602);
             this.btnIniciarPartida.Name = "btnIniciarPartida";
-            this.btnIniciarPartida.Size = new System.Drawing.Size(283, 68);
+            this.btnIniciarPartida.Size = new System.Drawing.Size(126, 32);
             this.btnIniciarPartida.TabIndex = 8;
             this.btnIniciarPartida.Text = "Iniciar Partida";
             this.btnIniciarPartida.UseVisualStyleBackColor = true;
@@ -57,32 +61,50 @@ namespace cantStop
             // lblJogador
             // 
             this.lblJogador.AutoSize = true;
-            this.lblJogador.Location = new System.Drawing.Point(31, 31);
+            this.lblJogador.Location = new System.Drawing.Point(12, 69);
             this.lblJogador.Name = "lblJogador";
-            this.lblJogador.Size = new System.Drawing.Size(0, 13);
+            this.lblJogador.Size = new System.Drawing.Size(45, 13);
             this.lblJogador.TabIndex = 9;
+            this.lblJogador.Text = "Jogador";
             // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
-            this.lblSenha.Location = new System.Drawing.Point(31, 67);
+            this.lblSenha.Location = new System.Drawing.Point(12, 39);
             this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(0, 13);
+            this.lblSenha.Size = new System.Drawing.Size(76, 13);
             this.lblSenha.TabIndex = 10;
+            this.lblSenha.Text = "SenhaJogador";
             // 
             // lblCorJogador
             // 
             this.lblCorJogador.AutoSize = true;
-            this.lblCorJogador.Location = new System.Drawing.Point(31, 94);
+            this.lblCorJogador.Location = new System.Drawing.Point(12, 9);
             this.lblCorJogador.Name = "lblCorJogador";
-            this.lblCorJogador.Size = new System.Drawing.Size(0, 13);
+            this.lblCorJogador.Size = new System.Drawing.Size(61, 13);
             this.lblCorJogador.TabIndex = 11;
+            this.lblCorJogador.Text = "CorJogador";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblPartidaIniciada
+            // 
+            this.lblPartidaIniciada.AutoSize = true;
+            this.lblPartidaIniciada.Location = new System.Drawing.Point(147, 612);
+            this.lblPartidaIniciada.Name = "lblPartidaIniciada";
+            this.lblPartidaIniciada.Size = new System.Drawing.Size(100, 13);
+            this.lblPartidaIniciada.TabIndex = 12;
+            this.lblPartidaIniciada.Text = "Partida não iniciada";
             // 
             // Tabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1332, 646);
+            this.Controls.Add(this.lblPartidaIniciada);
             this.Controls.Add(this.lblCorJogador);
             this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.lblJogador);
@@ -103,5 +125,7 @@ namespace cantStop
         private System.Windows.Forms.Label lblJogador;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblCorJogador;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblPartidaIniciada;
     }
 }

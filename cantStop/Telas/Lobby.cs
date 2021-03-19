@@ -33,7 +33,12 @@ namespace cantStop
         {
             string nome = txbNome.Text;
             string senha = txbSenha.Text;
-            Jogo.CriarPartida(nome, senha);
+            string retorno = Jogo.CriarPartida(nome, senha);
+
+            if (retorno[0] == 'E')
+            {
+                MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
