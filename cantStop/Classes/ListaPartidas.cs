@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CantStopServer;
 
 namespace cantStop.Classes
 {
@@ -10,8 +11,10 @@ namespace cantStop.Classes
     {
         public List<Partida> dadosPartidas { get; set; }
 
-        public ListaPartidas(string dados)
+        ///<summary><paramref name="status"/> (T)odas, (A)bertas, (J)ogando, (E)ncerradas</summary>
+        public ListaPartidas(string status)
         {
+            string dados = Jogo.ListarPartidas(status);
             dados = dados.Replace("\r", "");
             string[] linhas = dados.Split('\n');
 

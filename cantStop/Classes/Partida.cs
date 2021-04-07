@@ -1,17 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using CantStopServer;
 
 namespace cantStop
 {
     public class Partida
     {
-        public long id { get; set; }
+        public int id { get; set; }
         public string nome { get; set; }
         public string status { get; set; }
         public string senha { get; set; }
         public string data { get; set; }
+        public List<Jogador> jogadores { get; set; }
+
+        public Jogador VerificarVez()
+        {
+            string retornoVez = Jogo.VerificarVez(this.id);
+            retornoVez = retornoVez.Replace("\r\n", "");
+            string[] retornoVezProcessado = retornoVez.Split(',');
+
+            foreach(Jogador jogador in this.jogadores)
+            {
+                if (jogador.id == int.Parse(retornoVezProcessado[1])) return jogador;
+            }
+
+            return null;
+        }
     }
 }

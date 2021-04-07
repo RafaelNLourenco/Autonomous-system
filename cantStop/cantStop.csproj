@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CantStopServer">
-      <HintPath>..\CantStopServer.dll</HintPath>
+    <Reference Include="CantStopServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Lucas S. Santos\Desktop\CantStopServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,35 +53,37 @@
     <Compile Include="Classes\Jogador.cs" />
     <Compile Include="Classes\ListaJogadores.cs" />
     <Compile Include="Classes\ListaPartidas.cs" />
-    <Compile Include="Telas\Lobby.cs">
+    <Compile Include="Classes\Tabuleiro.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\FormLobby.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Lobby.Designer.cs">
-      <DependentUpon>Lobby.cs</DependentUpon>
+    <Compile Include="Telas\FormLobby.Designer.cs">
+      <DependentUpon>FormLobby.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Partida.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Telas\Tabuleiro.cs">
+    <Compile Include="Telas\FormTabuleiro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\Tabuleiro.Designer.cs">
-      <DependentUpon>Tabuleiro.cs</DependentUpon>
+    <Compile Include="Telas\FormTabuleiro.Designer.cs">
+      <DependentUpon>FormTabuleiro.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Telas\Lobby.resx">
-      <DependentUpon>Lobby.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\FormLobby.resx">
+      <DependentUpon>FormLobby.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Telas\Tabuleiro.resx">
-      <DependentUpon>Tabuleiro.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\FormTabuleiro.resx">
+      <DependentUpon>FormTabuleiro.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -94,6 +97,87 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabuleiroleiro.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dado1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dado2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dado3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dado4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dado5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dado6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdB.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdGB.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdGY.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdR.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdRB.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdRBG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdRBY.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdRBYG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdRG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdRY.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdRYG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdY.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdYB.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jgdYBG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pointB.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pointG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pointR.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pointW.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pointY.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,7 +16,7 @@ namespace cantStop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Tabuleiro());
+            Application.Run(new FormTabuleiro());
         }
     }
 }
