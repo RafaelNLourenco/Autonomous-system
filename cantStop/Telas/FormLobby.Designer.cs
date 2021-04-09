@@ -1,7 +1,7 @@
 ﻿
 namespace cantStop
 {
-    partial class Lobby
+    partial class FormLobby
     {
         /// <summary>
         /// Variável de designer necessária.
