@@ -39,13 +39,13 @@ namespace cantStop
             Partida partida = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
             string nome = txbNome.Text;
             string senha = txbSenha.Text;
-            int idPartida = (int)partida.id;
+            int idPartida = (int)partida.Id;
 
             string retorno = Jogo.EntrarPartida(idPartida, nome, senha);
             if(retorno[0] == 'E') MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else 
             {
-                partidaSelecionada.jogadores = Jogador.ListarJogadores(partidaSelecionada.id);
+                partidaSelecionada.jogadores = Jogador.ListarJogadores(partidaSelecionada.Id);
 
                 this.jogadorCriado = new Jogador();
                 this.jogadorCriado.entrandoPartida(retorno, txbNome.Text);
@@ -73,7 +73,7 @@ namespace cantStop
         private void dgvListaPartidas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
-            partidaSelecionada.jogadores = Jogador.ListarJogadores(partidaSelecionada.id);
+            partidaSelecionada.jogadores = Jogador.ListarJogadores(partidaSelecionada.Id);
 
             dgvJogadores.DataSource = partidaSelecionada.jogadores;
             dgvJogadores.Columns[0].Visible = false;

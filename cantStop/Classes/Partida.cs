@@ -5,16 +5,16 @@ namespace cantStop
 {
     public class Partida
     {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string status { get; set; }
-        public string senha { get; set; }
-        public string data { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Status { get; set; }
+        public string Senha { get; set; }
+        public string Data { get; set; }
         public List<Jogador> jogadores { get; set; }
 
         public Jogador VerificarVez()
         {
-            string retornoVez = Jogo.VerificarVez(this.id);
+            string retornoVez = Jogo.VerificarVez(this.Id);
             retornoVez = retornoVez.Replace("\r\n", "");
             string[] retornoVezProcessado = retornoVez.Split(',');
 

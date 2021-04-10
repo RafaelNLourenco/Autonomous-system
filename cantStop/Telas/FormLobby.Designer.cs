@@ -40,28 +40,36 @@ namespace cantStop
             this.txbNome = new System.Windows.Forms.TextBox();
             this.lblSenha = new System.Windows.Forms.Label();
             this.txbSenha = new System.Windows.Forms.TextBox();
+            this.lblPartidas = new System.Windows.Forms.Label();
+            this.lblJogadores = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJogadores)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(12, 334);
+            this.btnAtualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnAtualizar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAtualizar.Location = new System.Drawing.Point(12, 487);
             this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(156, 30);
+            this.btnAtualizar.Size = new System.Drawing.Size(318, 30);
             this.btnAtualizar.TabIndex = 3;
             this.btnAtualizar.Text = "Atualizar";
-            this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.UseVisualStyleBackColor = false;
             this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // btnCriarSala
             // 
-            this.btnCriarSala.Location = new System.Drawing.Point(174, 334);
+            this.btnCriarSala.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnCriarSala.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnCriarSala.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCriarSala.Location = new System.Drawing.Point(335, 402);
             this.btnCriarSala.Name = "btnCriarSala";
-            this.btnCriarSala.Size = new System.Drawing.Size(156, 30);
+            this.btnCriarSala.Size = new System.Drawing.Size(281, 30);
             this.btnCriarSala.TabIndex = 4;
             this.btnCriarSala.Text = "Criar Sala";
-            this.btnCriarSala.UseVisualStyleBackColor = true;
+            this.btnCriarSala.UseVisualStyleBackColor = false;
             this.btnCriarSala.Click += new System.EventHandler(this.btnCriarSala_Click);
             // 
             // dgvListaPartidas
@@ -70,7 +78,7 @@ namespace cantStop
             this.dgvListaPartidas.AllowUserToDeleteRows = false;
             this.dgvListaPartidas.AllowUserToResizeColumns = false;
             this.dgvListaPartidas.AllowUserToResizeRows = false;
-            this.dgvListaPartidas.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvListaPartidas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.dgvListaPartidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvListaPartidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvListaPartidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -93,7 +101,7 @@ namespace cantStop
             this.dgvListaPartidas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListaPartidas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvListaPartidas.EnableHeadersVisualStyles = false;
-            this.dgvListaPartidas.Location = new System.Drawing.Point(12, 24);
+            this.dgvListaPartidas.Location = new System.Drawing.Point(12, 52);
             this.dgvListaPartidas.MultiSelect = false;
             this.dgvListaPartidas.Name = "dgvListaPartidas";
             this.dgvListaPartidas.ReadOnly = true;
@@ -101,18 +109,21 @@ namespace cantStop
             this.dgvListaPartidas.RowHeadersVisible = false;
             this.dgvListaPartidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvListaPartidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaPartidas.Size = new System.Drawing.Size(318, 305);
+            this.dgvListaPartidas.Size = new System.Drawing.Size(318, 429);
             this.dgvListaPartidas.TabIndex = 6;
             this.dgvListaPartidas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListaPartidas_CellMouseClick);
             // 
             // btnEntrar
             // 
-            this.btnEntrar.Location = new System.Drawing.Point(335, 334);
+            this.btnEntrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnEntrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEntrar.Location = new System.Drawing.Point(335, 355);
             this.btnEntrar.Name = "btnEntrar";
             this.btnEntrar.Size = new System.Drawing.Size(281, 30);
             this.btnEntrar.TabIndex = 7;
             this.btnEntrar.Text = "Entrar";
-            this.btnEntrar.UseVisualStyleBackColor = true;
+            this.btnEntrar.UseVisualStyleBackColor = false;
             this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
             // dgvJogadores
@@ -128,7 +139,7 @@ namespace cantStop
             this.dgvJogadores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvJogadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvJogadores.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvJogadores.Location = new System.Drawing.Point(336, 23);
+            this.dgvJogadores.Location = new System.Drawing.Point(335, 52);
             this.dgvJogadores.MultiSelect = false;
             this.dgvJogadores.Name = "dgvJogadores";
             this.dgvJogadores.ReadOnly = true;
@@ -136,14 +147,14 @@ namespace cantStop
             this.dgvJogadores.RowHeadersVisible = false;
             this.dgvJogadores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvJogadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvJogadores.Size = new System.Drawing.Size(280, 188);
+            this.dgvJogadores.Size = new System.Drawing.Size(280, 170);
             this.dgvJogadores.TabIndex = 8;
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lblNome.Location = new System.Drawing.Point(336, 214);
+            this.lblNome.Location = new System.Drawing.Point(336, 225);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(62, 24);
             this.lblNome.TabIndex = 9;
@@ -151,17 +162,19 @@ namespace cantStop
             // 
             // txbNome
             // 
+            this.txbNome.BackColor = System.Drawing.Color.White;
+            this.txbNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txbNome.Location = new System.Drawing.Point(336, 241);
+            this.txbNome.Location = new System.Drawing.Point(336, 262);
             this.txbNome.Name = "txbNome";
-            this.txbNome.Size = new System.Drawing.Size(281, 26);
+            this.txbNome.Size = new System.Drawing.Size(281, 19);
             this.txbNome.TabIndex = 10;
             // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lblSenha.Location = new System.Drawing.Point(335, 272);
+            this.lblSenha.Location = new System.Drawing.Point(336, 284);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(65, 24);
             this.lblSenha.TabIndex = 11;
@@ -169,18 +182,41 @@ namespace cantStop
             // 
             // txbSenha
             // 
+            this.txbSenha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txbSenha.Location = new System.Drawing.Point(335, 299);
+            this.txbSenha.Location = new System.Drawing.Point(336, 321);
             this.txbSenha.Name = "txbSenha";
-            this.txbSenha.Size = new System.Drawing.Size(281, 26);
+            this.txbSenha.Size = new System.Drawing.Size(281, 19);
             this.txbSenha.TabIndex = 12;
+            // 
+            // lblPartidas
+            // 
+            this.lblPartidas.AutoSize = true;
+            this.lblPartidas.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblPartidas.Location = new System.Drawing.Point(7, 11);
+            this.lblPartidas.Name = "lblPartidas";
+            this.lblPartidas.Size = new System.Drawing.Size(216, 31);
+            this.lblPartidas.TabIndex = 13;
+            this.lblPartidas.Text = "Lista de Partidas";
+            // 
+            // lblJogadores
+            // 
+            this.lblJogadores.AutoSize = true;
+            this.lblJogadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblJogadores.Location = new System.Drawing.Point(329, 9);
+            this.lblJogadores.Name = "lblJogadores";
+            this.lblJogadores.Size = new System.Drawing.Size(141, 31);
+            this.lblJogadores.TabIndex = 14;
+            this.lblJogadores.Text = "Jogadores";
             // 
             // FormLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.ClientSize = new System.Drawing.Size(628, 376);
+            this.ClientSize = new System.Drawing.Size(628, 529);
+            this.Controls.Add(this.lblJogadores);
+            this.Controls.Add(this.lblPartidas);
             this.Controls.Add(this.txbSenha);
             this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.txbNome);
@@ -212,6 +248,8 @@ namespace cantStop
         private System.Windows.Forms.TextBox txbNome;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.TextBox txbSenha;
+        private System.Windows.Forms.Label lblPartidas;
+        private System.Windows.Forms.Label lblJogadores;
     }
 }
 

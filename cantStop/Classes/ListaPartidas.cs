@@ -24,19 +24,19 @@ namespace cantStop.Classes
             {
                 Partida partida = new Partida();
                 string[] itens = linhas[i].Split(',');
-                partida.id = Convert.ToInt32(itens[0]);
-                partida.nome = itens[1];
-                partida.data = itens[2];
+                partida.Id = Convert.ToInt32(itens[0]);
+                partida.Nome = itens[1];
+                partida.Data = itens[2];
                 switch (itens[3])
                 {
                     case "A":
-                        partida.status = "Aberta";
+                        partida.Status = "Aberta";
                         break;
                     case "J":
-                        partida.status = "Jogando";
+                        partida.Status = "Jogando";
                         break;
                     case "E":
-                        partida.status = "Encerrada";
+                        partida.Status = "Encerrada";
                         break;
                 }
                 aux.Add(partida);
