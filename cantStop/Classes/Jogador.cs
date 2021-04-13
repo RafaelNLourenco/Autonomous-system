@@ -64,5 +64,12 @@ namespace cantStop
         {
             Jogo.Parar((int)this.id, this.senha);
         }
+
+        public void Mover(string ordem, int[] posicoes)
+        {
+            string fPosicoes = posicoes[0].ToString("X") + posicoes[1].ToString("X");
+            string retorno = Jogo.Mover((int)this.id, this.senha, ordem, fPosicoes);
+            Console.WriteLine();
+        }
     }
 }

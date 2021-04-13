@@ -29,6 +29,7 @@ namespace cantStop
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLobby));
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnCriarSala = new System.Windows.Forms.Button();
             this.dgvListaPartidas = new System.Windows.Forms.DataGridView();
@@ -156,7 +157,7 @@ namespace cantStop
             this.txbSenha.Size = new System.Drawing.Size(281, 26);
             this.txbSenha.TabIndex = 12;
             // 
-            // Lobby
+            // FormLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,8 +172,9 @@ namespace cantStop
             this.Controls.Add(this.btnCriarSala);
             this.Controls.Add(this.btnAtualizar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Lobby";
+            this.Name = "FormLobby";
             this.Text = "Lobby";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPartidas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJogadores)).EndInit();
