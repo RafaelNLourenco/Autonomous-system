@@ -21,28 +21,6 @@ namespace cantStop
             this.cor = itens[2];
         }
 
-        public static List<Jogador> ListarJogadores(int idPartida)
-        {
-            string retorno = Jogo.ListarJogadores((int)idPartida);
-            retorno = retorno.Replace("\r", "");
-            string[] linhas = retorno.Split('\n');
-            List<Jogador> listaJogadores = new List<Jogador>();
-
-            for (int i = 0; i < linhas.Length - 1; i++)
-            {
-                Jogador jogador = new Jogador();
-                string[] itens = linhas[i].Split(',');
-
-                jogador.id = Convert.ToInt32(itens[0]);
-                jogador.nome = itens[1];
-                jogador.cor = itens[2];
-
-                listaJogadores.Add(jogador);
-            }
-
-            return listaJogadores;
-        }
-
         public List<int> RolarDados()
         {
             string retorno = Jogo.RolarDados((int)this.id, this.senha);

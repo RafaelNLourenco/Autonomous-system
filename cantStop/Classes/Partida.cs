@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CantStopServer;
 
 namespace cantStop
@@ -11,6 +12,25 @@ namespace cantStop
         public string senha { get; set; }
         public string data { get; set; }
         public List<Jogador> jogadores { get; set; }
+
+        public void ListarJogadores()
+        {
+            string retorno = Jogo.ListarJogadores(this.id);
+            retorno = retorno.Replace("\r", "");
+            string[] linhas = retorno.Split('\n');
+
+            for (int i = 0; i < linhas.Length - 1; i++)
+            {
+                Jogador jogador = new Jogador();
+                string[] itens = linhas[i].Split(',');
+
+                jogador.id = Convert.ToInt32(itens[0]);
+                jogador.nome = itens[1];
+                jogador.cor = itens[2];
+
+                this.jogadores.Add(jogador);
+            }
+        }
 
         public Jogador VerificarVez()
         {
