@@ -13,6 +13,11 @@ namespace cantStop
         public string data { get; set; }
         public List<Jogador> jogadores { get; set; }
 
+        public Partida()
+        {
+            this.jogadores = new List<Jogador>();
+        }
+
         public void ListarJogadores()
         {
             string retorno = Jogo.ListarJogadores(this.id);

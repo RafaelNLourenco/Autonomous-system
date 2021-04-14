@@ -515,7 +515,7 @@ namespace cantStop
                         {
                             if (pecasJogador.Rows.Count == 2)
                             {
-                                if (pecaP1.Length != 0 || pecaP2.Length != 0)
+                                if (pecaP1.Length != 0 || pecaP2.Length != 0 || colunas[i, 0] == colunas[i, 1])
                                 {
                                     this.radios[i].Text = colunas[i, 0].ToString() + " e " + colunas[i, 1].ToString();
                                 }
