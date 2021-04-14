@@ -45,7 +45,7 @@ namespace cantStop
             if(retorno[0] == 'E') MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else 
             {
-                partidaSelecionada.jogadores = Partida.ListarJogadores(partidaSelecionada.id);
+                partidaSelecionada.ListarJogadores();
 
                 this.jogadorCriado = new Jogador();
                 this.jogadorCriado.entrandoPartida(retorno, txbNome.Text);

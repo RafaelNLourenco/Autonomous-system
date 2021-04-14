@@ -24,8 +24,6 @@ namespace cantStop
         private List<Label> labels;
         private List<int> dados;
 
-        private int alpinistas;
-
         private bool fazendoJogada;
         private bool jogando;
 
@@ -75,7 +73,6 @@ namespace cantStop
 
                 this.dados = new List<int>();
 
-                this.alpinistas = 0;
                 this.jogando = false;
             }
             
@@ -115,11 +112,13 @@ namespace cantStop
         private void tmrPartidaIniciada_Tick(object sender, EventArgs e)
         {
             ListaPartidas partidas = new ListaPartidas("J");
+            this.partida.ListarJogadores();
 
             foreach (Partida partida in partidas.dadosPartidas)
             {
                 if (partida.id == this.partida.id)
                 {
+                    this.partida.ListarJogadores();
                     this.iniciar();
                     return;
                 }
@@ -129,7 +128,6 @@ namespace cantStop
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
             if (this.partida.VerificarVez().id == this.jogador.id && !this.fazendoJogada){
-                if (!this.jogando) this.alpinistas = 3;
                 this.jogando = true;
                 this.setBotoes(true);
             }
