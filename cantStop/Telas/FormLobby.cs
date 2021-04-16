@@ -61,7 +61,7 @@ namespace cantStop
             if (this.partidaSelecionada == null)
             {
                 partidaSelecionada = (Partida)listaPartidas.dadosPartidas[0];
-                partidaSelecionada.jogadores = Jogador.ListarJogadores(partidaSelecionada.Id);
+                partidaSelecionada.ListarJogadores();
                 lblJogadores.Text = "Jogadores de " + partidaSelecionada.Nome;
 
                 switch (partidaSelecionada.jogadores.Count)

@@ -20,7 +20,7 @@ namespace cantStop
 
         public void ListarJogadores()
         {
-            string retorno = Jogo.ListarJogadores(this.id);
+            string retorno = Jogo.ListarJogadores(this.Id);
             retorno = retorno.Replace("\r", "");
             string[] linhas = retorno.Split('\n');
 
