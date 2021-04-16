@@ -25,7 +25,8 @@ namespace cantStop
         private List<int> dados;
 
         private bool fazendoJogada;
-        private bool jogando;
+        private bool flag;
+        private List<Dictionary<string, int[]>> movimento;
 
         public FormTabuleiro()
         {
@@ -73,7 +74,7 @@ namespace cantStop
 
                 this.dados = new List<int>();
 
-                this.jogando = false;
+                this.movimento = new List<Dictionary<string, int[]>>();
             }
             
         }
@@ -128,7 +129,6 @@ namespace cantStop
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
             if (this.partida.VerificarVez().id == this.jogador.id && !this.fazendoJogada){
-                this.jogando = true;
                 this.setBotoes(true);
             }
 
@@ -202,6 +202,7 @@ namespace cantStop
         {
             this.setBotoes(false);
             jogador.Parar();
+            this.tmrPartidaJogando_Tick(sender, e);
         }
 
         private void setBotoes(bool valor)
@@ -484,62 +485,90 @@ namespace cantStop
             int[,] colunas =
             {
                 // COM 1
-                { this.dados[0] + this.dados[1], this.dados[2] + this.dados[3] },
+                { this.dados[0], this.dados[1], this.dados[2], this.dados[3] },
                 // COM 2
-                { this.dados[0] + this.dados[2], this.dados[1] + this.dados[3] },
+                { this.dados[0], this.dados[2], this.dados[1], this.dados[3] },
                 // COM 3
-                { this.dados[0] + this.dados[3], this.dados[1] + this.dados[2] }
+                { this.dados[0], this.dados[3], this.dados[1], this.dados[2] }
             };
 
+            string[,] combinacoes =
+            {
+                {"1","2","3","4"},
+                {"1","3","2","4"},
+                {"1","4","2","3"},
+            };
+
+
+            this.movimento.Clear();
             DataTable pecasJogador = this.tabuleiro.SelecioneJogador((int)this.jogador.id, "A");
 
             for (int i = 0; i < 3; i++)
             {
+                string ordem = combinacoes[i, 0] + combinacoes[i, 1] + combinacoes[i, 2] + combinacoes[i, 3];
+                Dictionary<string, int[]> mover = new Dictionary<string, int[]>();
                 if (pecasJogador.Rows.Count == 0)
                 {
-                    this.radios[i].Text = colunas[i, 0].ToString() + " e " + colunas[i, 1].ToString();
+                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
+
+                    mover.Add( ordem, new[] { colunas[i, 0] + colunas[i, 1], colunas[i, 2] + colunas[i, 3] });
                 }
                 else
                 {
-                    DataRow[] pecaP1 = pecasJogador.Select("coluna = '" + colunas[i, 0] + "'");
-                    DataRow[] pecaP2 = pecasJogador.Select("coluna = '" + colunas[i, 1] + "'");
+                    DataRow[] pecaP1 = pecasJogador.Select("coluna = '" + (colunas[i, 0] + colunas[i, 1]) + "'");
+                    DataRow[] pecaP2 = pecasJogador.Select("coluna = '" + (colunas[i, 2] + colunas[i, 3]) + "'");
 
 
                     if (pecaP1.Length == 0 || pecaP2.Length == 0)
                     {
                         if (pecasJogador.Rows.Count == 1)
                         {
-                            this.radios[i].Text = colunas[i, 0].ToString() + " e " + colunas[i, 1].ToString();
+                            this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
+
+                            mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], colunas[i, 2] + colunas[i, 3] });
                         }
                         else
                         {
                             if (pecasJogador.Rows.Count == 2)
                             {
-                                if (pecaP1.Length != 0 || pecaP2.Length != 0 || colunas[i, 0] == colunas[i, 1])
+                                if (pecaP1.Length != 0 || pecaP2.Length != 0 || colunas[i, 0] + colunas[i, 1] == colunas[i, 2] + colunas[i, 3])
                                 {
-                                    this.radios[i].Text = colunas[i, 0].ToString() + " e " + colunas[i, 1].ToString();
+                                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
+
+                                    mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], colunas[i, 2] + colunas[i, 3] });
                                 }
                                 else
                                 {
-                                    this.radios[i].Text = colunas[i, 0].ToString();
-                                    this.radios[i + 3].Text = colunas[i, 1].ToString();
+                                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString();
+                                    this.radios[i + 3].Text = (colunas[i, 2] + colunas[i, 3]).ToString();
+
+                                    mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], 0 });
+                                    ordem = combinacoes[i, 2] + combinacoes[i, 3] + combinacoes[i, 0] + combinacoes[i, 1];
+                                    mover.Add(ordem, new[] { colunas[i, 2] + colunas[i, 3], 0 });
                                 }
                             }
                             else
                             {
                                 if (pecaP1.Length != 0)
                                 {
-                                    this.radios[i].Text = colunas[i, 0].ToString();
+                                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString();
+                                    this.flag = true;
+
+                                    mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], 0 });
                                 }
                                 else
                                 {
                                     if (pecaP2.Length != 0)
                                     {
-                                        this.radios[i].Text = colunas[i, 1].ToString();
+                                        this.radios[i].Text = (colunas[i, 2] + colunas[i, 3]).ToString();
+                                        this.flag = true;
+
+                                        ordem = combinacoes[i, 2] + combinacoes[i, 3] + combinacoes[i, 0] + combinacoes[i, 1];
+                                        mover.Add(ordem, new[] { colunas[i, 2] + colunas[i, 3], 0 });
                                     }
                                     else
                                     {
-                                        Console.WriteLine();
+                                        mover.Add("", new[] {0, 0 });
                                         // Vai pro beleleu
                                     }
                                 }
@@ -548,9 +577,12 @@ namespace cantStop
                     }
                     else
                     {
-                        this.radios[i].Text = colunas[i, 0].ToString() + " e " + colunas[i, 1].ToString();
+                        this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
+
+                        mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], 0 });
                     }
                 }
+                this.movimento.Add(mover);
             }
 
             this.gbxJogadas.Visible = true;
@@ -577,11 +609,70 @@ namespace cantStop
                 this.gbxJogadas.Visible = false;
 
                 this.fazendoJogada = false;
+                this.tmrPartidaJogando_Tick(sender, e);
             }
         }
 
         private void btnJogar_Click(object sender, EventArgs e)
         {
+            if (this.rbxOpcao1.Checked || this.rbxOpcao4.Checked) {
+                if (flag)
+                {
+                    if (this.rbxOpcao1.Checked)
+                    {
+                        this.jogador.Mover(movimento.ElementAt(0).ElementAt(0).Key, movimento.ElementAt(0).ElementAt(0).Value);
+                    }
+                    else
+                    {
+                        this.jogador.Mover(movimento.ElementAt(0).ElementAt(1).Key, movimento.ElementAt(0).ElementAt(1).Value);
+                    }
+                }
+                else
+                {
+                    this.jogador.Mover(movimento.ElementAt(0).ElementAt(0).Key, movimento.ElementAt(0).ElementAt(0).Value);
+                }
+            }
+
+            if (this.rbxOpcao2.Checked || this.rbxOpcao5.Checked)
+            {
+                if (flag)
+                {
+                    if (this.rbxOpcao2.Checked)
+                    {
+                        this.jogador.Mover(movimento.ElementAt(1).ElementAt(0).Key, movimento.ElementAt(1).ElementAt(0).Value);
+                    }
+                    else
+                    {
+                        this.jogador.Mover(movimento.ElementAt(1).ElementAt(1).Key, movimento.ElementAt(1).ElementAt(1).Value);
+                    }
+                }
+                else
+                {
+                    this.jogador.Mover(movimento.ElementAt(1).ElementAt(0).Key, movimento.ElementAt(1).ElementAt(0).Value);
+                }
+            }
+
+            if (this.rbxOpcao3.Checked || this.rbxOpcao6.Checked)
+            {
+                if (flag)
+                {
+                    if (this.rbxOpcao3.Checked)
+                    {
+                        this.jogador.Mover(movimento.ElementAt(2).ElementAt(0).Key, movimento.ElementAt(2).ElementAt(0).Value);
+                    }
+                    else
+                    {
+                        this.jogador.Mover(movimento.ElementAt(2).ElementAt(1).Key, movimento.ElementAt(2).ElementAt(1).Value);
+                    }
+                }
+                else
+                {
+                    this.jogador.Mover(movimento.ElementAt(2).ElementAt(0).Key, movimento.ElementAt(2).ElementAt(0).Value);
+                }
+            }
+
+
+            /*
             if (this.rbxOpcao1.Checked || this.rbxOpcao4.Checked)
             {
                 if (this.rbxOpcao4.Checked)
@@ -592,7 +683,23 @@ namespace cantStop
                 {
                     if (this.rbxOpcao1.Checked && this.rbxOpcao4.Enabled || this.rbxOpcao1.Text.Length < 3)
                     {
-                        this.jogador.Mover("1234", new[] { this.dados[0] + this.dados[1], 0 });
+                        if (this.rbxOpcao4.Enabled)
+                        {
+                            this.jogador.Mover("1234", new[] { this.dados[0] + this.dados[1], 0 });
+                        }
+                        else
+                        {
+                            if (flag){
+                                this.jogador.Mover("3412", new[] { this.dados[2] + this.dados[3], 0 });
+                                flag = false;
+                            }
+                            else
+                            {
+                                this.jogador.Mover("1234", new[] { this.dados[0] + this.dados[1], 0 });
+                            }
+                                
+                        }
+                        
                     }
                     else
                     {
@@ -612,7 +719,23 @@ namespace cantStop
                     {
                         if (this.rbxOpcao2.Checked && this.rbxOpcao5.Enabled || this.rbxOpcao2.Text.Length < 3)
                         {
-                            this.jogador.Mover("1324", new[] { this.dados[0] + this.dados[2], 0 });
+                            if (this.rbxOpcao5.Enabled)
+                            {
+                                this.jogador.Mover("1324", new[] { this.dados[0] + this.dados[2], 0 });
+                            }
+                            else
+                            {
+                                if (flag)
+                                {
+                                    this.jogador.Mover("2413", new[] { this.dados[1] + this.dados[3], 0 });
+                                    flag = false;
+                                }
+                                else
+                                {
+                                    this.jogador.Mover("1324", new[] { this.dados[0] + this.dados[2], 0 });
+                                }
+                                
+                            }
                         }
                         else
                         {
@@ -632,7 +755,23 @@ namespace cantStop
                         {
                             if (this.rbxOpcao3.Checked && this.rbxOpcao6.Enabled || this.rbxOpcao3.Text.Length < 3)
                             {
-                                this.jogador.Mover("1423", new[] { this.dados[0] + this.dados[3], 0 });
+                                if (this.rbxOpcao6.Enabled)
+                                {
+                                    this.jogador.Mover("1423", new[] { this.dados[0] + this.dados[3], 0 });
+                                }
+                                else
+                                {
+                                    if (flag)
+                                    {
+                                        this.jogador.Mover("2314", new[] { this.dados[1] + this.dados[2], 0 });
+                                        flag = false;
+                                    }
+                                    else
+                                    {
+                                        this.jogador.Mover("1423", new[] { this.dados[0] + this.dados[3], 0 });
+                                    }
+                                }
+                                
                             }
                             else
                             {
@@ -647,6 +786,7 @@ namespace cantStop
                     }
                 }
             }
+            */
 
             this.rbxOpcao1.Checked =
             this.rbxOpcao2.Checked =
@@ -667,6 +807,7 @@ namespace cantStop
             this.rbxOpcao5.Text = "Opcao 5";
             this.rbxOpcao6.Text = "Opcao 6";
 
+            this.tmrPartidaJogando_Tick(sender, e);
         }
 
 
