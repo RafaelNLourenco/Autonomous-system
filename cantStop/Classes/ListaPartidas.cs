@@ -43,6 +43,7 @@ namespace cantStop.Classes
             }
 
             this.dadosPartidas = aux;
+            this.dadosPartidas.Reverse();
         }
 
     }
