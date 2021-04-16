@@ -117,7 +117,7 @@ namespace cantStop
 
             foreach (Partida partida in partidas.dadosPartidas)
             {
-                if (partida.id == this.partida.id)
+                if (partida.Id == this.partida.Id)
                 {
                     this.partida.ListarJogadores();
                     this.iniciar();
@@ -132,7 +132,7 @@ namespace cantStop
                 this.setBotoes(true);
             }
 
-            this.tabuleiro.atualizarTabuleiro((int)this.partida.id);
+            this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
 
             foreach (PictureBox peca in this.pecas)
             {
