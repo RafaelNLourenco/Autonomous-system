@@ -118,14 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="jgdYBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdYBG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="jgdRY" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jgdRY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tabuleiroleiro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tabuleiroleiro.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="jgdRG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdRG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pointR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pointR.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dado3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dado3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jgdY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pointY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pointY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pointG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pointG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dado4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dado4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="jgdRBYG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jgdRBYG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,70 +148,58 @@
   <data name="jgdRBY" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jgdRBY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jgdYB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdYB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dado2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dado2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jgdG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jgdGB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdGB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jgdY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="dado5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dado5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dado3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dado3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jgdR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdR.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jgdRYG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdRYG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dado4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dado4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dado6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dado6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="jgdB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jgdB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dado1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dado1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jgdRG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdRG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="jgdGB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdGB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jgdRB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdRB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="jgdYB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdYB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jgdGY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdGY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="jgdRBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\jgdRBG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tabuleiroleiro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tabuleiroleiro.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pointB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pointB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pointG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pointG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="jgdRYG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdRYG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pointR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pointR.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dado1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dado1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jgdGY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdGY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jgdR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdR.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jgdRBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdRBG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jgdG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dado6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dado6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jgdYBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdYBG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jgdRB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\jgdRB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dado2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dado2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pointW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pointW.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pointY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pointY.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

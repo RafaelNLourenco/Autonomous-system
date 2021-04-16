@@ -35,8 +35,7 @@ namespace cantStop
             if(retorno[0] == 'E') MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else 
             {
-                partidaSelecionada.jogadores = Jogador.ListarJogadores(partidaSelecionada.Id);
-
+                partidaSelecionada.ListarJogadores();
                 this.jogadorCriado = new Jogador();
                 this.jogadorCriado.entrandoPartida(retorno, txbNome.Text);
 
@@ -151,8 +150,7 @@ namespace cantStop
         private void dgvListaPartidas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
-            partidaSelecionada.jogadores = Jogador.ListarJogadores(partidaSelecionada.Id);
-
+            partidaSelecionada.ListarJogadores();
             lblJogadores.Text = "Jogadores de " + partidaSelecionada.Nome;
 
             switch (partidaSelecionada.jogadores.Count) {

@@ -44,14 +44,24 @@ namespace cantStop.Classes
 
         public DataTable SelecioneColuna(int i)
         {
-            DataRow[] data = locais.Select("coluna = '" + i.ToString() + "'");
-
-            DataTable dataTable = locais.Clone();
+            DataTable dataTable = this.locais.Clone();
+            DataRow[] data = this.locais.Select("coluna = '" + i.ToString() + "'");
             foreach (DataRow linha in data)
             {
                 dataTable.ImportRow(linha);
             }
             
+            return dataTable;
+        }
+
+        public DataTable SelecioneJogador(int id, string tipo)
+        {
+            DataTable dataTable = this.locais.Clone();
+            DataRow[] data = this.locais.Select("jogador = '" + id.ToString() + "' AND tipo = '" + tipo + "'");
+            foreach (DataRow linha in data)
+            {
+                dataTable.ImportRow(linha);
+            }
             return dataTable;
         }
     }
