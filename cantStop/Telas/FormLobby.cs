@@ -17,9 +17,11 @@ namespace cantStop
             InitializeComponent();
             ListarPartidas();
             lblFeedbackCriarPartida.Text = "";
+            txbSenhaCriarPartida.UseSystemPasswordChar = true;
+            txbSenhaEntrarPartida.UseSystemPasswordChar = false;
         }
 
-         private void btnAtualizar_Click(object sender, EventArgs e)
+        private void btnAtualizar_Click(object sender, EventArgs e)
         {
             ListarPartidas();
         }
@@ -176,7 +178,15 @@ namespace cantStop
 
         private void btnEntrarBot_Click(object sender, EventArgs e)
         {
-
+            
+            if (txbSenhaCriarPartida.UseSystemPasswordChar == true)
+            {
+                txbSenhaCriarPartida.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txbSenhaCriarPartida.UseSystemPasswordChar = true;
+            }
         }
 
         private void btnVisualizarPartida_Click(object sender, EventArgs e)
