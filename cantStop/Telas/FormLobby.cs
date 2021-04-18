@@ -18,7 +18,7 @@ namespace cantStop
             ListarPartidas();
             lblFeedbackCriarPartida.Text = "";
             txbSenhaCriarPartida.UseSystemPasswordChar = true;
-            txbSenhaEntrarPartida.UseSystemPasswordChar = false;
+            txbSenhaEntrarPartida.UseSystemPasswordChar = true;
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
@@ -179,14 +179,6 @@ namespace cantStop
         private void btnEntrarBot_Click(object sender, EventArgs e)
         {
             
-            if (txbSenhaCriarPartida.UseSystemPasswordChar == true)
-            {
-                txbSenhaCriarPartida.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                txbSenhaCriarPartida.UseSystemPasswordChar = true;
-            }
         }
 
         private void btnVisualizarPartida_Click(object sender, EventArgs e)
@@ -197,6 +189,30 @@ namespace cantStop
         private void btnIntrucoes_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pcbSenhaEntrarPartida_Click(object sender, EventArgs e)
+        {
+            if (txbSenhaEntrarPartida.UseSystemPasswordChar == true)
+            {
+                txbSenhaEntrarPartida.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txbSenhaEntrarPartida.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void pcbSenhaCriarPartida_Click(object sender, EventArgs e)
+        {
+            if (txbSenhaCriarPartida.UseSystemPasswordChar == true)
+            {
+                txbSenhaCriarPartida.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txbSenhaCriarPartida.UseSystemPasswordChar = true;
+            }
         }
     }
 }
