@@ -222,6 +222,7 @@ namespace cantStop
         {
             if (e.KeyChar == 13)
             {
+                e.Handled = true;
                 this.btnCriarPartida_Click(sender,e);
             }
         }
@@ -230,6 +231,7 @@ namespace cantStop
         {
             if (e.KeyChar == 13)
             {
+                e.Handled = true;
                 this.btnEntrarDev_Click(sender, e);
             }
         }
@@ -238,8 +240,10 @@ namespace cantStop
         {
             if (e.KeyChar == 13)
             {
+                e.Handled = true;
                 this.btnEntrarDev_Click(sender, e);
             }
         }
+
     }
 }
