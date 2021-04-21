@@ -16,38 +16,24 @@ namespace cantStop
         {
             InitializeComponent();
             ListarPartidas();
+            lblFeedbackCriarPartida.Text = "";
+            txbSenhaCriarPartida.UseSystemPasswordChar = true;
+            txbSenhaEntrarPartida.UseSystemPasswordChar = true;
+            this.ActiveControl = txbNomeCriarPartida;
         }
 
-         private void btnAtualizar_Click(object sender, EventArgs e)
+        private void btnAtualizar_Click(object sender, EventArgs e)
         {
             ListarPartidas();
         }
-
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private void atualizarDadosPartida()
         {
-            Partida partida = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
-            string nome = txbNome.Text;
-            string senha = txbSenha.Text;
-            int idPartida = (int)partida.Id;
-
-            string retorno = Jogo.EntrarPartida(idPartida, nome, senha);
-            if(retorno[0] == 'E') MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else 
-            {
-                partidaSelecionada.ListarJogadores();
-                this.jogadorCriado = new Jogador();
-                this.jogadorCriado.entrandoPartida(retorno, txbNome.Text);
-
-                this.entrou = true;
-
-                this.Close();
-            }
+            lblNomePartidaSelecionada.Text = "Nome: " + partidaSelecionada.Nome;
+            lblStatusPartidaSelecionada.Text = "Status: : " + partidaSelecionada.Status;
         }
         private void listarJogadores()
         {
             partidaSelecionada.ListarJogadores();
-            lblJogadores.Text = "Jogadores de " + partidaSelecionada.Nome;
-
             switch (partidaSelecionada.jogadores.Count)
             {
                 case 0:
@@ -142,39 +128,118 @@ namespace cantStop
             dgvListaPartidas.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             partidaSelecionada = (Partida)listaPartidas.dadosPartidas[0];
+            atualizarDadosPartida();
             listarJogadores();
         }
 
         private void dgvListaPartidas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
+            atualizarDadosPartida();
             listarJogadores();
         }
 
-        private void btnCriarSala_Click(object sender, EventArgs e)
+        private void btnCriarPartida_Click(object sender, EventArgs e)
         {
-            string nome = txbNome.Text;
-            string senha = txbSenha.Text;
+            string nome = txbNomeCriarPartida.Text;
+            string senha = txbSenhaCriarPartida.Text;
             string retorno = Jogo.CriarPartida(nome, senha);
 
+            if (retorno[0] == 'E')
+            {
+                MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                lblFeedbackCriarPartida.Text = "Partida criada com sucesso";
+                ListarPartidas();
+                this.ActiveControl = txbNomeEntrarPartida;
+                txbSenhaEntrarPartida.Text = senha;
+            }
+        }
+
+        private void btnEntrarDev_Click(object sender, EventArgs e)
+        {
+            Partida partida = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
+            string nome = txbNomeEntrarPartida.Text;
+            string senha = txbSenhaEntrarPartida.Text;
+            int idPartida = (int)partida.Id;
+
+            string retorno = Jogo.EntrarPartida(idPartida, nome, senha);
             if (retorno[0] == 'E') MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else ListarPartidas();
-            
+            else
+            {
+                partidaSelecionada.ListarJogadores();
+                this.jogadorCriado = new Jogador();
+                this.jogadorCriado.entrandoPartida(retorno, txbNomeEntrarPartida.Text);
+
+                this.entrou = true;
+
+                this.Close();
+            }
         }
 
         private void btnEntrarBot_Click(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void btnEntrarEspec_Click(object sender, EventArgs e)
+        private void btnVisualizarPartida_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnInstrucoes_Click(object sender, EventArgs e)
+        private void btnIntrucoes_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pcbSenhaEntrarPartida_Click(object sender, EventArgs e)
+        {
+            if (txbSenhaEntrarPartida.UseSystemPasswordChar == true)
+            {
+                txbSenhaEntrarPartida.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txbSenhaEntrarPartida.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void pcbSenhaCriarPartida_Click(object sender, EventArgs e)
+        {
+            if (txbSenhaCriarPartida.UseSystemPasswordChar == true)
+            {
+                txbSenhaCriarPartida.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txbSenhaCriarPartida.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txbSenhaCriarPartida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.btnCriarPartida_Click(sender,e);
+            }
+        }
+
+        private void txbNomeEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.btnEntrarDev_Click(sender, e);
+            }
+        }
+
+        private void txbSenhaEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.btnEntrarDev_Click(sender, e);
+            }
         }
     }
 }

@@ -58,6 +58,10 @@ namespace cantStop
             this.pcbDado2 = new System.Windows.Forms.PictureBox();
             this.pcbTabuleiro = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblUltimasJogadas = new System.Windows.Forms.Label();
+            this.lblUltimaJogada = new System.Windows.Forms.Label();
+            this.lblAntipenultimaJogada = new System.Windows.Forms.Label();
+            this.lblPenultinaJogada = new System.Windows.Forms.Label();
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -71,7 +75,7 @@ namespace cantStop
             // 
             this.lblVersao.AutoSize = true;
             this.lblVersao.ForeColor = System.Drawing.Color.White;
-            this.lblVersao.Location = new System.Drawing.Point(1097, 612);
+            this.lblVersao.Location = new System.Drawing.Point(1095, 621);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(40, 13);
             this.lblVersao.TabIndex = 0;
@@ -91,7 +95,7 @@ namespace cantStop
             // 
             this.lblJogador.AutoSize = true;
             this.lblJogador.ForeColor = System.Drawing.Color.White;
-            this.lblJogador.Location = new System.Drawing.Point(1061, 33);
+            this.lblJogador.Location = new System.Drawing.Point(1123, 39);
             this.lblJogador.Name = "lblJogador";
             this.lblJogador.Size = new System.Drawing.Size(45, 13);
             this.lblJogador.TabIndex = 9;
@@ -101,7 +105,7 @@ namespace cantStop
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.ForeColor = System.Drawing.Color.White;
-            this.lblSenha.Location = new System.Drawing.Point(1061, 20);
+            this.lblSenha.Location = new System.Drawing.Point(1123, 26);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(76, 13);
             this.lblSenha.TabIndex = 10;
@@ -111,7 +115,7 @@ namespace cantStop
             // 
             this.lblCorJogador.AutoSize = true;
             this.lblCorJogador.ForeColor = System.Drawing.Color.White;
-            this.lblCorJogador.Location = new System.Drawing.Point(1061, 7);
+            this.lblCorJogador.Location = new System.Drawing.Point(1123, 13);
             this.lblCorJogador.Name = "lblCorJogador";
             this.lblCorJogador.Size = new System.Drawing.Size(61, 13);
             this.lblCorJogador.TabIndex = 11;
@@ -359,12 +363,56 @@ namespace cantStop
             this.pictureBox2.TabIndex = 25;
             this.pictureBox2.TabStop = false;
             // 
+            // lblUltimasJogadas
+            // 
+            this.lblUltimasJogadas.AutoSize = true;
+            this.lblUltimasJogadas.ForeColor = System.Drawing.Color.White;
+            this.lblUltimasJogadas.Location = new System.Drawing.Point(903, 416);
+            this.lblUltimasJogadas.Name = "lblUltimasJogadas";
+            this.lblUltimasJogadas.Size = new System.Drawing.Size(81, 13);
+            this.lblUltimasJogadas.TabIndex = 24;
+            this.lblUltimasJogadas.Text = "Ultimas jogadas";
+            // 
+            // lblUltimaJogada
+            // 
+            this.lblUltimaJogada.AutoSize = true;
+            this.lblUltimaJogada.ForeColor = System.Drawing.Color.White;
+            this.lblUltimaJogada.Location = new System.Drawing.Point(903, 441);
+            this.lblUltimaJogada.Name = "lblUltimaJogada";
+            this.lblUltimaJogada.Size = new System.Drawing.Size(74, 13);
+            this.lblUltimaJogada.TabIndex = 25;
+            this.lblUltimaJogada.Text = "Ultima Jogada";
+            // 
+            // lblAntipenultimaJogada
+            // 
+            this.lblAntipenultimaJogada.AutoSize = true;
+            this.lblAntipenultimaJogada.ForeColor = System.Drawing.Color.White;
+            this.lblAntipenultimaJogada.Location = new System.Drawing.Point(903, 489);
+            this.lblAntipenultimaJogada.Name = "lblAntipenultimaJogada";
+            this.lblAntipenultimaJogada.Size = new System.Drawing.Size(106, 13);
+            this.lblAntipenultimaJogada.TabIndex = 27;
+            this.lblAntipenultimaJogada.Text = "Antipenultina Jogada";
+            // 
+            // lblPenultinaJogada
+            // 
+            this.lblPenultinaJogada.AutoSize = true;
+            this.lblPenultinaJogada.ForeColor = System.Drawing.Color.White;
+            this.lblPenultinaJogada.Location = new System.Drawing.Point(903, 464);
+            this.lblPenultinaJogada.Name = "lblPenultinaJogada";
+            this.lblPenultinaJogada.Size = new System.Drawing.Size(91, 13);
+            this.lblPenultinaJogada.TabIndex = 26;
+            this.lblPenultinaJogada.Text = "Penultima Jogada";
+            // 
             // FormTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1149, 646);
+            this.ClientSize = new System.Drawing.Size(1211, 646);
+            this.Controls.Add(this.lblAntipenultimaJogada);
+            this.Controls.Add(this.lblPenultinaJogada);
+            this.Controls.Add(this.lblUltimaJogada);
+            this.Controls.Add(this.lblUltimasJogadas);
             this.Controls.Add(this.gbxJogadas);
             this.Controls.Add(this.pcbDado4);
             this.Controls.Add(this.pcbDado3);
@@ -427,5 +475,9 @@ namespace cantStop
         private System.Windows.Forms.Label lblOu3;
         private System.Windows.Forms.Label lblOu2;
         private System.Windows.Forms.Label lblOu1;
+        private System.Windows.Forms.Label lblUltimasJogadas;
+        private System.Windows.Forms.Label lblUltimaJogada;
+        private System.Windows.Forms.Label lblAntipenultimaJogada;
+        private System.Windows.Forms.Label lblPenultinaJogada;
     }
 }
