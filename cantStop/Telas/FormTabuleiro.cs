@@ -28,6 +28,8 @@ namespace cantStop
         private bool flag;
         private List<Dictionary<string, int[]>> movimento;
 
+        private String[] historico;
+
         public FormTabuleiro()
         {
             lobby = new FormLobby();
@@ -43,7 +45,8 @@ namespace cantStop
 
                 this.pecas = new List<PictureBox>();
 
-                this.lblVersao.Text = Jogo.Versao;
+                this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
+                this.atualizarHistorico();
 
                 this.lblJogador.Text = this.jogador.nome;
                 this.lblCorJogador.Text = this.jogador.cor;
@@ -114,6 +117,7 @@ namespace cantStop
         {
             ListaPartidas partidas = new ListaPartidas("J");
             this.partida.ListarJogadores();
+            this.atualizarHistorico();
 
             foreach (Partida partida in partidas.dadosPartidas)
             {
@@ -126,6 +130,28 @@ namespace cantStop
             }
         }
 
+        private void atualizarHistorico()
+        {
+            this.historico = this.partida.pegarHistorico();
+            if (this.historico.Length == 1 ){
+                lblUltimaJogada.Text = this.historico[0];
+                lblPenultinaJogada.Text = "";
+                lblAntipenultimaJogada.Text = "";
+            }
+            else if (this.historico.Length == 2)
+            {
+                lblUltimaJogada.Text = this.historico[0];
+                lblPenultinaJogada.Text = this.historico[1];
+                lblAntipenultimaJogada.Text = "";
+            }
+            else
+            {
+                lblUltimaJogada.Text = this.historico[0];
+                lblPenultinaJogada.Text = this.historico[1];
+                lblAntipenultimaJogada.Text = this.historico[2];
+            }
+        }
+
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
             if (this.partida.VerificarVez().id == this.jogador.id && !this.fazendoJogada){
@@ -133,7 +159,8 @@ namespace cantStop
             }
 
             this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
-
+            this.atualizarHistorico();
+                
             foreach (PictureBox peca in this.pecas)
             {
                 this.Controls.Remove(peca);

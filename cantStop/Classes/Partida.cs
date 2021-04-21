@@ -50,5 +50,13 @@ namespace cantStop
 
             return null;
         }
+
+        public String[] pegarHistorico()
+        {
+            string retornoHistorico = Jogo.ExibirHistorico(this.Id);
+            retornoHistorico = retornoHistorico.Replace("\r", "");
+            string[] historico = retornoHistorico.Split('\n');
+            return historico;
+        }
     }
 }
