@@ -19,6 +19,7 @@ namespace cantStop
             lblFeedbackCriarPartida.Text = "";
             txbSenhaCriarPartida.UseSystemPasswordChar = true;
             txbSenhaEntrarPartida.UseSystemPasswordChar = true;
+            this.ActiveControl = txbNomeCriarPartida;
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
@@ -152,6 +153,8 @@ namespace cantStop
             {
                 lblFeedbackCriarPartida.Text = "Partida criada com sucesso";
                 ListarPartidas();
+                this.ActiveControl = txbNomeEntrarPartida;
+                txbSenhaEntrarPartida.Text = senha;
             }
         }
 
@@ -212,6 +215,30 @@ namespace cantStop
             else
             {
                 txbSenhaCriarPartida.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txbSenhaCriarPartida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.btnCriarPartida_Click(sender,e);
+            }
+        }
+
+        private void txbNomeEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.btnEntrarDev_Click(sender, e);
+            }
+        }
+
+        private void txbSenhaEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                this.btnEntrarDev_Click(sender, e);
             }
         }
     }
