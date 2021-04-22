@@ -80,9 +80,9 @@ namespace cantStop
             this.btnAtualizar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAtualizar.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtualizar.Location = new System.Drawing.Point(25, 495);
+            this.btnAtualizar.Location = new System.Drawing.Point(25, 500);
             this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(318, 30);
+            this.btnAtualizar.Size = new System.Drawing.Size(281, 30);
             this.btnAtualizar.TabIndex = 3;
             this.btnAtualizar.Text = "Atualizar a lista de partidas";
             this.btnAtualizar.UseVisualStyleBackColor = false;
@@ -96,7 +96,7 @@ namespace cantStop
             this.btnCriarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCriarPartida.Location = new System.Drawing.Point(25, 718);
             this.btnCriarPartida.Name = "btnCriarPartida";
-            this.btnCriarPartida.Size = new System.Drawing.Size(318, 30);
+            this.btnCriarPartida.Size = new System.Drawing.Size(281, 30);
             this.btnCriarPartida.TabIndex = 4;
             this.btnCriarPartida.Text = "Criar";
             this.btnCriarPartida.UseVisualStyleBackColor = false;
@@ -108,20 +108,20 @@ namespace cantStop
             this.dgvListaPartidas.AllowUserToDeleteRows = false;
             this.dgvListaPartidas.AllowUserToResizeColumns = false;
             this.dgvListaPartidas.AllowUserToResizeRows = false;
-            this.dgvListaPartidas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.dgvListaPartidas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.dgvListaPartidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvListaPartidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvListaPartidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvListaPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvListaPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
@@ -130,7 +130,7 @@ namespace cantStop
             this.dgvListaPartidas.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvListaPartidas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvListaPartidas.EnableHeadersVisualStyles = false;
-            this.dgvListaPartidas.Location = new System.Drawing.Point(25, 55);
+            this.dgvListaPartidas.Location = new System.Drawing.Point(25, 65);
             this.dgvListaPartidas.MultiSelect = false;
             this.dgvListaPartidas.Name = "dgvListaPartidas";
             this.dgvListaPartidas.ReadOnly = true;
@@ -139,7 +139,7 @@ namespace cantStop
             this.dgvListaPartidas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvListaPartidas.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvListaPartidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaPartidas.Size = new System.Drawing.Size(318, 429);
+            this.dgvListaPartidas.Size = new System.Drawing.Size(281, 424);
             this.dgvListaPartidas.TabIndex = 6;
             this.dgvListaPartidas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListaPartidas_CellMouseClick);
             // 
@@ -149,7 +149,7 @@ namespace cantStop
             this.btnEntrarDev.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.btnEntrarDev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrarDev.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEntrarDev.Location = new System.Drawing.Point(373, 533);
+            this.btnEntrarDev.Location = new System.Drawing.Point(340, 533);
             this.btnEntrarDev.Name = "btnEntrarDev";
             this.btnEntrarDev.Size = new System.Drawing.Size(281, 30);
             this.btnEntrarDev.TabIndex = 7;
@@ -161,7 +161,7 @@ namespace cantStop
             // 
             this.lblNomeEntrarPartida.AutoSize = true;
             this.lblNomeEntrarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeEntrarPartida.Location = new System.Drawing.Point(370, 397);
+            this.lblNomeEntrarPartida.Location = new System.Drawing.Point(337, 395);
             this.lblNomeEntrarPartida.Name = "lblNomeEntrarPartida";
             this.lblNomeEntrarPartida.Size = new System.Drawing.Size(133, 21);
             this.lblNomeEntrarPartida.TabIndex = 9;
@@ -173,7 +173,7 @@ namespace cantStop
             this.txbNomeEntrarPartida.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbNomeEntrarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNomeEntrarPartida.ForeColor = System.Drawing.SystemColors.Window;
-            this.txbNomeEntrarPartida.Location = new System.Drawing.Point(373, 423);
+            this.txbNomeEntrarPartida.Location = new System.Drawing.Point(340, 423);
             this.txbNomeEntrarPartida.Name = "txbNomeEntrarPartida";
             this.txbNomeEntrarPartida.Size = new System.Drawing.Size(281, 29);
             this.txbNomeEntrarPartida.TabIndex = 10;
@@ -183,7 +183,7 @@ namespace cantStop
             // 
             this.lblSenhaEntrarPartida.AutoSize = true;
             this.lblSenhaEntrarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSenhaEntrarPartida.Location = new System.Drawing.Point(374, 456);
+            this.lblSenhaEntrarPartida.Location = new System.Drawing.Point(341, 454);
             this.lblSenhaEntrarPartida.Name = "lblSenhaEntrarPartida";
             this.lblSenhaEntrarPartida.Size = new System.Drawing.Size(127, 21);
             this.lblSenhaEntrarPartida.TabIndex = 11;
@@ -195,7 +195,7 @@ namespace cantStop
             this.txbSenhaEntrarPartida.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txbSenhaEntrarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbSenhaEntrarPartida.ForeColor = System.Drawing.SystemColors.Window;
-            this.txbSenhaEntrarPartida.Location = new System.Drawing.Point(374, 481);
+            this.txbSenhaEntrarPartida.Location = new System.Drawing.Point(341, 481);
             this.txbSenhaEntrarPartida.Name = "txbSenhaEntrarPartida";
             this.txbSenhaEntrarPartida.Size = new System.Drawing.Size(281, 29);
             this.txbSenhaEntrarPartida.TabIndex = 12;
@@ -204,10 +204,10 @@ namespace cantStop
             // lblPartidas
             // 
             this.lblPartidas.AutoSize = true;
-            this.lblPartidas.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartidas.Location = new System.Drawing.Point(25, 15);
+            this.lblPartidas.Font = new System.Drawing.Font("Yu Gothic UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartidas.Location = new System.Drawing.Point(22, 13);
             this.lblPartidas.Name = "lblPartidas";
-            this.lblPartidas.Size = new System.Drawing.Size(160, 28);
+            this.lblPartidas.Size = new System.Drawing.Size(215, 37);
             this.lblPartidas.TabIndex = 13;
             this.lblPartidas.Text = "Lista de Partidas";
             // 
@@ -215,7 +215,7 @@ namespace cantStop
             // 
             this.lblJogadoresPartidaSelecionada.AutoSize = true;
             this.lblJogadoresPartidaSelecionada.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJogadoresPartidaSelecionada.Location = new System.Drawing.Point(375, 142);
+            this.lblJogadoresPartidaSelecionada.Location = new System.Drawing.Point(342, 145);
             this.lblJogadoresPartidaSelecionada.Name = "lblJogadoresPartidaSelecionada";
             this.lblJogadoresPartidaSelecionada.Size = new System.Drawing.Size(177, 28);
             this.lblJogadoresPartidaSelecionada.TabIndex = 14;
@@ -225,7 +225,7 @@ namespace cantStop
             // 
             this.lblJogador1.AutoSize = true;
             this.lblJogador1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJogador1.Location = new System.Drawing.Point(408, 192);
+            this.lblJogador1.Location = new System.Drawing.Point(375, 191);
             this.lblJogador1.Name = "lblJogador1";
             this.lblJogador1.Size = new System.Drawing.Size(79, 21);
             this.lblJogador1.TabIndex = 19;
@@ -235,7 +235,7 @@ namespace cantStop
             // 
             this.lblJogador2.AutoSize = true;
             this.lblJogador2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJogador2.Location = new System.Drawing.Point(408, 229);
+            this.lblJogador2.Location = new System.Drawing.Point(375, 232);
             this.lblJogador2.Name = "lblJogador2";
             this.lblJogador2.Size = new System.Drawing.Size(79, 21);
             this.lblJogador2.TabIndex = 20;
@@ -245,7 +245,7 @@ namespace cantStop
             // 
             this.lblJogador3.AutoSize = true;
             this.lblJogador3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJogador3.Location = new System.Drawing.Point(408, 266);
+            this.lblJogador3.Location = new System.Drawing.Point(375, 274);
             this.lblJogador3.Name = "lblJogador3";
             this.lblJogador3.Size = new System.Drawing.Size(79, 21);
             this.lblJogador3.TabIndex = 21;
@@ -255,7 +255,7 @@ namespace cantStop
             // 
             this.lblJogador4.AutoSize = true;
             this.lblJogador4.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJogador4.Location = new System.Drawing.Point(408, 305);
+            this.lblJogador4.Location = new System.Drawing.Point(375, 317);
             this.lblJogador4.Name = "lblJogador4";
             this.lblJogador4.Size = new System.Drawing.Size(79, 21);
             this.lblJogador4.TabIndex = 22;
@@ -269,7 +269,7 @@ namespace cantStop
             this.txbSenhaCriarPartida.ForeColor = System.Drawing.SystemColors.Window;
             this.txbSenhaCriarPartida.Location = new System.Drawing.Point(25, 669);
             this.txbSenhaCriarPartida.Name = "txbSenhaCriarPartida";
-            this.txbSenhaCriarPartida.Size = new System.Drawing.Size(319, 29);
+            this.txbSenhaCriarPartida.Size = new System.Drawing.Size(281, 29);
             this.txbSenhaCriarPartida.TabIndex = 26;
             this.txbSenhaCriarPartida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbSenhaCriarPartida_KeyPress);
             // 
@@ -277,7 +277,7 @@ namespace cantStop
             // 
             this.lblSenhaCriarPartida.AutoSize = true;
             this.lblSenhaCriarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSenhaCriarPartida.Location = new System.Drawing.Point(25, 643);
+            this.lblSenhaCriarPartida.Location = new System.Drawing.Point(25, 641);
             this.lblSenhaCriarPartida.Name = "lblSenhaCriarPartida";
             this.lblSenhaCriarPartida.Size = new System.Drawing.Size(127, 21);
             this.lblSenhaCriarPartida.TabIndex = 25;
@@ -291,14 +291,14 @@ namespace cantStop
             this.txbNomeCriarPartida.ForeColor = System.Drawing.SystemColors.Window;
             this.txbNomeCriarPartida.Location = new System.Drawing.Point(24, 608);
             this.txbNomeCriarPartida.Name = "txbNomeCriarPartida";
-            this.txbNomeCriarPartida.Size = new System.Drawing.Size(319, 29);
+            this.txbNomeCriarPartida.Size = new System.Drawing.Size(282, 29);
             this.txbNomeCriarPartida.TabIndex = 24;
             // 
             // lblNomeCriarPartida
             // 
             this.lblNomeCriarPartida.AutoSize = true;
             this.lblNomeCriarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeCriarPartida.Location = new System.Drawing.Point(21, 582);
+            this.lblNomeCriarPartida.Location = new System.Drawing.Point(21, 580);
             this.lblNomeCriarPartida.Name = "lblNomeCriarPartida";
             this.lblNomeCriarPartida.Size = new System.Drawing.Size(127, 21);
             this.lblNomeCriarPartida.TabIndex = 23;
@@ -307,10 +307,10 @@ namespace cantStop
             // lblPartidaSelecionada
             // 
             this.lblPartidaSelecionada.AutoSize = true;
-            this.lblPartidaSelecionada.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartidaSelecionada.Location = new System.Drawing.Point(369, 15);
+            this.lblPartidaSelecionada.Font = new System.Drawing.Font("Yu Gothic UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartidaSelecionada.Location = new System.Drawing.Point(340, 13);
             this.lblPartidaSelecionada.Name = "lblPartidaSelecionada";
-            this.lblPartidaSelecionada.Size = new System.Drawing.Size(187, 28);
+            this.lblPartidaSelecionada.Size = new System.Drawing.Size(253, 37);
             this.lblPartidaSelecionada.TabIndex = 27;
             this.lblPartidaSelecionada.Text = "Partida selecionada";
             // 
@@ -318,7 +318,7 @@ namespace cantStop
             // 
             this.lblNomePartidaSelecionada.AutoSize = true;
             this.lblNomePartidaSelecionada.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomePartidaSelecionada.Location = new System.Drawing.Point(369, 55);
+            this.lblNomePartidaSelecionada.Location = new System.Drawing.Point(341, 65);
             this.lblNomePartidaSelecionada.Name = "lblNomePartidaSelecionada";
             this.lblNomePartidaSelecionada.Size = new System.Drawing.Size(75, 28);
             this.lblNomePartidaSelecionada.TabIndex = 28;
@@ -328,7 +328,7 @@ namespace cantStop
             // 
             this.lblStatusPartidaSelecionada.AutoSize = true;
             this.lblStatusPartidaSelecionada.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatusPartidaSelecionada.Location = new System.Drawing.Point(370, 96);
+            this.lblStatusPartidaSelecionada.Location = new System.Drawing.Point(342, 104);
             this.lblStatusPartidaSelecionada.Name = "lblStatusPartidaSelecionada";
             this.lblStatusPartidaSelecionada.Size = new System.Drawing.Size(75, 28);
             this.lblStatusPartidaSelecionada.TabIndex = 29;
@@ -338,7 +338,7 @@ namespace cantStop
             // 
             this.lblEntrarPartida.AutoSize = true;
             this.lblEntrarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEntrarPartida.Location = new System.Drawing.Point(372, 351);
+            this.lblEntrarPartida.Location = new System.Drawing.Point(339, 355);
             this.lblEntrarPartida.Name = "lblEntrarPartida";
             this.lblEntrarPartida.Size = new System.Drawing.Size(65, 28);
             this.lblEntrarPartida.TabIndex = 30;
@@ -350,7 +350,7 @@ namespace cantStop
             this.btnEntrarBot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.btnEntrarBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntrarBot.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEntrarBot.Location = new System.Drawing.Point(373, 580);
+            this.btnEntrarBot.Location = new System.Drawing.Point(340, 580);
             this.btnEntrarBot.Name = "btnEntrarBot";
             this.btnEntrarBot.Size = new System.Drawing.Size(281, 30);
             this.btnEntrarBot.TabIndex = 31;
@@ -362,7 +362,7 @@ namespace cantStop
             // 
             this.lblVisualizar.AutoSize = true;
             this.lblVisualizar.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVisualizar.Location = new System.Drawing.Point(375, 626);
+            this.lblVisualizar.Location = new System.Drawing.Point(342, 623);
             this.lblVisualizar.Name = "lblVisualizar";
             this.lblVisualizar.Size = new System.Drawing.Size(102, 28);
             this.lblVisualizar.TabIndex = 32;
@@ -374,7 +374,7 @@ namespace cantStop
             this.btnVisualizarPartida.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.btnVisualizarPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVisualizarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVisualizarPartida.Location = new System.Drawing.Point(373, 671);
+            this.btnVisualizarPartida.Location = new System.Drawing.Point(340, 671);
             this.btnVisualizarPartida.Name = "btnVisualizarPartida";
             this.btnVisualizarPartida.Size = new System.Drawing.Size(281, 30);
             this.btnVisualizarPartida.TabIndex = 33;
@@ -388,7 +388,7 @@ namespace cantStop
             this.btnIntrucoes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.btnIntrucoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIntrucoes.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIntrucoes.Location = new System.Drawing.Point(373, 717);
+            this.btnIntrucoes.Location = new System.Drawing.Point(340, 717);
             this.btnIntrucoes.Name = "btnIntrucoes";
             this.btnIntrucoes.Size = new System.Drawing.Size(281, 30);
             this.btnIntrucoes.TabIndex = 34;
@@ -400,7 +400,7 @@ namespace cantStop
             // 
             this.lblCriarPartida.AutoSize = true;
             this.lblCriarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCriarPartida.Location = new System.Drawing.Point(25, 540);
+            this.lblCriarPartida.Location = new System.Drawing.Point(22, 540);
             this.lblCriarPartida.Name = "lblCriarPartida";
             this.lblCriarPartida.Size = new System.Drawing.Size(122, 28);
             this.lblCriarPartida.TabIndex = 35;
@@ -409,9 +409,9 @@ namespace cantStop
             // lblFeedbackCriarPartida
             // 
             this.lblFeedbackCriarPartida.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFeedbackCriarPartida.Location = new System.Drawing.Point(26, 754);
+            this.lblFeedbackCriarPartida.Location = new System.Drawing.Point(25, 751);
             this.lblFeedbackCriarPartida.Name = "lblFeedbackCriarPartida";
-            this.lblFeedbackCriarPartida.Size = new System.Drawing.Size(318, 21);
+            this.lblFeedbackCriarPartida.Size = new System.Drawing.Size(281, 21);
             this.lblFeedbackCriarPartida.TabIndex = 36;
             this.lblFeedbackCriarPartida.Text = "Feedback criar partida";
             this.lblFeedbackCriarPartida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -420,7 +420,7 @@ namespace cantStop
             // 
             this.pcbIcon4.BackgroundImage = global::cantStop.Properties.Resources.pointY;
             this.pcbIcon4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbIcon4.Location = new System.Drawing.Point(380, 303);
+            this.pcbIcon4.Location = new System.Drawing.Point(347, 318);
             this.pcbIcon4.Name = "pcbIcon4";
             this.pcbIcon4.Size = new System.Drawing.Size(23, 24);
             this.pcbIcon4.TabIndex = 18;
@@ -430,7 +430,7 @@ namespace cantStop
             // 
             this.pcbIcon3.BackgroundImage = global::cantStop.Properties.Resources.pointG;
             this.pcbIcon3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbIcon3.Location = new System.Drawing.Point(380, 264);
+            this.pcbIcon3.Location = new System.Drawing.Point(347, 275);
             this.pcbIcon3.Name = "pcbIcon3";
             this.pcbIcon3.Size = new System.Drawing.Size(23, 24);
             this.pcbIcon3.TabIndex = 17;
@@ -440,7 +440,7 @@ namespace cantStop
             // 
             this.pcbIcon2.BackgroundImage = global::cantStop.Properties.Resources.pointB;
             this.pcbIcon2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbIcon2.Location = new System.Drawing.Point(380, 227);
+            this.pcbIcon2.Location = new System.Drawing.Point(347, 233);
             this.pcbIcon2.Name = "pcbIcon2";
             this.pcbIcon2.Size = new System.Drawing.Size(23, 24);
             this.pcbIcon2.TabIndex = 16;
@@ -450,7 +450,7 @@ namespace cantStop
             // 
             this.pcbIcon1.BackgroundImage = global::cantStop.Properties.Resources.pointR;
             this.pcbIcon1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbIcon1.Location = new System.Drawing.Point(380, 192);
+            this.pcbIcon1.Location = new System.Drawing.Point(347, 192);
             this.pcbIcon1.Name = "pcbIcon1";
             this.pcbIcon1.Size = new System.Drawing.Size(23, 24);
             this.pcbIcon1.TabIndex = 15;
@@ -461,7 +461,7 @@ namespace cantStop
             this.pcbSenhaCriarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.pcbSenhaCriarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pcbSenhaCriarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
-            this.pcbSenhaCriarPartida.Location = new System.Drawing.Point(310, 674);
+            this.pcbSenhaCriarPartida.Location = new System.Drawing.Point(272, 674);
             this.pcbSenhaCriarPartida.Margin = new System.Windows.Forms.Padding(10);
             this.pcbSenhaCriarPartida.Name = "pcbSenhaCriarPartida";
             this.pcbSenhaCriarPartida.Size = new System.Drawing.Size(31, 19);
@@ -475,7 +475,7 @@ namespace cantStop
             this.pcbSenhaEntrarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.pcbSenhaEntrarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pcbSenhaEntrarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
-            this.pcbSenhaEntrarPartida.Location = new System.Drawing.Point(621, 486);
+            this.pcbSenhaEntrarPartida.Location = new System.Drawing.Point(588, 486);
             this.pcbSenhaEntrarPartida.Margin = new System.Windows.Forms.Padding(10);
             this.pcbSenhaEntrarPartida.Name = "pcbSenhaEntrarPartida";
             this.pcbSenhaEntrarPartida.Size = new System.Drawing.Size(31, 19);
@@ -489,7 +489,7 @@ namespace cantStop
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.ClientSize = new System.Drawing.Size(682, 787);
+            this.ClientSize = new System.Drawing.Size(647, 787);
             this.Controls.Add(this.pcbSenhaEntrarPartida);
             this.Controls.Add(this.pcbSenhaCriarPartida);
             this.Controls.Add(this.lblFeedbackCriarPartida);

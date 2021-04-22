@@ -58,7 +58,7 @@ namespace cantStop
                     lblJogador3.Visible = false;
                     lblJogador4.Visible = false;
 
-                    lblJogador1.Text = "-     " + partidaSelecionada.jogadores[0].nome;
+                    lblJogador1.Text = partidaSelecionada.jogadores[0].nome;
 
                     // lblJogador1.Visible = false;
                     break;
@@ -73,8 +73,8 @@ namespace cantStop
                     lblJogador3.Visible = false;
                     lblJogador4.Visible = false;
 
-                    lblJogador1.Text = "-     " + partidaSelecionada.jogadores[0].nome;
-                    lblJogador2.Text = "-     " + partidaSelecionada.jogadores[1].nome;
+                    lblJogador1.Text = partidaSelecionada.jogadores[0].nome;
+                    lblJogador2.Text = partidaSelecionada.jogadores[1].nome;
 
                     // lblJogador1.Visible = false;
                     break;
@@ -89,9 +89,9 @@ namespace cantStop
                     lblJogador3.Visible = true;
                     lblJogador4.Visible = false;
 
-                    lblJogador1.Text = "-     " + partidaSelecionada.jogadores[0].nome;
-                    lblJogador2.Text = "-     " + partidaSelecionada.jogadores[1].nome;
-                    lblJogador3.Text = "-     " + partidaSelecionada.jogadores[2].nome;
+                    lblJogador1.Text = partidaSelecionada.jogadores[0].nome;
+                    lblJogador2.Text = partidaSelecionada.jogadores[1].nome;
+                    lblJogador3.Text = partidaSelecionada.jogadores[2].nome;
 
                     // lblJogador1.Visible = false;
                     break;
@@ -106,10 +106,10 @@ namespace cantStop
                     lblJogador3.Visible = true;
                     lblJogador4.Visible = true;
 
-                    lblJogador1.Text = "-     " + partidaSelecionada.jogadores[0].nome;
-                    lblJogador2.Text = "-     " + partidaSelecionada.jogadores[1].nome;
-                    lblJogador3.Text = "-     " + partidaSelecionada.jogadores[2].nome;
-                    lblJogador4.Text = "-     " + partidaSelecionada.jogadores[3].nome;
+                    lblJogador1.Text = partidaSelecionada.jogadores[0].nome;
+                    lblJogador2.Text = partidaSelecionada.jogadores[1].nome;
+                    lblJogador3.Text = partidaSelecionada.jogadores[2].nome;
+                    lblJogador4.Text = partidaSelecionada.jogadores[3].nome;
 
                     break;
             }
