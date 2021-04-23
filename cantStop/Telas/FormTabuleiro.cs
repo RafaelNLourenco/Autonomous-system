@@ -26,7 +26,9 @@ namespace cantStop
 
         private bool fazendoJogada;
         private bool flag;
-        private List<Dictionary<string, int[]>> movimento;
+        private List<Dictionary<string, int[]>> Combinacoes;
+
+        private String[] historico;
 
         public FormTabuleiro()
         {
@@ -43,7 +45,8 @@ namespace cantStop
 
                 this.pecas = new List<PictureBox>();
 
-                this.lblVersao.Text = Jogo.Versao;
+                this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
+                this.atualizarHistorico();
 
                 this.lblJogador.Text = this.jogador.nome;
                 this.lblCorJogador.Text = this.jogador.cor;
@@ -74,7 +77,7 @@ namespace cantStop
 
                 this.dados = new List<int>();
 
-                this.movimento = new List<Dictionary<string, int[]>>();
+                this.Combinacoes = new List<Dictionary<string, int[]>>();
             }
             
         }
@@ -114,6 +117,7 @@ namespace cantStop
         {
             ListaPartidas partidas = new ListaPartidas("J");
             this.partida.ListarJogadores();
+            this.atualizarHistorico();
 
             foreach (Partida partida in partidas.dadosPartidas)
             {
@@ -126,6 +130,28 @@ namespace cantStop
             }
         }
 
+        private void atualizarHistorico()
+        {
+            this.historico = this.partida.pegarHistorico();
+            if (this.historico.Length == 1 ){
+                lblUltimaJogada.Text = this.historico[0];
+                lblPenultinaJogada.Text = "";
+                lblAntipenultimaJogada.Text = "";
+            }
+            else if (this.historico.Length == 2)
+            {
+                lblUltimaJogada.Text = this.historico[0];
+                lblPenultinaJogada.Text = this.historico[1];
+                lblAntipenultimaJogada.Text = "";
+            }
+            else
+            {
+                lblUltimaJogada.Text = this.historico[0];
+                lblPenultinaJogada.Text = this.historico[1];
+                lblAntipenultimaJogada.Text = this.historico[2];
+            }
+        }
+
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
             if (this.partida.VerificarVez().id == this.jogador.id && !this.fazendoJogada){
@@ -133,7 +159,8 @@ namespace cantStop
             }
 
             this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
-
+            this.atualizarHistorico();
+                
             foreach (PictureBox peca in this.pecas)
             {
                 this.Controls.Remove(peca);
@@ -211,7 +238,7 @@ namespace cantStop
             this.btnPassarVez.Enabled = valor;
         }
 
-        private int getQuantidadePosicao(int coluna)
+        public static int getQuantidadePosicao(int coluna)
         {
             return 13 - ((coluna <= 7) ? (2 * (7 - coluna)) : (2 * (coluna - 7)));
         }
@@ -482,107 +509,28 @@ namespace cantStop
                 }
             }
 
-            int[,] colunas =
-            {
-                // COM 1
-                { this.dados[0], this.dados[1], this.dados[2], this.dados[3] },
-                // COM 2
-                { this.dados[0], this.dados[2], this.dados[1], this.dados[3] },
-                // COM 3
-                { this.dados[0], this.dados[3], this.dados[1], this.dados[2] }
-            };
-
-            string[,] combinacoes =
-            {
-                {"1","2","3","4"},
-                {"1","3","2","4"},
-                {"1","4","2","3"},
-            };
-
-
-            this.movimento.Clear();
-            DataTable pecasJogador = this.tabuleiro.SelecioneJogador((int)this.jogador.id, "A");
+            this.Combinacoes = this.tabuleiro.MontarCombinacoes((int)this.jogador.id, this.dados);
 
             for (int i = 0; i < 3; i++)
             {
-                string ordem = combinacoes[i, 0] + combinacoes[i, 1] + combinacoes[i, 2] + combinacoes[i, 3];
-                Dictionary<string, int[]> mover = new Dictionary<string, int[]>();
-                if (pecasJogador.Rows.Count == 0)
-                {
-                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
-
-                    mover.Add( ordem, new[] { colunas[i, 0] + colunas[i, 1], colunas[i, 2] + colunas[i, 3] });
-                }
-                else
-                {
-                    DataRow[] pecaP1 = pecasJogador.Select("coluna = '" + (colunas[i, 0] + colunas[i, 1]) + "'");
-                    DataRow[] pecaP2 = pecasJogador.Select("coluna = '" + (colunas[i, 2] + colunas[i, 3]) + "'");
-
-
-                    if (pecaP1.Length == 0 || pecaP2.Length == 0)
+                if(this.Combinacoes[i].ElementAt(0).Key != "") {
+                    if(this.Combinacoes[i].Count > 1)
                     {
-                        if (pecasJogador.Rows.Count == 1)
-                        {
-                            this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
-
-                            mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], colunas[i, 2] + colunas[i, 3] });
-                        }
-                        else
-                        {
-                            if (pecasJogador.Rows.Count == 2)
-                            {
-                                if (pecaP1.Length != 0 || pecaP2.Length != 0 || colunas[i, 0] + colunas[i, 1] == colunas[i, 2] + colunas[i, 3])
-                                {
-                                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
-
-                                    mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], colunas[i, 2] + colunas[i, 3] });
-                                }
-                                else
-                                {
-                                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString();
-                                    this.radios[i + 3].Text = (colunas[i, 2] + colunas[i, 3]).ToString();
-
-                                    mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], 0 });
-                                    ordem = combinacoes[i, 2] + combinacoes[i, 3] + combinacoes[i, 0] + combinacoes[i, 1];
-                                    mover.Add(ordem, new[] { colunas[i, 2] + colunas[i, 3], 0 });
-                                }
-                            }
-                            else
-                            {
-                                if (pecaP1.Length != 0)
-                                {
-                                    this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString();
-                                    this.flag = true;
-
-                                    mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], 0 });
-                                }
-                                else
-                                {
-                                    if (pecaP2.Length != 0)
-                                    {
-                                        this.radios[i].Text = (colunas[i, 2] + colunas[i, 3]).ToString();
-                                        this.flag = true;
-
-                                        ordem = combinacoes[i, 2] + combinacoes[i, 3] + combinacoes[i, 0] + combinacoes[i, 1];
-                                        mover.Add(ordem, new[] { colunas[i, 2] + colunas[i, 3], 0 });
-                                    }
-                                    else
-                                    {
-                                        mover.Add("", new[] {0, 0 });
-                                        // Vai pro beleleu
-                                    }
-                                }
-                            }
-                        }
+                        this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString();
+                        this.radios[i + 3].Text = this.Combinacoes[i].ElementAt(1).Value[0].ToString();
                     }
                     else
                     {
-                        this.radios[i].Text = (colunas[i, 0] + colunas[i, 1]).ToString() + " e " + (colunas[i, 2] + colunas[i, 3]).ToString();
-
-                        mover.Add(ordem, new[] { colunas[i, 0] + colunas[i, 1], 0 });
+                        if(this.Combinacoes[i].ElementAt(0).Value[1] == 0)
+                        {
+                            this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString();
+                        }
+                        else
+                        {
+                            this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString() + " e " + this.Combinacoes[i].ElementAt(0).Value[1].ToString();
+                        }
                     }
                 }
-                this.movimento.Add(mover);
             }
 
             this.gbxJogadas.Visible = true;
@@ -615,60 +563,37 @@ namespace cantStop
 
         private void btnJogar_Click(object sender, EventArgs e)
         {
-            if (this.rbxOpcao1.Checked || this.rbxOpcao4.Checked) {
-                if (flag)
-                {
-                    if (this.rbxOpcao1.Checked)
+            bool haSelecionado = false;
+            for (int i = 0; i < 3; i++)
+            {
+                if(this.radios[i].Checked || this.radios[i + 3].Checked) { 
+                    if (this.radios[i + 3].Enabled)
                     {
-                        this.jogador.Mover(movimento.ElementAt(0).ElementAt(0).Key, movimento.ElementAt(0).ElementAt(0).Value);
+                        if (this.radios[i].Checked)
+                        {
+                            jogador.Mover(this.Combinacoes[i].ElementAt(0).Key, this.Combinacoes[i].ElementAt(0).Value);
+                            haSelecionado = true;
+                        }
+                        else
+                        {
+                            jogador.Mover(this.Combinacoes[i].ElementAt(1).Key, this.Combinacoes[i].ElementAt(1).Value);
+                            haSelecionado = true;
+                        }
                     }
                     else
                     {
-                        this.jogador.Mover(movimento.ElementAt(0).ElementAt(1).Key, movimento.ElementAt(0).ElementAt(1).Value);
+                        jogador.Mover(this.Combinacoes[i].ElementAt(0).Key, this.Combinacoes[i].ElementAt(0).Value);
+                        haSelecionado = true;
                     }
-                }
-                else
-                {
-                    this.jogador.Mover(movimento.ElementAt(0).ElementAt(0).Key, movimento.ElementAt(0).ElementAt(0).Value);
+
+                    break;
                 }
             }
 
-            if (this.rbxOpcao2.Checked || this.rbxOpcao5.Checked)
+            if (!haSelecionado)
             {
-                if (flag)
-                {
-                    if (this.rbxOpcao2.Checked)
-                    {
-                        this.jogador.Mover(movimento.ElementAt(1).ElementAt(0).Key, movimento.ElementAt(1).ElementAt(0).Value);
-                    }
-                    else
-                    {
-                        this.jogador.Mover(movimento.ElementAt(1).ElementAt(1).Key, movimento.ElementAt(1).ElementAt(1).Value);
-                    }
-                }
-                else
-                {
-                    this.jogador.Mover(movimento.ElementAt(1).ElementAt(0).Key, movimento.ElementAt(1).ElementAt(0).Value);
-                }
-            }
-
-            if (this.rbxOpcao3.Checked || this.rbxOpcao6.Checked)
-            {
-                if (flag)
-                {
-                    if (this.rbxOpcao3.Checked)
-                    {
-                        this.jogador.Mover(movimento.ElementAt(2).ElementAt(0).Key, movimento.ElementAt(2).ElementAt(0).Value);
-                    }
-                    else
-                    {
-                        this.jogador.Mover(movimento.ElementAt(2).ElementAt(1).Key, movimento.ElementAt(2).ElementAt(1).Value);
-                    }
-                }
-                else
-                {
-                    this.jogador.Mover(movimento.ElementAt(2).ElementAt(0).Key, movimento.ElementAt(2).ElementAt(0).Value);
-                }
+                MessageBox.Show("Selecione uma das opções!", "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             this.rbxOpcao1.Checked =

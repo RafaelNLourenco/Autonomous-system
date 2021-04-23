@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using CantStopServer;
 
@@ -63,6 +64,179 @@ namespace cantStop.Classes
                 dataTable.ImportRow(linha);
             }
             return dataTable;
+        }
+
+        public bool ColunaDominada(int coluna)
+        {
+            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND tipo = 'B'");
+            Dictionary<int, int> jogadores = new Dictionary<int, int>();
+            int quantidadesPosicoes = FormTabuleiro.getQuantidadePosicao(coluna);
+
+            foreach (DataRow linha in data)
+            {
+                if (int.Parse(linha.Field<string>("posicao")) == quantidadesPosicoes)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool FaltaUmParaDominar(int i, int[,] ordemValor, int idJogador)
+        {
+            int coluna1 = ordemValor[i, 0] + ordemValor[i, 1];
+            int coluna2 = ordemValor[i, 2] + ordemValor[i, 3];
+
+            if (coluna1 == coluna2) { 
+                DataRow[] data = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '"+ idJogador.ToString() + "'");
+                foreach(DataRow linha in data)
+                {
+                    if( FormTabuleiro.getQuantidadePosicao(coluna1) - int.Parse(linha.Field<string>("posicao")) == 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public List<Dictionary<string, int[]>> MontarCombinacoes(int idJogador, List<int> dados)
+        {
+            DataTable alpinistas = this.SelecioneJogador(idJogador, "A");
+            int quantidadeAlpinistas = 3 - alpinistas.Rows.Count;
+            List<Dictionary<string, int[]>> combinacoes = new List<Dictionary<string, int[]>>();
+
+            string[,] ordemDados =
+            {
+                {"1","2","3","4"},
+                {"1","3","2","4"},
+                {"1","4","2","3"}
+            };
+
+            int[,] ordemValor =
+            {
+                {dados[0], dados[1], dados[2], dados[3]},
+                {dados[0], dados[2], dados[1], dados[3]},
+                {dados[0], dados[3], dados[1], dados[2]}
+            };
+
+            for (int i = 0; i < 3; i++)
+            {
+                bool colunaDominada1 = this.ColunaDominada(ordemValor[i, 0] + ordemValor[i, 1]);
+                bool colunaDominada2 = this.ColunaDominada(ordemValor[i, 2] + ordemValor[i, 3]);
+                bool faltaUmParaDominar = this.FaltaUmParaDominar(i, ordemValor, idJogador);
+
+                Dictionary<string, int[]> movimento = new Dictionary<string, int[]>();
+
+                if (quantidadeAlpinistas >= 2)
+                {
+                    if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar)
+                    {
+                        string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
+                        movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], ordemValor[i, 2] + ordemValor[i, 3] });
+                    }
+                    else
+                    {
+                        if ((!colunaDominada1 && colunaDominada2) || faltaUmParaDominar)
+                        {
+                            string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
+                            movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
+                        }
+                        else
+                        {
+                            if (colunaDominada1 && !colunaDominada2)
+                            {
+                                string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
+                                movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
+                            }
+                            else
+                            {
+                                movimento.Add("", new[] { 0, 0 });
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    DataRow[] alpinistas1 = alpinistas.Select("coluna = '" + (ordemValor[i, 0] + ordemValor[i, 1]) + "'");
+                    DataRow[] alpinistas2 = alpinistas.Select("coluna = '" + (ordemValor[i, 2] + ordemValor[i, 3]) + "'");
+
+                    if (quantidadeAlpinistas == 1)
+                    {
+                        if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar)
+                        {
+                            if (alpinistas1.Length != 0 || alpinistas2.Length != 0 || (ordemValor[i, 0] + ordemValor[i, 1] == ordemValor[i, 2] + ordemValor[i, 3]))
+                            {
+                                string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
+                                movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], ordemValor[i, 2] + ordemValor[i, 3] });
+                            }
+                            else
+                            {
+                                string ordem1 = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
+                                movimento.Add(ordem1, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
+
+                                string ordem2 = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
+                                movimento.Add(ordem2, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
+                            }
+                        }
+                        else
+                        {
+                            if ((!colunaDominada1 && colunaDominada2 && alpinistas1.Length != 0) || faltaUmParaDominar)
+                            {
+                                string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
+                                movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
+                            }
+                            else
+                            {
+                                if (colunaDominada1 && !colunaDominada2 && alpinistas2.Length != 0)
+                                {
+                                    string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
+                                    movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
+                                }
+                                else
+                                {
+                                    movimento.Add("", new[] { 0, 0 });
+                                }
+                            }
+                        }
+                        
+                    }
+                    else
+                    {
+                        if (alpinistas1.Length != 0 || alpinistas2.Length != 0)
+                        {
+                            if (alpinistas1.Length != 0 && alpinistas2.Length != 0 && !faltaUmParaDominar)
+                            {
+                                string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
+                                movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], ordemValor[i, 2] + ordemValor[i, 3] });
+                            }
+                            else
+                            {
+                                if (alpinistas1.Length != 0 || faltaUmParaDominar)
+                                {
+                                    string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
+                                    movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
+                                }
+                                else
+                                {
+                                    string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
+                                    movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
+                                }
+                            }
+                        }
+                        else
+                        {
+                            movimento.Add("", new[] { 0, 0 });
+                        }
+                    }
+                }
+                combinacoes.Add(movimento);
+            }
+
+            
+
+            return combinacoes;
         }
     }
 }
