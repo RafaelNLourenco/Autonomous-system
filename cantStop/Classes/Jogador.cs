@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using CantStopServer;
 
 namespace cantStop
@@ -47,7 +48,10 @@ namespace cantStop
         {
             string fPosicoes = posicoes[0].ToString("X") + posicoes[1].ToString("X");
             string retorno = Jogo.Mover((int)this.id, this.senha, ordem, fPosicoes);
-            Console.WriteLine();
+            if (retorno != "")
+            {
+                MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
