@@ -26,6 +26,7 @@ namespace cantStop
 
         private bool fazendoJogada;
         private bool flag;
+        private bool flagContinuar;
         private List<Dictionary<string, int[]>> Combinacoes;
 
         private String[] historico;
@@ -78,6 +79,8 @@ namespace cantStop
                 this.dados = new List<int>();
 
                 this.Combinacoes = new List<Dictionary<string, int[]>>();
+
+                this.flagContinuar = true;
             }
             
         }
@@ -156,6 +159,11 @@ namespace cantStop
         {
             if (this.partida.VerificarVez().id == this.jogador.id && !this.fazendoJogada){
                 this.setBotoes(true);
+                if ( flagContinuar)
+                {
+                    this.btnRolarDados_Click(sender, e);
+                    this.flagContinuar = false;
+                }
             }
 
             this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
@@ -230,6 +238,7 @@ namespace cantStop
             this.setBotoes(false);
             jogador.Parar();
             this.tmrPartidaJogando_Tick(sender, e);
+            this.flagContinuar = true;
         }
 
         private void setBotoes(bool valor)
