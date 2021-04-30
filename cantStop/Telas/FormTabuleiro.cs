@@ -25,11 +25,13 @@ namespace cantStop
         private List<int> dados;
 
         private bool fazendoJogada;
-        private bool flag;
         private bool flagContinuar;
         private List<Dictionary<string, int[]>> Combinacoes;
 
         private String[] historico;
+
+        private bool bot;
+        private Inteligencia inteligencia;
 
         public FormTabuleiro()
         {
@@ -81,6 +83,12 @@ namespace cantStop
                 this.Combinacoes = new List<Dictionary<string, int[]>>();
 
                 this.flagContinuar = true;
+
+                this.bot = lobby.bot;
+                if(this.bot == true)
+                {
+                    this.inteligencia = new Inteligencia();
+                }
             }
             
         }
@@ -159,11 +167,11 @@ namespace cantStop
         {
             if (this.partida.VerificarVez().id == this.jogador.id && !this.fazendoJogada){
                 this.setBotoes(true);
-                if ( flagContinuar)
+                /*if ( flagContinuar)
                 {
                     this.btnRolarDados_Click(sender, e);
                     this.flagContinuar = false;
-                }
+                }*/
             }
 
             this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
@@ -567,6 +575,15 @@ namespace cantStop
 
                 this.fazendoJogada = false;
                 this.tmrPartidaJogando_Tick(sender, e);
+            }
+            else
+            {
+                if (this.bot)
+                {
+                    int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
+                    this.radios[jogada].Checked = true;
+                    this.btnJogar_Click(sender, e);
+                }
             }
         }
 

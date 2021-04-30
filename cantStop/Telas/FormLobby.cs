@@ -12,6 +12,8 @@ namespace cantStop
         public Jogador jogadorCriado { get; set; }
         public Partida partidaSelecionada { get; set; }
 
+        public bool bot { get; set; }
+
         public FormLobby()
         {
             InitializeComponent();
@@ -20,6 +22,7 @@ namespace cantStop
             txbSenhaCriarPartida.UseSystemPasswordChar = true;
             txbSenhaEntrarPartida.UseSystemPasswordChar = true;
             this.ActiveControl = txbNomeCriarPartida;
+            this.bot = false;
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
@@ -164,6 +167,7 @@ namespace cantStop
             string nome = txbNomeEntrarPartida.Text;
             string senha = txbSenhaEntrarPartida.Text;
             int idPartida = (int)partida.Id;
+            
 
             string retorno = Jogo.EntrarPartida(idPartida, nome, senha);
             if (retorno[0] == 'E') MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -181,7 +185,8 @@ namespace cantStop
 
         private void btnEntrarBot_Click(object sender, EventArgs e)
         {
-            
+            this.bot = true;
+            this.btnEntrarDev_Click(sender, e);
         }
 
         private void btnVisualizarPartida_Click(object sender, EventArgs e)
