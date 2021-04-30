@@ -62,6 +62,8 @@ namespace cantStop
             this.lblUltimaJogada = new System.Windows.Forms.Label();
             this.lblAntipenultimaJogada = new System.Windows.Forms.Label();
             this.lblPenultinaJogada = new System.Windows.Forms.Label();
+            this.lblJogadorVez = new System.Windows.Forms.Label();
+            this.lblVezDe = new System.Windows.Forms.Label();
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -94,8 +96,9 @@ namespace cantStop
             // lblJogador
             // 
             this.lblJogador.AutoSize = true;
+            this.lblJogador.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJogador.ForeColor = System.Drawing.Color.White;
-            this.lblJogador.Location = new System.Drawing.Point(1123, 39);
+            this.lblJogador.Location = new System.Drawing.Point(1123, 51);
             this.lblJogador.Name = "lblJogador";
             this.lblJogador.Size = new System.Drawing.Size(45, 13);
             this.lblJogador.TabIndex = 9;
@@ -403,12 +406,36 @@ namespace cantStop
             this.lblPenultinaJogada.TabIndex = 26;
             this.lblPenultinaJogada.Text = "Penultima Jogada";
             // 
+            // lblJogadorVez
+            // 
+            this.lblJogadorVez.AutoSize = true;
+            this.lblJogadorVez.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJogadorVez.ForeColor = System.Drawing.Color.White;
+            this.lblJogadorVez.Location = new System.Drawing.Point(910, 72);
+            this.lblJogadorVez.Name = "lblJogadorVez";
+            this.lblJogadorVez.Size = new System.Drawing.Size(84, 28);
+            this.lblJogadorVez.TabIndex = 28;
+            this.lblJogadorVez.Text = "Jogador";
+            // 
+            // lblVezDe
+            // 
+            this.lblVezDe.AutoSize = true;
+            this.lblVezDe.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVezDe.ForeColor = System.Drawing.Color.White;
+            this.lblVezDe.Location = new System.Drawing.Point(910, 39);
+            this.lblVezDe.Name = "lblVezDe";
+            this.lblVezDe.Size = new System.Drawing.Size(152, 28);
+            this.lblVezDe.TabIndex = 29;
+            this.lblVezDe.Text = "Vez do Jogador:";
+            // 
             // FormTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1211, 646);
+            this.Controls.Add(this.lblVezDe);
+            this.Controls.Add(this.lblJogadorVez);
             this.Controls.Add(this.lblAntipenultimaJogada);
             this.Controls.Add(this.lblPenultinaJogada);
             this.Controls.Add(this.lblUltimaJogada);
@@ -479,5 +506,7 @@ namespace cantStop
         private System.Windows.Forms.Label lblUltimaJogada;
         private System.Windows.Forms.Label lblAntipenultimaJogada;
         private System.Windows.Forms.Label lblPenultinaJogada;
+        private System.Windows.Forms.Label lblJogadorVez;
+        private System.Windows.Forms.Label lblVezDe;
     }
 }
