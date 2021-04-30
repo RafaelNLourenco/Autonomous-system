@@ -165,13 +165,15 @@ namespace cantStop
 
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
-            if (this.partida.VerificarVez().id == this.jogador.id && !this.fazendoJogada){
+            Jogador jogadorVez = this.partida.VerificarVez();
+            this.lblJogadorVez.Text = jogadorVez.nome; 
+            if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
                 this.setBotoes(true);
-                /*if ( flagContinuar)
+                if ( this.flagContinuar && !this.bot )
                 {
                     this.btnRolarDados_Click(sender, e);
                     this.flagContinuar = false;
-                }*/
+                }
             }
 
             this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
