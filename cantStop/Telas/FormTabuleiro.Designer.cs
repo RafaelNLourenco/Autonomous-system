@@ -141,7 +141,7 @@ namespace cantStop
             // 
             // tmrPartidaJogando
             // 
-            this.tmrPartidaJogando.Interval = 2500;
+            this.tmrPartidaJogando.Interval = 2700;
             this.tmrPartidaJogando.Tick += new System.EventHandler(this.tmrPartidaJogando_Tick);
             // 
             // btnRolarDados

@@ -169,10 +169,10 @@ namespace cantStop
             this.lblJogadorVez.Text = jogadorVez.nome; 
             if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
                 this.setBotoes(true);
-                if ( this.flagContinuar && !this.bot )
+                if ( this.flagContinuar )
                 {
-                    this.btnRolarDados_Click(sender, e);
                     this.flagContinuar = false;
+                    this.btnRolarDados_Click(sender, e);
                 }
             }
 
