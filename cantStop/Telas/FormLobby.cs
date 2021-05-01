@@ -135,11 +135,16 @@ namespace cantStop
             listarJogadores();
         }
 
-        private void dgvListaPartidas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void atualizaPartidaSelecionada()
         {
             partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
-            atualizarDadosPartida();
-            listarJogadores();
+            this.atualizarDadosPartida();
+            this.listarJogadores();
+        }
+
+        private void dgvListaPartidas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.atualizaPartidaSelecionada();
         }
 
         private void btnCriarPartida_Click(object sender, EventArgs e)
@@ -167,7 +172,7 @@ namespace cantStop
             string nome = txbNomeEntrarPartida.Text;
             string senha = txbSenhaEntrarPartida.Text;
             int idPartida = (int)partida.Id;
-            
+
 
             string retorno = Jogo.EntrarPartida(idPartida, nome, senha);
             if (retorno[0] == 'E') MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -207,10 +212,12 @@ namespace cantStop
         {
             if (txbSenhaEntrarPartida.UseSystemPasswordChar == true)
             {
+                pcbSenhaEntrarPartida.Image = Properties.Resources.icon_hide;
                 txbSenhaEntrarPartida.UseSystemPasswordChar = false;
             }
             else
             {
+                pcbSenhaEntrarPartida.Image = Properties.Resources.icon_visualize;
                 txbSenhaEntrarPartida.UseSystemPasswordChar = true;
             }
         }
@@ -219,10 +226,12 @@ namespace cantStop
         {
             if (txbSenhaCriarPartida.UseSystemPasswordChar == true)
             {
+                pcbSenhaCriarPartida.Image = Properties.Resources.icon_hide;
                 txbSenhaCriarPartida.UseSystemPasswordChar = false;
             }
             else
             {
+                pcbSenhaCriarPartida.Image = Properties.Resources.icon_visualize;
                 txbSenhaCriarPartida.UseSystemPasswordChar = true;
             }
         }
@@ -232,7 +241,7 @@ namespace cantStop
             if (e.KeyChar == 13)
             {
                 e.Handled = true;
-                this.btnCriarPartida_Click(sender,e);
+                this.btnCriarPartida_Click(sender, e);
             }
         }
 
@@ -254,5 +263,9 @@ namespace cantStop
             }
         }
 
+        private void tmrAtualizarJogadores_Tick(object sender, EventArgs e)
+        {
+            this.atualizaPartidaSelecionada();
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace cantStop
             string retorno = Jogo.ListarJogadores(this.Id);
             retorno = retorno.Replace("\r", "");
             string[] linhas = retorno.Split('\n');
+            List<Jogador> auxListaJogadores = new List<Jogador>();
 
             for (int i = 0; i < linhas.Length - 1; i++)
             {
@@ -33,8 +34,9 @@ namespace cantStop
                 jogador.nome = itens[1];
                 jogador.cor = itens[2];
 
-                this.jogadores.Add(jogador);
+                auxListaJogadores.Add(jogador);
             }
+            this.jogadores = auxListaJogadores;
         }
 
         public Jogador VerificarVez()
