@@ -8,6 +8,13 @@ namespace cantStop.Classes
 {
     public class Inteligencia
     {
+        private int Jogadas;
+
+        public Inteligencia()
+        {
+            Jogadas = 0;
+        }
+
         internal int EscolherJogada(List<Dictionary<string, int[]>> combinacoes)
         {
             bool fezJogada = false;
@@ -30,7 +37,23 @@ namespace cantStop.Classes
                     fezJogada = true;
                 }
             }
+            this.Jogadas++;
             return jogada;
+        }
+
+        internal bool Continuar()
+        {
+            bool retorno = this.Jogadas <= 3;
+            if (!retorno)
+            {
+                this.Jogadas = 0;
+            }
+            return retorno;
+        }
+
+        internal void Resetar()
+        {
+            this.Jogadas = 0;
         }
     }
 }

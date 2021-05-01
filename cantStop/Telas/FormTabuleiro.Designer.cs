@@ -64,6 +64,9 @@ namespace cantStop
             this.lblPenultinaJogada = new System.Windows.Forms.Label();
             this.lblJogadorVez = new System.Windows.Forms.Label();
             this.lblVezDe = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pcbStatusBot = new System.Windows.Forms.PictureBox();
+            this.tmrJogadaBot = new System.Windows.Forms.Timer(this.components);
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -71,17 +74,18 @@ namespace cantStop
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbTabuleiro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbStatusBot)).BeginInit();
             this.SuspendLayout();
             // 
             // lblVersao
             // 
             this.lblVersao.AutoSize = true;
             this.lblVersao.ForeColor = System.Drawing.Color.White;
-            this.lblVersao.Location = new System.Drawing.Point(1095, 621);
+            this.lblVersao.Location = new System.Drawing.Point(1052, 624);
             this.lblVersao.Name = "lblVersao";
-            this.lblVersao.Size = new System.Drawing.Size(40, 13);
+            this.lblVersao.Size = new System.Drawing.Size(84, 13);
             this.lblVersao.TabIndex = 0;
-            this.lblVersao.Text = "Versão";
+            this.lblVersao.Text = "Versão DLL: 0.0";
             // 
             // btnIniciarPartida
             // 
@@ -98,7 +102,7 @@ namespace cantStop
             this.lblJogador.AutoSize = true;
             this.lblJogador.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJogador.ForeColor = System.Drawing.Color.White;
-            this.lblJogador.Location = new System.Drawing.Point(1123, 51);
+            this.lblJogador.Location = new System.Drawing.Point(1067, 127);
             this.lblJogador.Name = "lblJogador";
             this.lblJogador.Size = new System.Drawing.Size(45, 13);
             this.lblJogador.TabIndex = 9;
@@ -108,7 +112,7 @@ namespace cantStop
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.ForeColor = System.Drawing.Color.White;
-            this.lblSenha.Location = new System.Drawing.Point(1123, 26);
+            this.lblSenha.Location = new System.Drawing.Point(903, 624);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(76, 13);
             this.lblSenha.TabIndex = 10;
@@ -118,7 +122,7 @@ namespace cantStop
             // 
             this.lblCorJogador.AutoSize = true;
             this.lblCorJogador.ForeColor = System.Drawing.Color.White;
-            this.lblCorJogador.Location = new System.Drawing.Point(1123, 13);
+            this.lblCorJogador.Location = new System.Drawing.Point(962, 127);
             this.lblCorJogador.Name = "lblCorJogador";
             this.lblCorJogador.Size = new System.Drawing.Size(61, 13);
             this.lblCorJogador.TabIndex = 11;
@@ -411,29 +415,56 @@ namespace cantStop
             this.lblJogadorVez.AutoSize = true;
             this.lblJogadorVez.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJogadorVez.ForeColor = System.Drawing.Color.White;
-            this.lblJogadorVez.Location = new System.Drawing.Point(910, 72);
+            this.lblJogadorVez.Location = new System.Drawing.Point(997, 51);
             this.lblJogadorVez.Name = "lblJogadorVez";
             this.lblJogadorVez.Size = new System.Drawing.Size(84, 28);
             this.lblJogadorVez.TabIndex = 28;
             this.lblJogadorVez.Text = "Jogador";
+            this.lblJogadorVez.Visible = false;
             // 
             // lblVezDe
             // 
             this.lblVezDe.AutoSize = true;
             this.lblVezDe.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVezDe.ForeColor = System.Drawing.Color.White;
-            this.lblVezDe.Location = new System.Drawing.Point(910, 39);
+            this.lblVezDe.Location = new System.Drawing.Point(960, 11);
             this.lblVezDe.Name = "lblVezDe";
             this.lblVezDe.Size = new System.Drawing.Size(152, 28);
             this.lblVezDe.TabIndex = 29;
             this.lblVezDe.Text = "Vez do Jogador:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 575);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Sistema autônomo:";
+            // 
+            // pcbStatusBot
+            // 
+            this.pcbStatusBot.Image = global::cantStop.Properties.Resources.pointR;
+            this.pcbStatusBot.Location = new System.Drawing.Point(111, 578);
+            this.pcbStatusBot.Name = "pcbStatusBot";
+            this.pcbStatusBot.Size = new System.Drawing.Size(10, 10);
+            this.pcbStatusBot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbStatusBot.TabIndex = 31;
+            this.pcbStatusBot.TabStop = false;
+            // 
+            // tmrJogadaBot
+            // 
+            this.tmrJogadaBot.Tick += new System.EventHandler(this.tmrJogadaBot_Tick);
             // 
             // FormTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1211, 646);
+            this.ClientSize = new System.Drawing.Size(1148, 646);
+            this.Controls.Add(this.pcbStatusBot);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblVezDe);
             this.Controls.Add(this.lblJogadorVez);
             this.Controls.Add(this.lblAntipenultimaJogada);
@@ -468,6 +499,7 @@ namespace cantStop
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbTabuleiro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbStatusBot)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,5 +540,8 @@ namespace cantStop
         private System.Windows.Forms.Label lblPenultinaJogada;
         private System.Windows.Forms.Label lblJogadorVez;
         private System.Windows.Forms.Label lblVezDe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pcbStatusBot;
+        private System.Windows.Forms.Timer tmrJogadaBot;
     }
 }

@@ -4,6 +4,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using cantStop.Classes;
 using CantStopServer;
@@ -32,6 +34,8 @@ namespace cantStop
 
         private bool bot;
         private Inteligencia inteligencia;
+
+        private bool FlagBotJogada;
 
         public FormTabuleiro()
         {
@@ -84,8 +88,9 @@ namespace cantStop
 
                 this.flagContinuar = true;
 
-                this.bot = lobby.bot;
-                if(this.bot == true)
+                this.tmrJogadaBot.Enabled = this.bot = lobby.bot;
+
+                if (this.bot == true)
                 {
                     this.inteligencia = new Inteligencia();
                 }
@@ -99,6 +104,10 @@ namespace cantStop
             {
                 this.Close();
                 return;
+            }
+
+            if (this.bot) {
+                this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
             }
         }
 
@@ -120,6 +129,8 @@ namespace cantStop
             this.btnIniciarPartida.Hide();
             this.lblPartidaIniciada.Location = new Point(12, 612);
             this.lblPartidaIniciada.Text = "Iniciada";
+
+            this.lblJogadorVez.Visible = true;
 
             this.tmrPartidaJogando.Start();
         }
@@ -218,7 +229,7 @@ namespace cantStop
 
                         PictureBox baseAlpinista = this.adicionarBase(cor, i, j);
                         this.pecas.Add(baseAlpinista);
-                        this.Controls.Add(baseAlpinista);
+                        this.pcbTabuleiro.Controls.Add(baseAlpinista);
                         baseAlpinista.BringToFront();
                     }
 
@@ -236,7 +247,7 @@ namespace cantStop
                         alpinista.Location = posicao;
 
                         this.pecas.Add(alpinista);
-                        this.Controls.Add(alpinista);
+                        this.pcbTabuleiro.Controls.Add(alpinista);
                         alpinista.BringToFront();
                     }
                 }
@@ -269,6 +280,7 @@ namespace cantStop
             retorno.Size = new Size(35, 35);
             retorno.SizeMode = PictureBoxSizeMode.StretchImage;
             retorno.Location = pegarPositacao(coluna, posicao);
+            retorno.BackColor = Color.Transparent;
 
             // Uma base
             if (cor.Contains("b") && cor.Length == 1) retorno.Image = cantStop.Properties.Resources.jgdB;
@@ -302,192 +314,192 @@ namespace cantStop
 
             if (coluna == 2 || coluna == 12)
             {
-                ponto.X = (coluna == 2) ? 357 : 772;
+                ponto.X = (coluna == 2) ? 90 : 505;
                 switch (posicao)
                 {
                     case 1:
-                        ponto.Y = 354;
+                        ponto.Y = 347;
                         break;
                     case 2:
-                        ponto.Y = 308;
+                        ponto.Y = 300;
                         break;
                     case 3:
-                        ponto.Y = 260;
+                        ponto.Y = 253;
                         break;
                 }
             }
 
             if (coluna == 3 || coluna == 11)
             {
-                ponto.X = (coluna == 3) ? 397 : 732;
+                ponto.X = (coluna == 3) ? 130 : 465;
                 switch (posicao)
                 {
                     case 1:
-                        ponto.Y = 396;
+                        ponto.Y = 389;
                         break;
                     case 2:
-                        ponto.Y = 350;
+                        ponto.Y = 343;
                         break;
                     case 3:
-                        ponto.Y = 307;
+                        ponto.Y = 299;
                         break;
                     case 4:
-                        ponto.Y = 262;
+                        ponto.Y = 256;
                         break;
                     case 5:
-                        ponto.Y = 217;
+                        ponto.Y = 210;
                         break;
                 }
             }
             
             if (coluna == 4 || coluna == 10)
             {
-                ponto.X = (coluna == 4) ? 439 : 690;
+                ponto.X = (coluna == 4) ? 172 : 423;
                 switch (posicao)
                 {
                     case 1:
-                        ponto.Y = 436;
+                        ponto.Y = 429;
                         break;
                     case 2:
-                        ponto.Y = 390;
+                        ponto.Y = 383;
                         break;
                     case 3:
-                        ponto.Y = 350;
+                        ponto.Y = 343;
                         break;
                     case 4:
-                        ponto.Y = 308;
+                        ponto.Y = 300;
                         break;
                     case 5:
-                        ponto.Y = 262;
+                        ponto.Y = 255;
                         break;
                     case 6:
-                        ponto.Y = 220;
+                        ponto.Y = 213;
                         break;
                     case 7:
-                        ponto.Y = 177;
+                        ponto.Y = 170;
                         break;
                 }
             }
 
             if (coluna == 5 || coluna == 9)
             {
-                ponto.X = (coluna == 5) ? 479 : 650;
+                ponto.X = (coluna == 5) ? 212 : 383;
                 switch (posicao)
                 {
                     case 1:
-                        ponto.Y = 478;
+                        ponto.Y = 471;
                         break;
                     case 2:
-                        ponto.Y = 432;
+                        ponto.Y = 425;
                         break;
                     case 3:
-                        ponto.Y = 390;
+                        ponto.Y = 384;
                         break;
                     case 4:
-                        ponto.Y = 350;
+                        ponto.Y = 343;
                         break;
                     case 5:
-                        ponto.Y = 308;
+                        ponto.Y = 301;
                         break;
                     case 6:
-                        ponto.Y = 263;
+                        ponto.Y = 257;
                         break;
                     case 7:
-                        ponto.Y = 220;
+                        ponto.Y = 213;
                         break;
                     case 8:
-                        ponto.Y = 177;
+                        ponto.Y = 172;
                         break;
                     case 9:
-                        ponto.Y = 134;
+                        ponto.Y = 127;
                         break;
                 }
             }
 
             if (coluna == 6 || coluna == 8)
             {
-                ponto.X = (coluna == 6) ? 522 : 607;
+                ponto.X = (coluna == 6) ? 255 : 340;
                 switch (posicao)
                 {
                     case 1:
-                        ponto.Y = 520;
+                        ponto.Y = 513;
                         break;
                     case 2:
-                        ponto.Y = 474;
+                        ponto.Y = 468;
                         break;
                     case 3:
-                        ponto.Y = 432;
+                        ponto.Y = 426;
                         break;
                     case 4:
-                        ponto.Y = 390;
+                        ponto.Y = 384;
                         break;
                     case 5:
-                        ponto.Y = 350;
+                        ponto.Y = 343;
                         break;
                     case 6:
-                        ponto.Y = 308;
+                        ponto.Y = 301;
                         break;
                     case 7:
-                        ponto.Y = 265;
+                        ponto.Y = 260;
                         break;
                     case 8:
-                        ponto.Y = 222;
+                        ponto.Y = 217;
                         break;
                     case 9:
-                        ponto.Y = 178;
+                        ponto.Y = 173;
                         break;
                     case 10:
-                        ponto.Y = 138;
+                        ponto.Y = 132;
                         break;
                     case 11:
-                        ponto.Y = 92;
+                        ponto.Y = 85;
                         break;
                 }
             }
 
             if (coluna == 7)
             {
-                ponto.X = 565;
+                ponto.X = 298;
                 switch (posicao)
                 {
                     case 1:
-                        ponto.Y = 563;
+                        ponto.Y = 556;
                         break;
                     case 2:
-                        ponto.Y = 517;
+                        ponto.Y = 510;
                         break;
                     case 3:
-                        ponto.Y = 474;
+                        ponto.Y = 468;
                         break;
                     case 4:
-                        ponto.Y = 432;
+                        ponto.Y = 425;
                         break;
                     case 5:
-                        ponto.Y = 390;
+                        ponto.Y = 384;
                         break;
                     case 6:
-                        ponto.Y = 350;
+                        ponto.Y = 343;
                         break;
                     case 7:
-                        ponto.Y = 308;
+                        ponto.Y = 301;
                         break;
                     case 8:
-                        ponto.Y = 265;
+                        ponto.Y = 259;
                         break;
                     case 9:
-                        ponto.Y = 223;
+                        ponto.Y = 218;
                         break;
                     case 10:
-                        ponto.Y = 180;
+                        ponto.Y = 174;
                         break;
                     case 11:
-                        ponto.Y = 138;
+                        ponto.Y = 131;
                         break;
                     case 12:
-                        ponto.Y = 95;
+                        ponto.Y = 89;
                         break;
                     case 13:
-                        ponto.Y = 51;
+                        ponto.Y = 44;
                         break;
                 }
             }
@@ -572,19 +584,27 @@ namespace cantStop
                 this.rbxOpcao5.Checked =
                 this.rbxOpcao6.Checked = false;
 
+                this.rbxOpcao1.Text = "Opcao 1";
+                this.rbxOpcao2.Text = "Opcao 2";
+                this.rbxOpcao3.Text = "Opcao 3";
+                this.rbxOpcao4.Text = "Opcao 4";
+                this.rbxOpcao5.Text = "Opcao 5";
+                this.rbxOpcao6.Text = "Opcao 6";
+
                 this.gbxJogadas.Enabled = false;
                 this.gbxJogadas.Visible = false;
 
                 this.fazendoJogada = false;
+
+                this.inteligencia.Resetar();
+
                 this.tmrPartidaJogando_Tick(sender, e);
             }
             else
             {
                 if (this.bot)
                 {
-                    int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
-                    this.radios[jogada].Checked = true;
-                    this.btnJogar_Click(sender, e);
+                    this.FlagBotJogada = true;
                 }
             }
         }
@@ -646,6 +666,19 @@ namespace cantStop
             this.tmrPartidaJogando_Tick(sender, e);
         }
 
+        private void tmrJogadaBot_Tick(object sender, EventArgs e)
+        {
+            if (!this.FlagBotJogada) return;
 
+            int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
+            Thread.Sleep(2000);
+            this.radios[jogada].Checked = true;
+            Thread.Sleep(2000);
+            this.btnJogar_Click(sender, e);
+            this.flagContinuar = this.inteligencia.Continuar();
+            if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
+
+            this.FlagBotJogada = false;
+        }
     }
 }

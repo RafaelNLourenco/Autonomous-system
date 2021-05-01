@@ -101,6 +101,15 @@ namespace cantStop.Classes
             return false;
         }
 
+        public bool EstaNoTopo(int i, int[,] ordemValor, int idJogador)
+        {
+            int coluna1 = ordemValor[i, 0] + ordemValor[i, 1];
+            int coluna2 = ordemValor[i, 2] + ordemValor[i, 3];
+
+            DataRow[] data = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna1) + "'");
+            return data.Length > 0;
+        }
+
         public List<Dictionary<string, int[]>> MontarCombinacoes(int idJogador, List<int> dados)
         {
             DataTable alpinistas = this.SelecioneJogador(idJogador, "A");
@@ -126,10 +135,11 @@ namespace cantStop.Classes
                 bool colunaDominada1 = this.ColunaDominada(ordemValor[i, 0] + ordemValor[i, 1]);
                 bool colunaDominada2 = this.ColunaDominada(ordemValor[i, 2] + ordemValor[i, 3]);
                 bool faltaUmParaDominar = this.FaltaUmParaDominar(i, ordemValor, idJogador);
+                bool estaNoTopo = this.EstaNoTopo(i, ordemValor, idJogador);
 
                 Dictionary<string, int[]> movimento = new Dictionary<string, int[]>();
 
-                if (quantidadeAlpinistas >= 2)
+                if (quantidadeAlpinistas >= 2 && !estaNoTopo)
                 {
                     if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar)
                     {
@@ -162,7 +172,7 @@ namespace cantStop.Classes
                     DataRow[] alpinistas1 = alpinistas.Select("coluna = '" + (ordemValor[i, 0] + ordemValor[i, 1]) + "'");
                     DataRow[] alpinistas2 = alpinistas.Select("coluna = '" + (ordemValor[i, 2] + ordemValor[i, 3]) + "'");
 
-                    if (quantidadeAlpinistas == 1)
+                    if (quantidadeAlpinistas == 1 && !estaNoTopo)
                     {
                         if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar)
                         {
@@ -204,7 +214,7 @@ namespace cantStop.Classes
                     }
                     else
                     {
-                        if (alpinistas1.Length != 0 || alpinistas2.Length != 0)
+                        if ((alpinistas1.Length != 0 || alpinistas2.Length != 0) && !estaNoTopo)
                         {
                             if (alpinistas1.Length != 0 && alpinistas2.Length != 0 && !faltaUmParaDominar)
                             {

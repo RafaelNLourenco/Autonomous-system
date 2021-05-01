@@ -186,6 +186,10 @@ namespace cantStop
         private void btnEntrarBot_Click(object sender, EventArgs e)
         {
             this.bot = true;
+            if (String.IsNullOrEmpty(this.txbNomeEntrarPartida.Text))
+            {
+                this.txbNomeEntrarPartida.Text = "Genebra Bot";
+            }
             this.btnEntrarDev_Click(sender, e);
         }
 
