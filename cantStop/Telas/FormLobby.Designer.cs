@@ -30,8 +30,8 @@ namespace cantStop
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnCriarPartida = new System.Windows.Forms.Button();
             this.dgvListaPartidas = new System.Windows.Forms.DataGridView();
@@ -66,7 +66,7 @@ namespace cantStop
             this.pcbIcon3 = new System.Windows.Forms.PictureBox();
             this.pcbIcon2 = new System.Windows.Forms.PictureBox();
             this.pcbIcon1 = new System.Windows.Forms.PictureBox();
-            this.tmrAtualizarJogadores = new System.Windows.Forms.Timer(this.components);
+            this.tmrAtualizarPartidaSelecionada = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaEntrarPartida)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaCriarPartida)).BeginInit();
@@ -114,22 +114,22 @@ namespace cantStop
             this.dgvListaPartidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvListaPartidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvListaPartidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListaPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaPartidas.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaPartidas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListaPartidas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvListaPartidas.EnableHeadersVisualStyles = false;
             this.dgvListaPartidas.Location = new System.Drawing.Point(25, 65);
@@ -295,6 +295,7 @@ namespace cantStop
             this.txbNomeCriarPartida.Name = "txbNomeCriarPartida";
             this.txbNomeCriarPartida.Size = new System.Drawing.Size(282, 29);
             this.txbNomeCriarPartida.TabIndex = 24;
+            this.txbNomeCriarPartida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNomeCriarPartida_KeyPress);
             // 
             // lblNomeCriarPartida
             // 
@@ -486,11 +487,11 @@ namespace cantStop
             this.pcbIcon1.TabIndex = 15;
             this.pcbIcon1.TabStop = false;
             // 
-            // tmrAtualizarJogadores
+            // tmrAtualizarPartidaSelecionada
             // 
-            this.tmrAtualizarJogadores.Enabled = true;
-            this.tmrAtualizarJogadores.Interval = 2500;
-            this.tmrAtualizarJogadores.Tick += new System.EventHandler(this.tmrAtualizarJogadores_Tick);
+            this.tmrAtualizarPartidaSelecionada.Enabled = true;
+            this.tmrAtualizarPartidaSelecionada.Interval = 2500;
+            this.tmrAtualizarPartidaSelecionada.Tick += new System.EventHandler(this.tmrAtualizarPartidaSelecionada_Tick);
             // 
             // FormLobby
             // 
@@ -584,7 +585,7 @@ namespace cantStop
         private System.Windows.Forms.Label lblFeedbackCriarPartida;
         private System.Windows.Forms.PictureBox pcbSenhaCriarPartida;
         private System.Windows.Forms.PictureBox pcbSenhaEntrarPartida;
-        private System.Windows.Forms.Timer tmrAtualizarJogadores;
+        private System.Windows.Forms.Timer tmrAtualizarPartidaSelecionada;
     }
 }
 

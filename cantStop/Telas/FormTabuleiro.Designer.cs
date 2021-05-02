@@ -32,17 +32,15 @@ namespace cantStop
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTabuleiro));
             this.lblVersao = new System.Windows.Forms.Label();
-            this.btnIniciarPartida = new System.Windows.Forms.Button();
             this.lblJogador = new System.Windows.Forms.Label();
             this.lblSenha = new System.Windows.Forms.Label();
             this.lblCorJogador = new System.Windows.Forms.Label();
             this.lblPartidaIniciada = new System.Windows.Forms.Label();
             this.tmrPartidaIniciada = new System.Windows.Forms.Timer(this.components);
             this.tmrPartidaJogando = new System.Windows.Forms.Timer(this.components);
-            this.btnRolarDados = new System.Windows.Forms.Button();
-            this.btnPassarVez = new System.Windows.Forms.Button();
             this.gbxJogadas = new System.Windows.Forms.GroupBox();
             this.lblOu3 = new System.Windows.Forms.Label();
+            this.btnJogar = new System.Windows.Forms.Button();
             this.lblOu2 = new System.Windows.Forms.Label();
             this.lblOu1 = new System.Windows.Forms.Label();
             this.rbxOpcao4 = new System.Windows.Forms.RadioButton();
@@ -50,7 +48,6 @@ namespace cantStop
             this.rbxOpcao6 = new System.Windows.Forms.RadioButton();
             this.rbxOpcao3 = new System.Windows.Forms.RadioButton();
             this.rbxOpcao2 = new System.Windows.Forms.RadioButton();
-            this.btnJogar = new System.Windows.Forms.Button();
             this.rbxOpcao1 = new System.Windows.Forms.RadioButton();
             this.pcbDado4 = new System.Windows.Forms.PictureBox();
             this.pcbDado3 = new System.Windows.Forms.PictureBox();
@@ -67,6 +64,10 @@ namespace cantStop
             this.label1 = new System.Windows.Forms.Label();
             this.pcbStatusBot = new System.Windows.Forms.PictureBox();
             this.tmrJogadaBot = new System.Windows.Forms.Timer(this.components);
+            this.btnRolarDados = new System.Windows.Forms.Button();
+            this.btnPassarVez = new System.Windows.Forms.Button();
+            this.btnIniciarPartida = new System.Windows.Forms.Button();
+            this.btnVoltar = new System.Windows.Forms.Button();
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -81,21 +82,11 @@ namespace cantStop
             // 
             this.lblVersao.AutoSize = true;
             this.lblVersao.ForeColor = System.Drawing.Color.White;
-            this.lblVersao.Location = new System.Drawing.Point(1052, 624);
+            this.lblVersao.Location = new System.Drawing.Point(1049, 587);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(84, 13);
             this.lblVersao.TabIndex = 0;
             this.lblVersao.Text = "Versão DLL: 0.0";
-            // 
-            // btnIniciarPartida
-            // 
-            this.btnIniciarPartida.Location = new System.Drawing.Point(15, 602);
-            this.btnIniciarPartida.Name = "btnIniciarPartida";
-            this.btnIniciarPartida.Size = new System.Drawing.Size(126, 32);
-            this.btnIniciarPartida.TabIndex = 8;
-            this.btnIniciarPartida.Text = "Iniciar Partida";
-            this.btnIniciarPartida.UseVisualStyleBackColor = true;
-            this.btnIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
             // 
             // lblJogador
             // 
@@ -148,31 +139,10 @@ namespace cantStop
             this.tmrPartidaJogando.Interval = 2700;
             this.tmrPartidaJogando.Tick += new System.EventHandler(this.tmrPartidaJogando_Tick);
             // 
-            // btnRolarDados
-            // 
-            this.btnRolarDados.Enabled = false;
-            this.btnRolarDados.Location = new System.Drawing.Point(15, 7);
-            this.btnRolarDados.Name = "btnRolarDados";
-            this.btnRolarDados.Size = new System.Drawing.Size(106, 32);
-            this.btnRolarDados.TabIndex = 14;
-            this.btnRolarDados.Text = "Rolar Dados";
-            this.btnRolarDados.UseVisualStyleBackColor = true;
-            this.btnRolarDados.Click += new System.EventHandler(this.btnRolarDados_Click);
-            // 
-            // btnPassarVez
-            // 
-            this.btnPassarVez.Enabled = false;
-            this.btnPassarVez.Location = new System.Drawing.Point(141, 7);
-            this.btnPassarVez.Name = "btnPassarVez";
-            this.btnPassarVez.Size = new System.Drawing.Size(106, 32);
-            this.btnPassarVez.TabIndex = 15;
-            this.btnPassarVez.Text = "Passar Vez";
-            this.btnPassarVez.UseVisualStyleBackColor = true;
-            this.btnPassarVez.Click += new System.EventHandler(this.btnPassarVez_Click);
-            // 
             // gbxJogadas
             // 
             this.gbxJogadas.Controls.Add(this.lblOu3);
+            this.gbxJogadas.Controls.Add(this.btnJogar);
             this.gbxJogadas.Controls.Add(this.lblOu2);
             this.gbxJogadas.Controls.Add(this.lblOu1);
             this.gbxJogadas.Controls.Add(this.rbxOpcao4);
@@ -180,7 +150,6 @@ namespace cantStop
             this.gbxJogadas.Controls.Add(this.rbxOpcao6);
             this.gbxJogadas.Controls.Add(this.rbxOpcao3);
             this.gbxJogadas.Controls.Add(this.rbxOpcao2);
-            this.gbxJogadas.Controls.Add(this.btnJogar);
             this.gbxJogadas.Controls.Add(this.rbxOpcao1);
             this.gbxJogadas.Enabled = false;
             this.gbxJogadas.ForeColor = System.Drawing.Color.White;
@@ -202,6 +171,21 @@ namespace cantStop
             this.lblOu3.TabIndex = 8;
             this.lblOu3.Text = "ou";
             this.lblOu3.Visible = false;
+            // 
+            // btnJogar
+            // 
+            this.btnJogar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnJogar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnJogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJogar.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJogar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnJogar.Location = new System.Drawing.Point(6, 92);
+            this.btnJogar.Name = "btnJogar";
+            this.btnJogar.Size = new System.Drawing.Size(220, 30);
+            this.btnJogar.TabIndex = 34;
+            this.btnJogar.Text = "Jogar";
+            this.btnJogar.UseVisualStyleBackColor = false;
+            this.btnJogar.Click += new System.EventHandler(this.btnJogar_Click);
             // 
             // lblOu2
             // 
@@ -287,17 +271,6 @@ namespace cantStop
             this.rbxOpcao2.Tag = "jogada";
             this.rbxOpcao2.Text = "Opcao 2";
             this.rbxOpcao2.UseVisualStyleBackColor = true;
-            // 
-            // btnJogar
-            // 
-            this.btnJogar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnJogar.Location = new System.Drawing.Point(6, 88);
-            this.btnJogar.Name = "btnJogar";
-            this.btnJogar.Size = new System.Drawing.Size(220, 32);
-            this.btnJogar.TabIndex = 0;
-            this.btnJogar.Text = "Jogar";
-            this.btnJogar.UseVisualStyleBackColor = true;
-            this.btnJogar.Click += new System.EventHandler(this.btnJogar_Click);
             // 
             // rbxOpcao1
             // 
@@ -457,12 +430,76 @@ namespace cantStop
             // 
             this.tmrJogadaBot.Tick += new System.EventHandler(this.tmrJogadaBot_Tick);
             // 
+            // btnRolarDados
+            // 
+            this.btnRolarDados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnRolarDados.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnRolarDados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRolarDados.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRolarDados.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnRolarDados.Location = new System.Drawing.Point(24, 12);
+            this.btnRolarDados.Name = "btnRolarDados";
+            this.btnRolarDados.Size = new System.Drawing.Size(106, 30);
+            this.btnRolarDados.TabIndex = 32;
+            this.btnRolarDados.Text = "Rolar Dados";
+            this.btnRolarDados.UseVisualStyleBackColor = false;
+            this.btnRolarDados.Click += new System.EventHandler(this.btnRolarDados_Click);
+            // 
+            // btnPassarVez
+            // 
+            this.btnPassarVez.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnPassarVez.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnPassarVez.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPassarVez.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPassarVez.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPassarVez.Location = new System.Drawing.Point(141, 12);
+            this.btnPassarVez.Name = "btnPassarVez";
+            this.btnPassarVez.Size = new System.Drawing.Size(106, 30);
+            this.btnPassarVez.TabIndex = 33;
+            this.btnPassarVez.Text = "Passar Vez";
+            this.btnPassarVez.UseVisualStyleBackColor = false;
+            this.btnPassarVez.Click += new System.EventHandler(this.btnPassarVez_Click);
+            // 
+            // btnIniciarPartida
+            // 
+            this.btnIniciarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnIniciarPartida.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnIniciarPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIniciarPartida.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciarPartida.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnIniciarPartida.Location = new System.Drawing.Point(12, 601);
+            this.btnIniciarPartida.Name = "btnIniciarPartida";
+            this.btnIniciarPartida.Size = new System.Drawing.Size(126, 30);
+            this.btnIniciarPartida.TabIndex = 35;
+            this.btnIniciarPartida.Text = "Iniciar Partida";
+            this.btnIniciarPartida.UseVisualStyleBackColor = false;
+            this.btnIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
+            // 
+            // btnVoltar
+            // 
+            this.btnVoltar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnVoltar.Location = new System.Drawing.Point(1010, 607);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(126, 30);
+            this.btnVoltar.TabIndex = 36;
+            this.btnVoltar.Text = "Voltar";
+            this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // FormTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1148, 646);
+            this.Controls.Add(this.btnVoltar);
+            this.Controls.Add(this.btnIniciarPartida);
+            this.Controls.Add(this.btnPassarVez);
+            this.Controls.Add(this.btnRolarDados);
             this.Controls.Add(this.pcbStatusBot);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblVezDe);
@@ -476,15 +513,12 @@ namespace cantStop
             this.Controls.Add(this.pcbDado3);
             this.Controls.Add(this.pcbDado1);
             this.Controls.Add(this.pcbDado2);
-            this.Controls.Add(this.btnPassarVez);
-            this.Controls.Add(this.btnRolarDados);
             this.Controls.Add(this.lblVersao);
             this.Controls.Add(this.pcbTabuleiro);
             this.Controls.Add(this.lblPartidaIniciada);
             this.Controls.Add(this.lblCorJogador);
             this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.lblJogador);
-            this.Controls.Add(this.btnIniciarPartida);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -508,7 +542,6 @@ namespace cantStop
         #endregion
 
         private System.Windows.Forms.Label lblVersao;
-        private System.Windows.Forms.Button btnIniciarPartida;
         private System.Windows.Forms.Label lblJogador;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblCorJogador;
@@ -516,8 +549,6 @@ namespace cantStop
         private System.Windows.Forms.Timer tmrPartidaIniciada;
         private System.Windows.Forms.Timer tmrPartidaJogando;
         private System.Windows.Forms.PictureBox pcbTabuleiro;
-        private System.Windows.Forms.Button btnRolarDados;
-        private System.Windows.Forms.Button btnPassarVez;
         private System.Windows.Forms.PictureBox pcbDado2;
         private System.Windows.Forms.PictureBox pcbDado1;
         private System.Windows.Forms.PictureBox pcbDado3;
@@ -525,7 +556,6 @@ namespace cantStop
         private System.Windows.Forms.GroupBox gbxJogadas;
         private System.Windows.Forms.RadioButton rbxOpcao3;
         private System.Windows.Forms.RadioButton rbxOpcao2;
-        private System.Windows.Forms.Button btnJogar;
         private System.Windows.Forms.RadioButton rbxOpcao1;
         private System.Windows.Forms.RadioButton rbxOpcao4;
         private System.Windows.Forms.RadioButton rbxOpcao5;
@@ -543,5 +573,10 @@ namespace cantStop
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pcbStatusBot;
         private System.Windows.Forms.Timer tmrJogadaBot;
+        private System.Windows.Forms.Button btnRolarDados;
+        private System.Windows.Forms.Button btnPassarVez;
+        private System.Windows.Forms.Button btnJogar;
+        private System.Windows.Forms.Button btnIniciarPartida;
+        private System.Windows.Forms.Button btnVoltar;
     }
 }

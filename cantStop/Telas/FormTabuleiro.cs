@@ -37,74 +37,65 @@ namespace cantStop
 
         private bool FlagBotJogada;
 
-        public FormTabuleiro()
+        public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot)
         {
-            lobby = new FormLobby();
-            lobby.ShowDialog();
-
             InitializeComponent();
-            if (!lobby.entrou) this.Hide();
-            else
+            
+            this.tabuleiro = new Tabuleiro();
+            this.partida = partidaSelecionada;
+            this.jogador = jogadorCriado;
+
+            this.pecas = new List<PictureBox>();
+
+            this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
+            this.atualizarHistorico();
+
+            this.lblJogador.Text = this.jogador.nome;
+            this.lblCorJogador.Text = this.jogador.cor;
+            this.lblSenha.Text = this.jogador.senha;
+
+            this.fazendoJogada = false;
+
+            this.tmrPartidaIniciada.Start();
+
+            this.pcbDados = new List<PictureBox>();
+            this.pcbDados.Add(pcbDado1);
+            this.pcbDados.Add(pcbDado2);
+            this.pcbDados.Add(pcbDado3);
+            this.pcbDados.Add(pcbDado4);
+
+            this.radios = new List<RadioButton>();
+            this.radios.Add(rbxOpcao1);
+            this.radios.Add(rbxOpcao2);
+            this.radios.Add(rbxOpcao3);
+            this.radios.Add(rbxOpcao4);
+            this.radios.Add(rbxOpcao5);
+            this.radios.Add(rbxOpcao6);
+
+            this.labels = new List<Label>();
+            this.labels.Add(lblOu1);
+            this.labels.Add(lblOu2);
+            this.labels.Add(lblOu3);
+
+            this.dados = new List<int>();
+
+            this.Combinacoes = new List<Dictionary<string, int[]>>();
+
+            this.flagContinuar = true;
+
+            this.tmrJogadaBot.Enabled = this.bot = bot;
+
+            
+            if (this.bot == true)
             {
-                this.tabuleiro = new Tabuleiro();
-                this.partida = lobby.partidaSelecionada;
-                this.jogador = lobby.jogadorCriado;
-
-                this.pecas = new List<PictureBox>();
-
-                this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
-                this.atualizarHistorico();
-
-                this.lblJogador.Text = this.jogador.nome;
-                this.lblCorJogador.Text = this.jogador.cor;
-                this.lblSenha.Text = this.jogador.senha;
-
-                this.fazendoJogada = false;
-
-                this.tmrPartidaIniciada.Start();
-
-                this.pcbDados = new List<PictureBox>();
-                this.pcbDados.Add(pcbDado1);
-                this.pcbDados.Add(pcbDado2);
-                this.pcbDados.Add(pcbDado3);
-                this.pcbDados.Add(pcbDado4);
-
-                this.radios = new List<RadioButton>();
-                this.radios.Add(rbxOpcao1);
-                this.radios.Add(rbxOpcao2);
-                this.radios.Add(rbxOpcao3);
-                this.radios.Add(rbxOpcao4);
-                this.radios.Add(rbxOpcao5);
-                this.radios.Add(rbxOpcao6);
-
-                this.labels = new List<Label>();
-                this.labels.Add(lblOu1);
-                this.labels.Add(lblOu2);
-                this.labels.Add(lblOu3);
-
-                this.dados = new List<int>();
-
-                this.Combinacoes = new List<Dictionary<string, int[]>>();
-
-                this.flagContinuar = true;
-
-                this.tmrJogadaBot.Enabled = this.bot = lobby.bot;
-
-                if (this.bot == true)
-                {
-                    this.inteligencia = new Inteligencia();
-                }
+                this.inteligencia = new Inteligencia();
             }
+            
             
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
-            if (!this.lobby.entrou) 
-            {
-                this.Close();
-                return;
-            }
 
             if (this.bot) {
                 this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
@@ -679,6 +670,11 @@ namespace cantStop
             if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
 
             this.FlagBotJogada = false;
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

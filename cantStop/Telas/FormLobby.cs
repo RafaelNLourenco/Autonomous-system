@@ -17,6 +17,11 @@ namespace cantStop
         public FormLobby()
         {
             InitializeComponent();
+            this.iniciarParametrosForm();
+        }
+
+        private void iniciarParametrosForm()
+        {
             ListarPartidas();
             lblFeedbackCriarPartida.Text = "";
             txbSenhaCriarPartida.UseSystemPasswordChar = true;
@@ -63,7 +68,6 @@ namespace cantStop
 
                     lblJogador1.Text = partidaSelecionada.jogadores[0].nome;
 
-                    // lblJogador1.Visible = false;
                     break;
                 case 2:
                     pcbIcon1.Visible = true;
@@ -79,7 +83,6 @@ namespace cantStop
                     lblJogador1.Text = partidaSelecionada.jogadores[0].nome;
                     lblJogador2.Text = partidaSelecionada.jogadores[1].nome;
 
-                    // lblJogador1.Visible = false;
                     break;
                 case 3:
                     pcbIcon1.Visible = true;
@@ -96,7 +99,6 @@ namespace cantStop
                     lblJogador2.Text = partidaSelecionada.jogadores[1].nome;
                     lblJogador3.Text = partidaSelecionada.jogadores[2].nome;
 
-                    // lblJogador1.Visible = false;
                     break;
                 case 4:
                     pcbIcon1.Visible = true;
@@ -166,6 +168,14 @@ namespace cantStop
             }
         }
 
+        private void limparCamposDeTexto()
+        {
+            txbNomeCriarPartida.Clear();
+            txbSenhaCriarPartida.Clear();
+            txbNomeEntrarPartida.Clear();
+            txbSenhaEntrarPartida.Clear();
+        }
+
         private void btnEntrarDev_Click(object sender, EventArgs e)
         {
             Partida partida = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
@@ -183,8 +193,17 @@ namespace cantStop
                 this.jogadorCriado.entrandoPartida(retorno, txbNomeEntrarPartida.Text);
 
                 this.entrou = true;
+                tmrAtualizarPartidaSelecionada.Enabled = false;
 
-                this.Close();
+                FormTabuleiro tabuleiro = new FormTabuleiro(this.partidaSelecionada, this.jogadorCriado, this.bot);
+                this.Hide();
+                tabuleiro.ShowDialog();
+
+                // apos voltar ao lobby(fechar o tabuleiro)
+                tmrAtualizarPartidaSelecionada.Enabled = true;
+                this.iniciarParametrosForm();
+                this.limparCamposDeTexto();
+                this.Show();
             }
         }
 
@@ -208,6 +227,7 @@ namespace cantStop
 
         }
 
+        // botoes de interacao com senha
         private void pcbSenhaEntrarPartida_Click(object sender, EventArgs e)
         {
             if (txbSenhaEntrarPartida.UseSystemPasswordChar == true)
@@ -236,6 +256,16 @@ namespace cantStop
             }
         }
 
+        // atalhos
+        private void txbNomeCriarPartida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                e.Handled = true;
+                this.btnCriarPartida_Click(sender, e);
+            }
+        }
+
         private void txbSenhaCriarPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -247,23 +277,26 @@ namespace cantStop
 
         private void txbNomeEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13 || e.KeyChar == 10)
             {
                 e.Handled = true;
-                this.btnEntrarDev_Click(sender, e);
+                if (e.KeyChar == 13) this.btnEntrarDev_Click(sender, e);
+                else this.btnEntrarBot_Click(sender, e);
             }
         }
 
         private void txbSenhaEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13 || e.KeyChar == 10)
             {
                 e.Handled = true;
-                this.btnEntrarDev_Click(sender, e);
+                if (e.KeyChar == 13) this.btnEntrarDev_Click(sender, e);
+                else this.btnEntrarBot_Click(sender, e);
             }
         }
 
-        private void tmrAtualizarJogadores_Tick(object sender, EventArgs e)
+        // timer
+        private void tmrAtualizarPartidaSelecionada_Tick(object sender, EventArgs e)
         {
             this.atualizaPartidaSelecionada();
         }
