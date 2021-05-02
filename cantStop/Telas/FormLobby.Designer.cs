@@ -29,8 +29,9 @@ namespace cantStop
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnCriarPartida = new System.Windows.Forms.Button();
             this.dgvListaPartidas = new System.Windows.Forms.DataGridView();
@@ -56,22 +57,23 @@ namespace cantStop
             this.btnEntrarBot = new System.Windows.Forms.Button();
             this.lblVisualizar = new System.Windows.Forms.Label();
             this.btnVisualizarPartida = new System.Windows.Forms.Button();
-            this.btnIntrucoes = new System.Windows.Forms.Button();
+            this.btnSobreBot = new System.Windows.Forms.Button();
             this.lblCriarPartida = new System.Windows.Forms.Label();
             this.lblFeedbackCriarPartida = new System.Windows.Forms.Label();
+            this.pcbSenhaEntrarPartida = new System.Windows.Forms.PictureBox();
+            this.pcbSenhaCriarPartida = new System.Windows.Forms.PictureBox();
             this.pcbIcon4 = new System.Windows.Forms.PictureBox();
             this.pcbIcon3 = new System.Windows.Forms.PictureBox();
             this.pcbIcon2 = new System.Windows.Forms.PictureBox();
             this.pcbIcon1 = new System.Windows.Forms.PictureBox();
-            this.pcbSenhaCriarPartida = new System.Windows.Forms.PictureBox();
-            this.pcbSenhaEntrarPartida = new System.Windows.Forms.PictureBox();
+            this.tmrAtualizarPartidaSelecionada = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPartidas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaEntrarPartida)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaCriarPartida)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaCriarPartida)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaEntrarPartida)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAtualizar
@@ -112,22 +114,22 @@ namespace cantStop
             this.dgvListaPartidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvListaPartidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvListaPartidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListaPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaPartidas.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaPartidas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListaPartidas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvListaPartidas.EnableHeadersVisualStyles = false;
             this.dgvListaPartidas.Location = new System.Drawing.Point(25, 65);
@@ -293,6 +295,7 @@ namespace cantStop
             this.txbNomeCriarPartida.Name = "txbNomeCriarPartida";
             this.txbNomeCriarPartida.Size = new System.Drawing.Size(282, 29);
             this.txbNomeCriarPartida.TabIndex = 24;
+            this.txbNomeCriarPartida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNomeCriarPartida_KeyPress);
             // 
             // lblNomeCriarPartida
             // 
@@ -382,19 +385,19 @@ namespace cantStop
             this.btnVisualizarPartida.UseVisualStyleBackColor = false;
             this.btnVisualizarPartida.Click += new System.EventHandler(this.btnVisualizarPartida_Click);
             // 
-            // btnIntrucoes
+            // btnSobreBot
             // 
-            this.btnIntrucoes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
-            this.btnIntrucoes.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
-            this.btnIntrucoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIntrucoes.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIntrucoes.Location = new System.Drawing.Point(340, 717);
-            this.btnIntrucoes.Name = "btnIntrucoes";
-            this.btnIntrucoes.Size = new System.Drawing.Size(281, 30);
-            this.btnIntrucoes.TabIndex = 34;
-            this.btnIntrucoes.Text = "Instruções";
-            this.btnIntrucoes.UseVisualStyleBackColor = false;
-            this.btnIntrucoes.Click += new System.EventHandler(this.btnIntrucoes_Click);
+            this.btnSobreBot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnSobreBot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnSobreBot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSobreBot.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSobreBot.Location = new System.Drawing.Point(340, 717);
+            this.btnSobreBot.Name = "btnSobreBot";
+            this.btnSobreBot.Size = new System.Drawing.Size(281, 30);
+            this.btnSobreBot.TabIndex = 34;
+            this.btnSobreBot.Text = "Sobre o bot";
+            this.btnSobreBot.UseVisualStyleBackColor = false;
+            this.btnSobreBot.Click += new System.EventHandler(this.btnIntrucoes_Click);
             // 
             // lblCriarPartida
             // 
@@ -415,6 +418,34 @@ namespace cantStop
             this.lblFeedbackCriarPartida.TabIndex = 36;
             this.lblFeedbackCriarPartida.Text = "Feedback criar partida";
             this.lblFeedbackCriarPartida.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pcbSenhaEntrarPartida
+            // 
+            this.pcbSenhaEntrarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.pcbSenhaEntrarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pcbSenhaEntrarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
+            this.pcbSenhaEntrarPartida.Location = new System.Drawing.Point(588, 487);
+            this.pcbSenhaEntrarPartida.Margin = new System.Windows.Forms.Padding(10);
+            this.pcbSenhaEntrarPartida.Name = "pcbSenhaEntrarPartida";
+            this.pcbSenhaEntrarPartida.Size = new System.Drawing.Size(31, 19);
+            this.pcbSenhaEntrarPartida.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pcbSenhaEntrarPartida.TabIndex = 38;
+            this.pcbSenhaEntrarPartida.TabStop = false;
+            this.pcbSenhaEntrarPartida.Click += new System.EventHandler(this.pcbSenhaEntrarPartida_Click);
+            // 
+            // pcbSenhaCriarPartida
+            // 
+            this.pcbSenhaCriarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.pcbSenhaCriarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pcbSenhaCriarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
+            this.pcbSenhaCriarPartida.Location = new System.Drawing.Point(272, 675);
+            this.pcbSenhaCriarPartida.Margin = new System.Windows.Forms.Padding(10);
+            this.pcbSenhaCriarPartida.Name = "pcbSenhaCriarPartida";
+            this.pcbSenhaCriarPartida.Size = new System.Drawing.Size(31, 19);
+            this.pcbSenhaCriarPartida.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pcbSenhaCriarPartida.TabIndex = 37;
+            this.pcbSenhaCriarPartida.TabStop = false;
+            this.pcbSenhaCriarPartida.Click += new System.EventHandler(this.pcbSenhaCriarPartida_Click);
             // 
             // pcbIcon4
             // 
@@ -456,33 +487,11 @@ namespace cantStop
             this.pcbIcon1.TabIndex = 15;
             this.pcbIcon1.TabStop = false;
             // 
-            // pcbSenhaCriarPartida
+            // tmrAtualizarPartidaSelecionada
             // 
-            this.pcbSenhaCriarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.pcbSenhaCriarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbSenhaCriarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
-            this.pcbSenhaCriarPartida.Location = new System.Drawing.Point(272, 674);
-            this.pcbSenhaCriarPartida.Margin = new System.Windows.Forms.Padding(10);
-            this.pcbSenhaCriarPartida.Name = "pcbSenhaCriarPartida";
-            this.pcbSenhaCriarPartida.Size = new System.Drawing.Size(31, 19);
-            this.pcbSenhaCriarPartida.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pcbSenhaCriarPartida.TabIndex = 37;
-            this.pcbSenhaCriarPartida.TabStop = false;
-            this.pcbSenhaCriarPartida.Click += new System.EventHandler(this.pcbSenhaCriarPartida_Click);
-            // 
-            // pcbSenhaEntrarPartida
-            // 
-            this.pcbSenhaEntrarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.pcbSenhaEntrarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbSenhaEntrarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
-            this.pcbSenhaEntrarPartida.Location = new System.Drawing.Point(588, 486);
-            this.pcbSenhaEntrarPartida.Margin = new System.Windows.Forms.Padding(10);
-            this.pcbSenhaEntrarPartida.Name = "pcbSenhaEntrarPartida";
-            this.pcbSenhaEntrarPartida.Size = new System.Drawing.Size(31, 19);
-            this.pcbSenhaEntrarPartida.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pcbSenhaEntrarPartida.TabIndex = 38;
-            this.pcbSenhaEntrarPartida.TabStop = false;
-            this.pcbSenhaEntrarPartida.Click += new System.EventHandler(this.pcbSenhaEntrarPartida_Click);
+            this.tmrAtualizarPartidaSelecionada.Enabled = true;
+            this.tmrAtualizarPartidaSelecionada.Interval = 2500;
+            this.tmrAtualizarPartidaSelecionada.Tick += new System.EventHandler(this.tmrAtualizarPartidaSelecionada_Tick);
             // 
             // FormLobby
             // 
@@ -494,7 +503,7 @@ namespace cantStop
             this.Controls.Add(this.pcbSenhaCriarPartida);
             this.Controls.Add(this.lblFeedbackCriarPartida);
             this.Controls.Add(this.lblCriarPartida);
-            this.Controls.Add(this.btnIntrucoes);
+            this.Controls.Add(this.btnSobreBot);
             this.Controls.Add(this.btnVisualizarPartida);
             this.Controls.Add(this.lblVisualizar);
             this.Controls.Add(this.btnEntrarBot);
@@ -530,12 +539,12 @@ namespace cantStop
             this.Name = "FormLobby";
             this.Text = "Lobby";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaPartidas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaEntrarPartida)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaCriarPartida)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbIcon1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaCriarPartida)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbSenhaEntrarPartida)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -571,11 +580,12 @@ namespace cantStop
         private System.Windows.Forms.Button btnEntrarBot;
         private System.Windows.Forms.Label lblVisualizar;
         private System.Windows.Forms.Button btnVisualizarPartida;
-        private System.Windows.Forms.Button btnIntrucoes;
+        private System.Windows.Forms.Button btnSobreBot;
         private System.Windows.Forms.Label lblCriarPartida;
         private System.Windows.Forms.Label lblFeedbackCriarPartida;
         private System.Windows.Forms.PictureBox pcbSenhaCriarPartida;
         private System.Windows.Forms.PictureBox pcbSenhaEntrarPartida;
+        private System.Windows.Forms.Timer tmrAtualizarPartidaSelecionada;
     }
 }
 
