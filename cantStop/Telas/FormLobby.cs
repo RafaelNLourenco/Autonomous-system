@@ -36,7 +36,7 @@ namespace cantStop
         {
             lblNomePartidaSelecionada.Text = "Nome: " + this.partidaSelecionada.Nome;
             lblStatusPartidaSelecionada.Text = "Status: : " + this.partidaSelecionada.Status;
-            if (this.partidaSelecionada.Status == "Aberta") this.atualizarListaJogadores();
+            this.atualizarListaJogadores();
         }
         private void atualizarListaJogadores()
         {
