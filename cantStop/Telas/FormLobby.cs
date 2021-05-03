@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using cantStop.Classes;
 using CantStopServer;
@@ -20,9 +21,10 @@ namespace cantStop
             this.iniciarParametrosForm();
         }
 
+        // metodos da classe
         private void iniciarParametrosForm()
         {
-            ListarPartidas();
+            this.listarPartidas();
             lblFeedbackCriarPartida.Text = "";
             txbSenhaCriarPartida.UseSystemPasswordChar = true;
             txbSenhaEntrarPartida.UseSystemPasswordChar = true;
@@ -30,16 +32,13 @@ namespace cantStop
             this.bot = false;
         }
 
-        private void btnAtualizar_Click(object sender, EventArgs e)
-        {
-            ListarPartidas();
-        }
         private void atualizarDadosPartida()
         {
-            lblNomePartidaSelecionada.Text = "Nome: " + partidaSelecionada.Nome;
-            lblStatusPartidaSelecionada.Text = "Status: : " + partidaSelecionada.Status;
+            lblNomePartidaSelecionada.Text = "Nome: " + this.partidaSelecionada.Nome;
+            lblStatusPartidaSelecionada.Text = "Status: : " + this.partidaSelecionada.Status;
+            if (this.partidaSelecionada.Status == "Aberta") this.atualizarListaJogadores();
         }
-        private void listarJogadores()
+        private void atualizarListaJogadores()
         {
             partidaSelecionada.ListarJogadores();
             switch (partidaSelecionada.jogadores.Count)
@@ -119,7 +118,7 @@ namespace cantStop
                     break;
             }
         }
-        private void ListarPartidas()
+        private void listarPartidas()
         {
             ListaPartidas listaPartidas = new ListaPartidas("T");
 
@@ -132,18 +131,41 @@ namespace cantStop
             dgvListaPartidas.Columns[2].Width = 99;
             dgvListaPartidas.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            partidaSelecionada = (Partida)listaPartidas.dadosPartidas[0];
-            atualizarDadosPartida();
-            listarJogadores();
+
+            this.partidaSelecionada = (Partida)listaPartidas.dadosPartidas[0];
+            this.atualizarDadosPartida();
+
         }
 
         private void atualizaPartidaSelecionada()
         {
-            partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
+            this.partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
+
+            int numLinhasAntes = dgvListaPartidas.Rows.Count;
+            int indexLinhaSelecionada = dgvListaPartidas.SelectedRows[0].Index;
+
+            ListaPartidas listaPartidas = new ListaPartidas("T");
+            int numLinhasDepois = listaPartidas.dadosPartidas.Count;
+
+            indexLinhaSelecionada += (numLinhasDepois - numLinhasAntes);
+
+            dgvListaPartidas.DataSource = listaPartidas.dadosPartidas; // Atribuindo os dados do objeto ao dataSource do dvgListaPartidas
+            dgvListaPartidas.Rows[indexLinhaSelecionada].Selected = true;
+            this.partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
             this.atualizarDadosPartida();
-            this.listarJogadores();
         }
 
+
+        private void limparCamposDeTexto()
+        {
+            txbNomeCriarPartida.Clear();
+            txbSenhaCriarPartida.Clear();
+            txbNomeEntrarPartida.Clear();
+            txbSenhaEntrarPartida.Clear();
+        }
+
+
+        // metodos baseados em eventos
         private void dgvListaPartidas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             this.atualizaPartidaSelecionada();
@@ -162,18 +184,10 @@ namespace cantStop
             else
             {
                 lblFeedbackCriarPartida.Text = "Partida criada com sucesso";
-                ListarPartidas();
+                listarPartidas();
                 this.ActiveControl = txbNomeEntrarPartida;
                 txbSenhaEntrarPartida.Text = senha;
             }
-        }
-
-        private void limparCamposDeTexto()
-        {
-            txbNomeCriarPartida.Clear();
-            txbSenhaCriarPartida.Clear();
-            txbNomeEntrarPartida.Clear();
-            txbSenhaEntrarPartida.Clear();
         }
 
         private void btnEntrarDev_Click(object sender, EventArgs e)
@@ -222,12 +236,12 @@ namespace cantStop
 
         }
 
-        private void btnIntrucoes_Click(object sender, EventArgs e)
+        private void btnSobreBot_Click(object sender, EventArgs e)
         {
 
         }
 
-        // botoes de interacao com senha
+        // botoes baseados em eventos de pictureBox
         private void pcbSenhaEntrarPartida_Click(object sender, EventArgs e)
         {
             if (txbSenhaEntrarPartida.UseSystemPasswordChar == true)
@@ -255,11 +269,20 @@ namespace cantStop
                 txbSenhaCriarPartida.UseSystemPasswordChar = true;
             }
         }
+        private void pcbAtualizarListaPartida_Click(object sender, EventArgs e)
+        {
+            this.listarPartidas();
+        }
+
+        private void pcbAtualizarPartidaSelecionada_Click(object sender, EventArgs e)
+        {
+            this.atualizaPartidaSelecionada();
+        }
 
         // atalhos
         private void txbNomeCriarPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13) // enter
             {
                 e.Handled = true;
                 this.btnCriarPartida_Click(sender, e);
@@ -268,7 +291,7 @@ namespace cantStop
 
         private void txbSenhaCriarPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13)
+            if (e.KeyChar == 13) // enter
             {
                 e.Handled = true;
                 this.btnCriarPartida_Click(sender, e);
@@ -277,7 +300,7 @@ namespace cantStop
 
         private void txbNomeEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13 || e.KeyChar == 10)
+            if (e.KeyChar == 13 || e.KeyChar == 10) // enter ou ctrl + enter
             {
                 e.Handled = true;
                 if (e.KeyChar == 13) this.btnEntrarDev_Click(sender, e);
@@ -287,7 +310,7 @@ namespace cantStop
 
         private void txbSenhaEntrarPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13 || e.KeyChar == 10)
+            if (e.KeyChar == 13 || e.KeyChar == 10) // enter ou ctrl + enter
             {
                 e.Handled = true;
                 if (e.KeyChar == 13) this.btnEntrarDev_Click(sender, e);
@@ -300,5 +323,6 @@ namespace cantStop
         {
             this.atualizaPartidaSelecionada();
         }
+
     }
 }

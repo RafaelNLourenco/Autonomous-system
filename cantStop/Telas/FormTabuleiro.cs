@@ -128,19 +128,16 @@ namespace cantStop
 
         private void tmrPartidaIniciada_Tick(object sender, EventArgs e)
         {
-            ListaPartidas partidas = new ListaPartidas("J");
+            this.partida.atualizarStatus("J");
             this.partida.ListarJogadores();
             this.atualizarHistorico();
 
-            foreach (Partida partida in partidas.dadosPartidas)
+            if (this.partida.Status == "Jogando")
             {
-                if (partida.Id == this.partida.Id)
-                {
-                    this.partida.ListarJogadores();
-                    this.iniciar();
-                    return;
-                }
+                this.partida.ListarJogadores();
+                this.iniciar();
             }
+            
         }
 
         private void atualizarHistorico()

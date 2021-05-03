@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using cantStop.Classes;
 using CantStopServer;
 
 namespace cantStop
@@ -59,6 +60,20 @@ namespace cantStop
             retornoHistorico = retornoHistorico.Replace("\r", "");
             string[] historico = retornoHistorico.Split('\n');
             return historico;
+        }
+
+        public void atualizarStatus(string tipoPartida)
+        {
+            ListaPartidas partidas = new ListaPartidas(tipoPartida);
+
+            foreach (Partida partida in partidas.dadosPartidas)
+            {
+                if (partida.Id == this.Id)
+                {
+                    this.Status = partida.Status;
+                    return;
+                }
+            }
         }
     }
 }
