@@ -101,12 +101,9 @@ namespace cantStop.Classes
             return false;
         }
 
-        public bool EstaNoTopo(int i, int[,] ordemValor, int idJogador)
+        public bool EstaNoTopo(int i, int coluna, int idJogador)
         {
-            int coluna1 = ordemValor[i, 0] + ordemValor[i, 1];
-            int coluna2 = ordemValor[i, 2] + ordemValor[i, 3];
-
-            DataRow[] data = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna1) + "'");
+            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna) + "'");
             return data.Length > 0;
         }
 
@@ -134,28 +131,31 @@ namespace cantStop.Classes
             {
                 bool colunaDominada1 = this.ColunaDominada(ordemValor[i, 0] + ordemValor[i, 1]);
                 bool colunaDominada2 = this.ColunaDominada(ordemValor[i, 2] + ordemValor[i, 3]);
+
                 bool faltaUmParaDominar = this.FaltaUmParaDominar(i, ordemValor, idJogador);
-                bool estaNoTopo = this.EstaNoTopo(i, ordemValor, idJogador);
+
+                bool estaNoTopoColuna1 = this.EstaNoTopo(i, ordemValor[i, 0] + ordemValor[i, 1], idJogador);
+                bool estaNoTopoColuna2 = this.EstaNoTopo(i, ordemValor[i, 2] + ordemValor[i, 3], idJogador);
 
                 Dictionary<string, int[]> movimento = new Dictionary<string, int[]>();
 
-                if (quantidadeAlpinistas >= 2 && !estaNoTopo)
+                if (quantidadeAlpinistas >= 2 && !(estaNoTopoColuna1 && estaNoTopoColuna2))
                 {
-                    if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar)
+                    if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar && !(estaNoTopoColuna1 || estaNoTopoColuna2))
                     {
                         string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                         movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], ordemValor[i, 2] + ordemValor[i, 3] });
                     }
                     else
                     {
-                        if ((!colunaDominada1 && colunaDominada2) || faltaUmParaDominar)
+                        if (((!colunaDominada1 && colunaDominada2) || faltaUmParaDominar) && !estaNoTopoColuna1)
                         {
                             string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                             movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
                         }
                         else
                         {
-                            if (colunaDominada1 && !colunaDominada2)
+                            if (colunaDominada1 && !colunaDominada2 && !estaNoTopoColuna2)
                             {
                                 string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
                                 movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
@@ -172,9 +172,9 @@ namespace cantStop.Classes
                     DataRow[] alpinistas1 = alpinistas.Select("coluna = '" + (ordemValor[i, 0] + ordemValor[i, 1]) + "'");
                     DataRow[] alpinistas2 = alpinistas.Select("coluna = '" + (ordemValor[i, 2] + ordemValor[i, 3]) + "'");
 
-                    if (quantidadeAlpinistas == 1 && !estaNoTopo)
+                    if (quantidadeAlpinistas == 1)
                     {
-                        if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar)
+                        if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar && !(estaNoTopoColuna1 || estaNoTopoColuna2))
                         {
                             if (alpinistas1.Length != 0 || alpinistas2.Length != 0 || (ordemValor[i, 0] + ordemValor[i, 1] == ordemValor[i, 2] + ordemValor[i, 3]))
                             {
@@ -192,14 +192,14 @@ namespace cantStop.Classes
                         }
                         else
                         {
-                            if ((!colunaDominada1 && colunaDominada2 && alpinistas1.Length != 0) || faltaUmParaDominar)
+                            if (((!colunaDominada1 && colunaDominada2 && alpinistas1.Length != 0) || faltaUmParaDominar) || (!estaNoTopoColuna1 && estaNoTopoColuna2) && (!colunaDominada1 && colunaDominada2))
                             {
                                 string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                                 movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
                             }
                             else
                             {
-                                if (colunaDominada1 && !colunaDominada2 && alpinistas2.Length != 0)
+                                if (colunaDominada1 && !colunaDominada2 && alpinistas2.Length != 0 && !colunaDominada2 || (estaNoTopoColuna1 && !estaNoTopoColuna2) && (colunaDominada1 && !colunaDominada2))
                                 {
                                     string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
                                     movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
@@ -214,24 +214,30 @@ namespace cantStop.Classes
                     }
                     else
                     {
-                        if ((alpinistas1.Length != 0 || alpinistas2.Length != 0) && !estaNoTopo)
+                        if ((alpinistas1.Length != 0 || alpinistas2.Length != 0) && !(estaNoTopoColuna1 && estaNoTopoColuna2))
                         {
-                            if (alpinistas1.Length != 0 && alpinistas2.Length != 0 && !faltaUmParaDominar)
+                            if (alpinistas1.Length != 0 && alpinistas2.Length != 0 && !faltaUmParaDominar && !(estaNoTopoColuna1 || estaNoTopoColuna2))
                             {
                                 string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                                 movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], ordemValor[i, 2] + ordemValor[i, 3] });
                             }
                             else
                             {
-                                if (alpinistas1.Length != 0 || faltaUmParaDominar)
+                                if ((alpinistas1.Length != 0 || faltaUmParaDominar) && !estaNoTopoColuna1)
                                 {
                                     string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                                     movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
                                 }
                                 else
                                 {
-                                    string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
-                                    movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
+                                    if (alpinistas2.Length != 0  && !estaNoTopoColuna2) { 
+                                        string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
+                                        movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
+                                    }
+                                    else
+                                    {
+                                        movimento.Add("", new[] { 0, 0 });
+                                    }
                                 }
                             }
                         }

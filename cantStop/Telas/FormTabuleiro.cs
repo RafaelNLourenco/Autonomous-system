@@ -84,8 +84,7 @@ namespace cantStop
             this.flagContinuar = true;
 
             this.tmrJogadaBot.Enabled = this.bot = bot;
-
-            
+            this.FlagBotJogada = false;
             if (this.bot == true)
             {
                 this.inteligencia = new Inteligencia();
@@ -164,6 +163,9 @@ namespace cantStop
 
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
+            this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
+            this.atualizarHistorico();
+
             Jogador jogadorVez = this.partida.VerificarVez();
             this.lblJogadorVez.Text = jogadorVez.nome; 
             if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
@@ -174,9 +176,6 @@ namespace cantStop
                     this.btnRolarDados_Click(sender, e);
                 }
             }
-
-            this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
-            this.atualizarHistorico();
                 
             foreach (PictureBox peca in this.pecas)
             {
@@ -555,35 +554,26 @@ namespace cantStop
             this.gbxJogadas.Visible = true;
             this.gbxJogadas.Enabled = true;
 
-            this.rbxOpcao1.Visible = this.rbxOpcao1.Enabled = !(rbxOpcao1.Text == "Opcao 1");
-            this.rbxOpcao2.Visible = this.rbxOpcao2.Enabled = !(rbxOpcao2.Text == "Opcao 2");
-            this.rbxOpcao3.Visible = this.rbxOpcao3.Enabled = !(rbxOpcao3.Text == "Opcao 3");
-
-            this.rbxOpcao4.Visible = this.rbxOpcao4.Enabled = this.lblOu1.Visible = !(rbxOpcao4.Text == "Opcao 4");
-            this.rbxOpcao5.Visible = this.rbxOpcao5.Enabled = this.lblOu2.Visible = !(rbxOpcao5.Text == "Opcao 5");
-            this.rbxOpcao6.Visible = this.rbxOpcao6.Enabled = this.lblOu3.Visible = !(rbxOpcao6.Text == "Opcao 6");
+            int j = 1;
+            foreach(var radio in this.radios)
+            {
+                if(j <= 3)
+                {
+                    radio.Visible = radio.Enabled = !(radio.Text == "Opcao " + j.ToString());
+                }
+                else
+                {
+                    radio.Visible = radio.Enabled = this.labels[j-4].Visible = !(radio.Text == "Opcao " + j.ToString());
+                }
+                j++;
+            }
 
             if(!this.rbxOpcao1.Visible && !this.rbxOpcao2.Visible && !this.rbxOpcao3.Visible)
             {
-                this.rbxOpcao1.Checked =
-                this.rbxOpcao2.Checked =
-                this.rbxOpcao3.Checked =
-                this.rbxOpcao4.Checked =
-                this.rbxOpcao5.Checked =
-                this.rbxOpcao6.Checked = false;
-
-                this.rbxOpcao1.Text = "Opcao 1";
-                this.rbxOpcao2.Text = "Opcao 2";
-                this.rbxOpcao3.Text = "Opcao 3";
-                this.rbxOpcao4.Text = "Opcao 4";
-                this.rbxOpcao5.Text = "Opcao 5";
-                this.rbxOpcao6.Text = "Opcao 6";
-
-                this.gbxJogadas.Enabled = false;
-                this.gbxJogadas.Visible = false;
-
                 this.fazendoJogada = false;
-
+                this.setJogadasView(false);
+                
+                this.flagContinuar = true;
                 this.inteligencia.Resetar();
 
                 this.tmrPartidaJogando_Tick(sender, e);
@@ -632,41 +622,60 @@ namespace cantStop
                 return;
             }
 
+            this.fazendoJogada = false;
+            this.setJogadasView(false);
+            this.tmrPartidaJogando_Tick(sender, e);
+        }
+
+        private async void tmrJogadaBot_Tick(object sender, EventArgs e)
+        {
+            if (!this.FlagBotJogada) return;
+            this.FlagBotJogada = false;
+
+            int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
+            await Task.Delay(2000);
+            this.radios[jogada].Checked = true;
+            await Task.Delay(2000);
+            this.btnJogar_Click(sender, e);
+            await Task.Delay(2000);
+            this.flagContinuar = this.inteligencia.Continuar();
+            if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
+
+        }
+
+        private void setJogadasView(bool valor)
+        {
             this.rbxOpcao1.Checked =
             this.rbxOpcao2.Checked =
             this.rbxOpcao3.Checked =
             this.rbxOpcao4.Checked =
             this.rbxOpcao5.Checked =
-            this.rbxOpcao6.Checked = false;
+            this.rbxOpcao6.Checked = valor;
 
-            this.gbxJogadas.Enabled = false;
-            this.gbxJogadas.Visible = false;
+            this.rbxOpcao1.Visible =
+            this.rbxOpcao2.Visible =
+            this.rbxOpcao3.Visible =
+            this.rbxOpcao4.Visible =
+            this.rbxOpcao5.Visible =
+            this.rbxOpcao6.Visible = valor;
 
-            this.fazendoJogada = false;
+            this.lblOu1.Visible =
+            this.lblOu2.Visible =
+            this.lblOu3.Visible = valor;
 
-            this.rbxOpcao1.Text = "Opcao 1";
-            this.rbxOpcao2.Text = "Opcao 2";
-            this.rbxOpcao3.Text = "Opcao 3";
-            this.rbxOpcao4.Text = "Opcao 4";
-            this.rbxOpcao5.Text = "Opcao 5";
-            this.rbxOpcao6.Text = "Opcao 6";
+            this.gbxJogadas.Enabled = valor;
 
-            this.tmrPartidaJogando_Tick(sender, e);
-        }
+            this.gbxJogadas.Visible = valor;
 
-        private void tmrJogadaBot_Tick(object sender, EventArgs e)
-        {
-            if (!this.FlagBotJogada) return;
-
-            int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
-            Thread.Sleep(2000);
-            this.radios[jogada].Checked = true;
-            Thread.Sleep(2000);
-            this.btnJogar_Click(sender, e);
-            this.flagContinuar = this.inteligencia.Continuar();
-            if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
-
-            this.FlagBotJogada = false;
+            if (!valor)
+            {
+                this.rbxOpcao1.Text = "Opcao 1";
+                this.rbxOpcao2.Text = "Opcao 2";
+                this.rbxOpcao3.Text = "Opcao 3";
+                this.rbxOpcao4.Text = "Opcao 4";
+                this.rbxOpcao5.Text = "Opcao 5";
+                this.rbxOpcao6.Text = "Opcao 6";
+            }
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
