@@ -181,7 +181,7 @@ namespace cantStop
             this.btnJogar.ForeColor = System.Drawing.SystemColors.Window;
             this.btnJogar.Location = new System.Drawing.Point(6, 92);
             this.btnJogar.Name = "btnJogar";
-            this.btnJogar.Size = new System.Drawing.Size(220, 30);
+            this.btnJogar.Size = new System.Drawing.Size(220, 32);
             this.btnJogar.TabIndex = 34;
             this.btnJogar.Text = "Jogar";
             this.btnJogar.UseVisualStyleBackColor = false;
@@ -437,7 +437,7 @@ namespace cantStop
             this.btnRolarDados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRolarDados.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRolarDados.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnRolarDados.Location = new System.Drawing.Point(24, 12);
+            this.btnRolarDados.Location = new System.Drawing.Point(16, 12);
             this.btnRolarDados.Name = "btnRolarDados";
             this.btnRolarDados.Size = new System.Drawing.Size(106, 30);
             this.btnRolarDados.TabIndex = 32;

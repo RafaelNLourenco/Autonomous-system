@@ -166,6 +166,13 @@ namespace cantStop
             this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             this.atualizarHistorico();
 
+            this.partida.atualizarStatus("E");
+            if (this.partida.Status == "E")
+            {
+                MessageBox.Show("A partida foi finalizada", "Partida finalizada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+
             Jogador jogadorVez = this.partida.VerificarVez();
             this.lblJogadorVez.Text = jogadorVez.nome; 
             if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
