@@ -68,6 +68,11 @@ namespace cantStop
             this.btnPassarVez = new System.Windows.Forms.Button();
             this.btnIniciarPartida = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnContinuar = new System.Windows.Forms.Button();
+            this.nmrDelay = new System.Windows.Forms.NumericUpDown();
+            this.chbPorPasso = new System.Windows.Forms.CheckBox();
+            this.gbxBotDebug = new System.Windows.Forms.GroupBox();
+            this.lblDelay = new System.Windows.Forms.Label();
             this.lblProbabilidadeCair = new System.Windows.Forms.Label();
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
@@ -77,6 +82,8 @@ namespace cantStop
             ((System.ComponentModel.ISupportInitialize)(this.pcbTabuleiro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbStatusBot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrDelay)).BeginInit();
+            this.gbxBotDebug.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblVersao
@@ -434,11 +441,12 @@ namespace cantStop
             // btnRolarDados
             // 
             this.btnRolarDados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnRolarDados.Enabled = false;
             this.btnRolarDados.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.btnRolarDados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRolarDados.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRolarDados.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnRolarDados.Location = new System.Drawing.Point(16, 12);
+            this.btnRolarDados.Location = new System.Drawing.Point(12, 12);
             this.btnRolarDados.Name = "btnRolarDados";
             this.btnRolarDados.Size = new System.Drawing.Size(106, 30);
             this.btnRolarDados.TabIndex = 32;
@@ -449,6 +457,7 @@ namespace cantStop
             // btnPassarVez
             // 
             this.btnPassarVez.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnPassarVez.Enabled = false;
             this.btnPassarVez.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.btnPassarVez.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPassarVez.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -491,6 +500,85 @@ namespace cantStop
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // btnContinuar
+            // 
+            this.btnContinuar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(63)))), ((int)(((byte)(62)))));
+            this.btnContinuar.Enabled = false;
+            this.btnContinuar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.btnContinuar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContinuar.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContinuar.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnContinuar.Location = new System.Drawing.Point(6, 67);
+            this.btnContinuar.Name = "btnContinuar";
+            this.btnContinuar.Size = new System.Drawing.Size(220, 32);
+            this.btnContinuar.TabIndex = 35;
+            this.btnContinuar.Text = "Continuar";
+            this.btnContinuar.UseVisualStyleBackColor = false;
+            this.btnContinuar.Visible = false;
+            this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
+            // 
+            // nmrTick
+            // 
+            this.nmrDelay.Enabled = false;
+            this.nmrDelay.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nmrDelay.Location = new System.Drawing.Point(6, 37);
+            this.nmrDelay.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmrDelay.Name = "nmrTick";
+            this.nmrDelay.Size = new System.Drawing.Size(78, 20);
+            this.nmrDelay.TabIndex = 37;
+            this.nmrDelay.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nmrDelay.Visible = false;
+            // 
+            // chbPorPasso
+            // 
+            this.chbPorPasso.AutoSize = true;
+            this.chbPorPasso.Enabled = false;
+            this.chbPorPasso.ForeColor = System.Drawing.Color.White;
+            this.chbPorPasso.Location = new System.Drawing.Point(131, 17);
+            this.chbPorPasso.Name = "chbPorPasso";
+            this.chbPorPasso.Size = new System.Drawing.Size(95, 17);
+            this.chbPorPasso.TabIndex = 38;
+            this.chbPorPasso.Text = "Passo a passo";
+            this.chbPorPasso.UseVisualStyleBackColor = true;
+            this.chbPorPasso.Visible = false;
+            this.chbPorPasso.CheckedChanged += new System.EventHandler(this.chbPorPasso_CheckedChanged);
+            // 
+            // gbxBotDebug
+            // 
+            this.gbxBotDebug.Controls.Add(this.lblDelay);
+            this.gbxBotDebug.Controls.Add(this.btnContinuar);
+            this.gbxBotDebug.Controls.Add(this.chbPorPasso);
+            this.gbxBotDebug.Controls.Add(this.nmrDelay);
+            this.gbxBotDebug.Enabled = false;
+            this.gbxBotDebug.ForeColor = System.Drawing.Color.White;
+            this.gbxBotDebug.Location = new System.Drawing.Point(15, 420);
+            this.gbxBotDebug.Name = "gbxBotDebug";
+            this.gbxBotDebug.Size = new System.Drawing.Size(232, 105);
+            this.gbxBotDebug.TabIndex = 39;
+            this.gbxBotDebug.TabStop = false;
+            this.gbxBotDebug.Text = "Debug";
+            this.gbxBotDebug.Visible = false;
+            // 
+            // lblDelay
+            // 
+            this.lblDelay.AutoSize = true;
+            this.lblDelay.Location = new System.Drawing.Point(3, 21);
+            this.lblDelay.Name = "lblDelay";
+            this.lblDelay.Size = new System.Drawing.Size(105, 13);
+            this.lblDelay.TabIndex = 39;
+            this.lblDelay.Text = "Delay(100ms * Valor)";
             // lblProbabilidadeCair
             // 
             this.lblProbabilidadeCair.AutoSize = true;
@@ -508,6 +596,7 @@ namespace cantStop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1148, 646);
+            this.Controls.Add(this.gbxBotDebug);
             this.Controls.Add(this.lblProbabilidadeCair);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnIniciarPartida);
@@ -547,6 +636,9 @@ namespace cantStop
             ((System.ComponentModel.ISupportInitialize)(this.pcbTabuleiro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbStatusBot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrDelay)).EndInit();
+            this.gbxBotDebug.ResumeLayout(false);
+            this.gbxBotDebug.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,6 +683,11 @@ namespace cantStop
         private System.Windows.Forms.Button btnJogar;
         private System.Windows.Forms.Button btnIniciarPartida;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button btnContinuar;
+        private System.Windows.Forms.NumericUpDown nmrDelay;
+        private System.Windows.Forms.CheckBox chbPorPasso;
+        private System.Windows.Forms.GroupBox gbxBotDebug;
+        private System.Windows.Forms.Label lblDelay;
         private System.Windows.Forms.Label lblProbabilidadeCair;
     }
 }
