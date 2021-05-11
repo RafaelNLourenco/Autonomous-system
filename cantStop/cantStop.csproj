@@ -54,6 +54,7 @@
     <Compile Include="Classes\Jogador.cs" />
     <Compile Include="Classes\ListaJogadores.cs" />
     <Compile Include="Classes\ListaPartidas.cs" />
+    <Compile Include="Classes\Probabilidades.cs" />
     <Compile Include="Classes\Tabuleiro.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

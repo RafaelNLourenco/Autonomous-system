@@ -68,6 +68,7 @@ namespace cantStop
             this.btnPassarVez = new System.Windows.Forms.Button();
             this.btnIniciarPartida = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.lblProbabilidadeCair = new System.Windows.Forms.Label();
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -490,12 +491,24 @@ namespace cantStop
             this.btnVoltar.UseVisualStyleBackColor = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
+            // lblProbabilidadeCair
+            // 
+            this.lblProbabilidadeCair.AutoSize = true;
+            this.lblProbabilidadeCair.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProbabilidadeCair.ForeColor = System.Drawing.Color.White;
+            this.lblProbabilidadeCair.Location = new System.Drawing.Point(925, 245);
+            this.lblProbabilidadeCair.Name = "lblProbabilidadeCair";
+            this.lblProbabilidadeCair.Size = new System.Drawing.Size(135, 28);
+            this.lblProbabilidadeCair.TabIndex = 37;
+            this.lblProbabilidadeCair.Text = "Probabilidade";
+            // 
             // FormTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1148, 646);
+            this.Controls.Add(this.lblProbabilidadeCair);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnIniciarPartida);
             this.Controls.Add(this.btnPassarVez);
@@ -523,7 +536,7 @@ namespace cantStop
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormTabuleiro";
-            this.Text = "Tabuleiro";
+            this.Text = ",";
             this.Load += new System.EventHandler(this.Tabuleiro_Load);
             this.gbxJogadas.ResumeLayout(false);
             this.gbxJogadas.PerformLayout();
@@ -578,5 +591,6 @@ namespace cantStop
         private System.Windows.Forms.Button btnJogar;
         private System.Windows.Forms.Button btnIniciarPartida;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Label lblProbabilidadeCair;
     }
 }
