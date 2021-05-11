@@ -646,7 +646,10 @@ namespace cantStop
             // TODO: fica dentro de um if quando ja tem 3 alpinistas e precisa pegar os numeros das colunas dos alpinistas
             // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(valorColuna1, valorColuna2, valorColuna3, this.qntdJogadasTurno);
             // lblProbabilidadeCair.Text = probabilidadePerder + "%";
-            
+
+            double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
+            lblProbabilidadeCair.Text = probabilidadePerder + "%";
+
             await Task.Delay(2000);
             this.btnJogar_Click(sender, e);
             await Task.Delay(2000);
