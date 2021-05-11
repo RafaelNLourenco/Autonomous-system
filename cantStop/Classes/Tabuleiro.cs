@@ -141,14 +141,14 @@ namespace cantStop.Classes
 
                 if (quantidadeAlpinistas >= 2 && !(estaNoTopoColuna1 && estaNoTopoColuna2))
                 {
-                    if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar && !(estaNoTopoColuna1 || estaNoTopoColuna2))
+                    if (!(colunaDominada1 || colunaDominada2) && !(estaNoTopoColuna1 || estaNoTopoColuna2) && !faltaUmParaDominar)
                     {
                         string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                         movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], ordemValor[i, 2] + ordemValor[i, 3] });
                     }
                     else
                     {
-                        if (((!colunaDominada1 && colunaDominada2) || faltaUmParaDominar) && !estaNoTopoColuna1)
+                        if ((!colunaDominada1 && colunaDominada2 && !estaNoTopoColuna1) || faltaUmParaDominar)
                         {
                             string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                             movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
@@ -174,7 +174,7 @@ namespace cantStop.Classes
 
                     if (quantidadeAlpinistas == 1)
                     {
-                        if (!colunaDominada1 && !colunaDominada2 && !faltaUmParaDominar && !(estaNoTopoColuna1 || estaNoTopoColuna2))
+                        if (!(colunaDominada1 || colunaDominada2) && !(estaNoTopoColuna1 || estaNoTopoColuna2) && !faltaUmParaDominar)
                         {
                             if (alpinistas1.Length != 0 || alpinistas2.Length != 0 || (ordemValor[i, 0] + ordemValor[i, 1] == ordemValor[i, 2] + ordemValor[i, 3]))
                             {
@@ -192,14 +192,14 @@ namespace cantStop.Classes
                         }
                         else
                         {
-                            if (((!colunaDominada1 && colunaDominada2 && alpinistas1.Length != 0) || faltaUmParaDominar) || (!estaNoTopoColuna1 && estaNoTopoColuna2) && (!colunaDominada1 && colunaDominada2))
+                            if ((!colunaDominada1 && !estaNoTopoColuna1) || faltaUmParaDominar)
                             {
                                 string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                                 movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });
                             }
                             else
                             {
-                                if (colunaDominada1 && !colunaDominada2 && alpinistas2.Length != 0 && !colunaDominada2 || (estaNoTopoColuna1 && !estaNoTopoColuna2) && (colunaDominada1 && !colunaDominada2))
+                                if (!colunaDominada2 && !estaNoTopoColuna2)
                                 {
                                     string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
                                     movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
@@ -223,7 +223,7 @@ namespace cantStop.Classes
                             }
                             else
                             {
-                                if ((alpinistas1.Length != 0 || faltaUmParaDominar) && !estaNoTopoColuna1)
+                                if ((alpinistas1.Length != 0 && !estaNoTopoColuna1) || faltaUmParaDominar)
                                 {
                                     string ordem = ordemDados[i, 0] + ordemDados[i, 1] + ordemDados[i, 2] + ordemDados[i, 3];
                                     movimento.Add(ordem, new[] { ordemValor[i, 0] + ordemValor[i, 1], 0 });

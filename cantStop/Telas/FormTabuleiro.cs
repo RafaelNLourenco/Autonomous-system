@@ -37,6 +37,8 @@ namespace cantStop
 
         private bool FlagBotJogada;
 
+        private bool ProximoPasso;
+
         public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot)
         {
             InitializeComponent();
@@ -44,6 +46,8 @@ namespace cantStop
             this.tabuleiro = new Tabuleiro();
             this.partida = partidaSelecionada;
             this.jogador = jogadorCriado;
+
+            this.Text += " - " + this.partida.Nome;
 
             this.pecas = new List<PictureBox>();
 
@@ -58,24 +62,30 @@ namespace cantStop
 
             this.tmrPartidaIniciada.Start();
 
-            this.pcbDados = new List<PictureBox>();
-            this.pcbDados.Add(pcbDado1);
-            this.pcbDados.Add(pcbDado2);
-            this.pcbDados.Add(pcbDado3);
-            this.pcbDados.Add(pcbDado4);
+            this.pcbDados = new List<PictureBox>
+            {
+                pcbDado1,
+                pcbDado2,
+                pcbDado3,
+                pcbDado4
+            };
 
-            this.radios = new List<RadioButton>();
-            this.radios.Add(rbxOpcao1);
-            this.radios.Add(rbxOpcao2);
-            this.radios.Add(rbxOpcao3);
-            this.radios.Add(rbxOpcao4);
-            this.radios.Add(rbxOpcao5);
-            this.radios.Add(rbxOpcao6);
+            this.radios = new List<RadioButton>
+            {
+                rbxOpcao1,
+                rbxOpcao2,
+                rbxOpcao3,
+                rbxOpcao4,
+                rbxOpcao5,
+                rbxOpcao6
+            };
 
-            this.labels = new List<Label>();
-            this.labels.Add(lblOu1);
-            this.labels.Add(lblOu2);
-            this.labels.Add(lblOu3);
+            this.labels = new List<Label>
+            {
+                lblOu1,
+                lblOu2,
+                lblOu3
+            };
 
             this.dados = new List<int>();
 
@@ -83,14 +93,20 @@ namespace cantStop
 
             this.flagContinuar = true;
 
-            this.tmrJogadaBot.Enabled = this.bot = bot;
+            this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
+            this.nmrDelay.Visible = this.nmrDelay.Enabled =
+            this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
+            this.btnContinuar.Visible =
+            this.bot = bot;
+
             this.FlagBotJogada = false;
             if (this.bot == true)
             {
+                this.tmrJogadaBot.Start();
                 this.inteligencia = new Inteligencia();
             }
-            
-            
+
+            this.ProximoPasso = false;
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
@@ -167,8 +183,10 @@ namespace cantStop
             this.atualizarHistorico();
 
             this.partida.atualizarStatus("E");
-            if (this.partida.Status == "E")
+            if (this.partida.Status == "Encerrada")
             {
+                this.tmrJogadaBot.Stop();
+                this.tmrPartidaJogando.Stop();
                 MessageBox.Show("A partida foi finalizada", "Partida finalizada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
@@ -176,12 +194,21 @@ namespace cantStop
             Jogador jogadorVez = this.partida.VerificarVez();
             this.lblJogadorVez.Text = jogadorVez.nome; 
             if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
-                this.setBotoes(true);
-                if ( this.flagContinuar )
+                if (this.bot)
                 {
-                    this.flagContinuar = false;
-                    this.btnRolarDados_Click(sender, e);
+                    this.setBotoes(false);
+                    if (this.flagContinuar)
+                    {
+                        this.flagContinuar = false;
+                        this.btnRolarDados_Click(sender, e);
+                    }
                 }
+                else
+                {
+                    this.setBotoes(true);
+                }
+                
+                
             }
                 
             foreach (PictureBox peca in this.pecas)
@@ -638,13 +665,21 @@ namespace cantStop
         {
             if (!this.FlagBotJogada) return;
             this.FlagBotJogada = false;
+            int delay = 100 * ((int)this.nmrDelay.Value);
 
             int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
-            await Task.Delay(2000);
+            await Task.Delay(delay);
             this.radios[jogada].Checked = true;
-            await Task.Delay(2000);
+            await Task.Delay(delay);
+
+            while (!this.ProximoPasso && this.chbPorPasso.Checked)
+            {
+                await Task.Delay(50);
+            }
+            this.ProximoPasso = false;
+
             this.btnJogar_Click(sender, e);
-            await Task.Delay(2000);
+            await Task.Delay(delay);
             this.flagContinuar = this.inteligencia.Continuar();
             if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
 
@@ -674,6 +709,15 @@ namespace cantStop
 
             this.gbxJogadas.Visible = valor;
 
+            if (this.bot)
+            {
+                this.btnJogar.Enabled = false;
+            }
+            else
+            {
+                this.btnJogar.Enabled = valor;
+            }
+
             if (!valor)
             {
                 this.rbxOpcao1.Text = "Opcao 1";
@@ -688,6 +732,23 @@ namespace cantStop
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnContinuar_Click(object sender, EventArgs e)
+        {
+            this.ProximoPasso = true;
+        }
+
+        private void chbPorPasso_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chbPorPasso.Checked)
+            {
+                this.btnContinuar.Enabled = true;
+            }
+            else
+            {
+                this.btnContinuar.Enabled = false;
+            }
         }
     }
 }
