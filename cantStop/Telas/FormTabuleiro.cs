@@ -15,10 +15,12 @@ namespace cantStop
 {
     public partial class FormTabuleiro : Form
     {
+        private Probabilidades probabilidade;
         private Jogador jogador;
         private Partida partida;
         private Tabuleiro tabuleiro;
-        private FormLobby lobby;
+
+        private int qntdJogadasTurno; 
 
         private List<PictureBox> pecas;
         private List<PictureBox> pcbDados;
@@ -42,7 +44,10 @@ namespace cantStop
         public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot)
         {
             InitializeComponent();
-            
+
+            this.probabilidade = new Probabilidades();
+            this.qntdJogadasTurno = 0;
+
             this.tabuleiro = new Tabuleiro();
             this.partida = partidaSelecionada;
             this.jogador = jogadorCriado;
@@ -281,6 +286,7 @@ namespace cantStop
             jogador.Parar();
             this.tmrPartidaJogando_Tick(sender, e);
             this.flagContinuar = true;
+            this.qntdJogadasTurno = 0;
         }
 
         private void setBotoes(bool valor)
@@ -670,6 +676,7 @@ namespace cantStop
             int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
             await Task.Delay(delay);
             this.radios[jogada].Checked = true;
+
             await Task.Delay(delay);
 
             while (!this.ProximoPasso && this.chbPorPasso.Checked)
@@ -678,9 +685,21 @@ namespace cantStop
             }
             this.ProximoPasso = false;
 
+            // calcular probabilidade
+            // TODO: fica dentro de um if quando ja tem 3 alpinistas e precisa pegar os numeros das colunas dos alpinistas
+            // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(valorColuna1, valorColuna2, valorColuna3, this.qntdJogadasTurno);
+            // lblProbabilidadeCair.Text = probabilidadePerder + "%";
+
+            // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
+            // lblProbabilidadeCair.Text = probabilidadePerder + "%";
+
+            // await Task.Delay(2000);
+
             this.btnJogar_Click(sender, e);
             await Task.Delay(delay);
             this.flagContinuar = this.inteligencia.Continuar();
+            
+            this.qntdJogadasTurno++;
             if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
 
         }

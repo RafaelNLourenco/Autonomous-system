@@ -73,6 +73,7 @@ namespace cantStop
             this.chbPorPasso = new System.Windows.Forms.CheckBox();
             this.gbxBotDebug = new System.Windows.Forms.GroupBox();
             this.lblDelay = new System.Windows.Forms.Label();
+            this.lblProbabilidadeCair = new System.Windows.Forms.Label();
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -578,6 +579,16 @@ namespace cantStop
             this.lblDelay.Size = new System.Drawing.Size(105, 13);
             this.lblDelay.TabIndex = 39;
             this.lblDelay.Text = "Delay(100ms * Valor)";
+            // lblProbabilidadeCair
+            // 
+            this.lblProbabilidadeCair.AutoSize = true;
+            this.lblProbabilidadeCair.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProbabilidadeCair.ForeColor = System.Drawing.Color.White;
+            this.lblProbabilidadeCair.Location = new System.Drawing.Point(925, 245);
+            this.lblProbabilidadeCair.Name = "lblProbabilidadeCair";
+            this.lblProbabilidadeCair.Size = new System.Drawing.Size(135, 28);
+            this.lblProbabilidadeCair.TabIndex = 37;
+            this.lblProbabilidadeCair.Text = "Probabilidade";
             // 
             // FormTabuleiro
             // 
@@ -586,6 +597,7 @@ namespace cantStop
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1148, 646);
             this.Controls.Add(this.gbxBotDebug);
+            this.Controls.Add(this.lblProbabilidadeCair);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnIniciarPartida);
             this.Controls.Add(this.btnPassarVez);
@@ -613,7 +625,7 @@ namespace cantStop
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormTabuleiro";
-            this.Text = "Tabuleiro";
+            this.Text = ",";
             this.Load += new System.EventHandler(this.Tabuleiro_Load);
             this.gbxJogadas.ResumeLayout(false);
             this.gbxJogadas.PerformLayout();
@@ -676,5 +688,6 @@ namespace cantStop
         private System.Windows.Forms.CheckBox chbPorPasso;
         private System.Windows.Forms.GroupBox gbxBotDebug;
         private System.Windows.Forms.Label lblDelay;
+        private System.Windows.Forms.Label lblProbabilidadeCair;
     }
 }
