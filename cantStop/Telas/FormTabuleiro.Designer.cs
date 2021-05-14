@@ -517,7 +517,7 @@ namespace cantStop
             this.btnContinuar.Visible = false;
             this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
             // 
-            // nmrTick
+            // nmrDelay
             // 
             this.nmrDelay.Enabled = false;
             this.nmrDelay.Increment = new decimal(new int[] {
@@ -531,7 +531,7 @@ namespace cantStop
             0,
             0,
             0});
-            this.nmrDelay.Name = "nmrTick";
+            this.nmrDelay.Name = "nmrDelay";
             this.nmrDelay.Size = new System.Drawing.Size(78, 20);
             this.nmrDelay.TabIndex = 37;
             this.nmrDelay.Value = new decimal(new int[] {
@@ -579,6 +579,7 @@ namespace cantStop
             this.lblDelay.Size = new System.Drawing.Size(105, 13);
             this.lblDelay.TabIndex = 39;
             this.lblDelay.Text = "Delay(100ms * Valor)";
+            // 
             // lblProbabilidadeCair
             // 
             this.lblProbabilidadeCair.AutoSize = true;
@@ -625,7 +626,7 @@ namespace cantStop
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormTabuleiro";
-            this.Text = ",";
+            this.Text = "Tabuleiro";
             this.Load += new System.EventHandler(this.Tabuleiro_Load);
             this.gbxJogadas.ResumeLayout(false);
             this.gbxJogadas.PerformLayout();

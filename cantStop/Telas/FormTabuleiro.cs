@@ -194,6 +194,7 @@ namespace cantStop
                 this.tmrPartidaJogando.Stop();
                 MessageBox.Show("A partida foi finalizada", "Partida finalizada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
+                return;
             }
 
             Jogador jogadorVez = this.partida.VerificarVez();
@@ -212,8 +213,6 @@ namespace cantStop
                 {
                     this.setBotoes(true);
                 }
-                
-                
             }
                 
             foreach (PictureBox peca in this.pecas)
