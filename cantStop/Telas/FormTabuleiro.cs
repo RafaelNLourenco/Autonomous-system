@@ -15,12 +15,9 @@ namespace cantStop
 {
     public partial class FormTabuleiro : Form
     {
-        private Probabilidades probabilidade;
         private Jogador jogador;
         private Partida partida;
         private Tabuleiro tabuleiro;
-
-        private int qntdJogadasTurno; 
 
         private List<PictureBox> pecas;
         private List<PictureBox> pcbDados;
@@ -44,9 +41,6 @@ namespace cantStop
         public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot)
         {
             InitializeComponent();
-
-            this.probabilidade = new Probabilidades();
-            this.qntdJogadasTurno = 0;
 
             this.tabuleiro = new Tabuleiro();
             this.partida = partidaSelecionada;
@@ -286,7 +280,6 @@ namespace cantStop
             jogador.Parar();
             this.tmrPartidaJogando_Tick(sender, e);
             this.flagContinuar = true;
-            this.qntdJogadasTurno = 0;
         }
 
         private void setBotoes(bool valor)
@@ -690,15 +683,14 @@ namespace cantStop
             // TODO: fica dentro de um if quando ja tem 3 alpinistas e precisa pegar os numeros das colunas dos alpinistas
             // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(valorColuna1, valorColuna2, valorColuna3, this.qntdJogadasTurno);
             // lblProbabilidadeCair.Text = probabilidadePerder + "%";
-
-            double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
-            lblProbabilidadeCair.Text = probabilidadePerder + "%";
+            // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
+            // lblProbabilidadeCair.Text = probabilidadePerder + "%";
 
             this.btnJogar_Click(sender, e);
             await Task.Delay(delay);
             this.flagContinuar = this.inteligencia.Continuar();
+            //this.flagContinuar = this.inteligencia.escolherContuniarParar();
             
-            this.qntdJogadasTurno++;
             if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
 
         }

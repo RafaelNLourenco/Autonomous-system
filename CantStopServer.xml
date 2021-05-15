@@ -4,6 +4,11 @@
         <name>CantStopServer</name>
     </assembly>
     <members>
+        <member name="T:CantStopServer.Jogo">
+            <summary>
+            Interface do jogo Can't Stop do Projeto Integrador do BCC
+            </summary>
+        </member>
         <member name="F:CantStopServer.Jogo.Versao">
             <summary>
             Exibe a versão do jogo
@@ -76,8 +81,31 @@
             <summary>
             Retorna o que já aconteceu na partida
             </summary>
-            <param name="idPartida"></param>
+            <param name="idPartida">Id da Partida</param>
             <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.RolarDados(System.Int32,System.String)">
+            <summary>
+            Joga os 4 dados e retorna os valores obtidos
+            </summary>
+            <param name="id">Id do Jogador</param>
+            <param name="senha">Senha do Jogador</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.Parar(System.Int32,System.String)">
+            <summary>
+            Interrompe a sequência de jogadas, colocando bases no lugar dos alpinistas, e passa a vez.
+            </summary>
+            <param name="idJogador">Id do Jogador</param>
+            <param name="senha">Senha do Jogador</param>
+            <returns></returns>
+        </member>
+        <member name="M:CantStopServer.Jogo.VerificarDados(System.Int32)">
+            <summary>
+            Retorna as trilhas dominadas por cada jogador nesta partida
+            </summary>
+            <param name="idPartida">Id da partida</param>
+            <returns>Id da trilha, id do jogador</returns>
         </member>
     </members>
 </doc>

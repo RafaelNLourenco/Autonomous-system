@@ -10,6 +10,7 @@ namespace cantStop.Classes
     {
         private int[][] listaCombinacoesPossiveis { get; set; }
         public double[][] probabilidadeSomaColunas { get; set; }
+        private double probabilidadeCair { get; set;  }
 
         public Probabilidades()
         {
@@ -116,12 +117,17 @@ namespace cantStop.Classes
             return countPossibilidadesFavoraveis;
         }
 
-        public double calculaProbabilidadePerderVez(int coluna1, int coluna2, int coluna3, int qntdJogadasNaRodadaJaFeitas)
+        public void calculaProbabilidadePerderVez(int coluna1, int coluna2, int coluna3, int qntdJogadasNaRodadaJaFeitas)
         {
             // eh uma hipotese da proxima jogada
             double countPossibilidadesFavoraveis = this.calcularProbalidadeCairEntre3Colunas(coluna1, coluna2, coluna3);
             double probabilidadeFavoraveis = ((Math.Pow(countPossibilidadesFavoraveis, qntdJogadasNaRodadaJaFeitas + 1) / Math.Pow(this.listaCombinacoesPossiveis.Length , qntdJogadasNaRodadaJaFeitas + 1))*100);
-            return 100 - probabilidadeFavoraveis;
+            this.probabilidadeCair = 100 - probabilidadeFavoraveis;
+        }
+
+        public double getProbabilidadeCair()
+        {
+            return this.probabilidadeCair;
         }
     }
 }
