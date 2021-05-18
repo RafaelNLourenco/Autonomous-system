@@ -682,15 +682,27 @@ namespace cantStop
             // calcular probabilidade
             // TODO: fica dentro de um if quando ja tem 3 alpinistas e precisa pegar os numeros das colunas dos alpinistas
             // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(valorColuna1, valorColuna2, valorColuna3, this.qntdJogadasTurno);
-            // lblProbabilidadeCair.Text = probabilidadePerder + "%";
+
             // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
             // lblProbabilidadeCair.Text = probabilidadePerder + "%";
+            this.flagContinuar = true;
+            DataTable alpinistas = this.tabuleiro.SelecioneJogador((int)jogador.id, "A");
+            if ( alpinistas.Rows.Count == 3 )
+            {
+                int[] colunasComAlpinistas = new int[3];
+                for (int i = 0; i < alpinistas.Rows.Count; i++ )
+                {
+                    colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
+                }
+                this.inteligencia.colunasComAlpinistas = colunasComAlpinistas;
+                this.flagContinuar = this.inteligencia.Continuar();
+                lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
+            }
 
             this.btnJogar_Click(sender, e);
             await Task.Delay(delay);
-            this.flagContinuar = this.inteligencia.Continuar();
-            //this.flagContinuar = this.inteligencia.escolherContuniarParar();
-            
+           
+
             if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
 
         }

@@ -9,13 +9,13 @@ namespace cantStop.Classes
     public class Inteligencia
     {
         private int Jogadas;
-        private Probabilidades probabilidade;
+        public Probabilidades probabilidade { get; set; }
+        public int[] colunasComAlpinistas { get; set; }
 
         public Inteligencia()
         {
             Jogadas = 0;
             this.probabilidade = new Probabilidades();
-
         }
 
         internal int EscolherJogada(List<Dictionary<string, int[]>> combinacoes)
@@ -46,12 +46,9 @@ namespace cantStop.Classes
 
         internal bool Continuar()
         {
-            bool retorno = this.Jogadas <= 3;
-            if (!retorno)
-            {
-                this.Jogadas = 0;
-            }
-            return retorno;
+            this.probabilidade.calculaProbabilidadePerderVez(this.colunasComAlpinistas[0], this.colunasComAlpinistas[1], this.colunasComAlpinistas[2], this.Jogadas);
+            if (this.probabilidade.getProbabilidadeCair() < 60) return true;
+            return false;
         }
 
         internal void Resetar()
@@ -59,11 +56,5 @@ namespace cantStop.Classes
             this.Jogadas = 0;
         }
 
-        internal bool escolherContuniarParar(int coluna1, int coluna2, int coluna3)
-        {
-            this.probabilidade.calculaProbabilidadePerderVez(coluna1, coluna2, coluna3, this.Jogadas);
-            if (this.probabilidade.getProbabilidadeCair() < 49) return true;
-            return false;   
-        }
     }
 }

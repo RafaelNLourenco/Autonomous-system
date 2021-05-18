@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cantStop.Classes
 {
-    class Probabilidades
+    public class Probabilidades
     {
         private int[][] listaCombinacoesPossiveis { get; set; }
         public double[][] probabilidadeSomaColunas { get; set; }
