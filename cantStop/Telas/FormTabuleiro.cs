@@ -534,90 +534,98 @@ namespace cantStop
 
             this.dados.Clear();
             this.dados = jogador.RolarDados();
-            
-            if (this.dados is null) return;
-            for (int i = 0; i < 4; i++)
+
+            try
             {
-                switch (dados[i])
+
+
+                for (int i = 0; i < 4; i++)
                 {
-                    case 1:
-                        this.pcbDados[i].Image = cantStop.Properties.Resources.dado1;
-                        break;
-                    case 2:
-                        this.pcbDados[i].Image = cantStop.Properties.Resources.dado2;
-                        break;
-                    case 3:
-                        this.pcbDados[i].Image = cantStop.Properties.Resources.dado3;
-                        break;
-                    case 4:
-                        this.pcbDados[i].Image = cantStop.Properties.Resources.dado4;
-                        break;
-                    case 5:
-                        this.pcbDados[i].Image = cantStop.Properties.Resources.dado5;
-                        break;
-                    case 6:
-                        this.pcbDados[i].Image = cantStop.Properties.Resources.dado6;
-                        break;
-                }
-            }
-
-            this.Combinacoes = this.tabuleiro.MontarCombinacoes((int)this.jogador.id, this.dados);
-
-            for (int i = 0; i < 3; i++)
-            {
-                if(this.Combinacoes[i].ElementAt(0).Key != "") {
-                    if(this.Combinacoes[i].Count > 1)
+                    switch (dados[i])
                     {
-                        this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString();
-                        this.radios[i + 3].Text = this.Combinacoes[i].ElementAt(1).Value[0].ToString();
+                        case 1:
+                            this.pcbDados[i].Image = cantStop.Properties.Resources.dado1;
+                            break;
+                        case 2:
+                            this.pcbDados[i].Image = cantStop.Properties.Resources.dado2;
+                            break;
+                        case 3:
+                            this.pcbDados[i].Image = cantStop.Properties.Resources.dado3;
+                            break;
+                        case 4:
+                            this.pcbDados[i].Image = cantStop.Properties.Resources.dado4;
+                            break;
+                        case 5:
+                            this.pcbDados[i].Image = cantStop.Properties.Resources.dado5;
+                            break;
+                        case 6:
+                            this.pcbDados[i].Image = cantStop.Properties.Resources.dado6;
+                            break;
                     }
-                    else
+                }
+
+                this.Combinacoes = this.tabuleiro.MontarCombinacoes((int)this.jogador.id, this.dados);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (this.Combinacoes[i].ElementAt(0).Key != "")
                     {
-                        if(this.Combinacoes[i].ElementAt(0).Value[1] == 0)
+                        if (this.Combinacoes[i].Count > 1)
                         {
                             this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString();
+                            this.radios[i + 3].Text = this.Combinacoes[i].ElementAt(1).Value[0].ToString();
                         }
                         else
                         {
-                            this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString() + " e " + this.Combinacoes[i].ElementAt(0).Value[1].ToString();
+                            if (this.Combinacoes[i].ElementAt(0).Value[1] == 0)
+                            {
+                                this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString();
+                            }
+                            else
+                            {
+                                this.radios[i].Text = this.Combinacoes[i].ElementAt(0).Value[0].ToString() + " e " + this.Combinacoes[i].ElementAt(0).Value[1].ToString();
+                            }
                         }
                     }
                 }
-            }
 
-            this.gbxJogadas.Visible = true;
-            this.gbxJogadas.Enabled = true;
+                this.gbxJogadas.Visible = true;
+                this.gbxJogadas.Enabled = true;
 
-            int j = 1;
-            foreach(var radio in this.radios)
-            {
-                if(j <= 3)
+                int j = 1;
+                foreach (var radio in this.radios)
                 {
-                    radio.Visible = radio.Enabled = !(radio.Text == "Opcao " + j.ToString());
+                    if (j <= 3)
+                    {
+                        radio.Visible = radio.Enabled = !(radio.Text == "Opcao " + j.ToString());
+                    }
+                    else
+                    {
+                        radio.Visible = radio.Enabled = this.labels[j - 4].Visible = !(radio.Text == "Opcao " + j.ToString());
+                    }
+                    j++;
+                }
+
+                if (!this.rbxOpcao1.Visible && !this.rbxOpcao2.Visible && !this.rbxOpcao3.Visible)
+                {
+                    this.fazendoJogada = false;
+                    this.setJogadasView(false);
+
+                    this.flagContinuar = true;
+                    this.tmrPartidaJogando_Tick(sender, e);
                 }
                 else
                 {
-                    radio.Visible = radio.Enabled = this.labels[j-4].Visible = !(radio.Text == "Opcao " + j.ToString());
+                    if (this.bot)
+                    {
+                        this.FlagBotJogada = true;
+                    }
                 }
-                j++;
             }
-
-            if(!this.rbxOpcao1.Visible && !this.rbxOpcao2.Visible && !this.rbxOpcao3.Visible)
+            catch
             {
-                this.fazendoJogada = false;
-                this.setJogadasView(false);
-                
-                this.flagContinuar = true;
-                this.inteligencia.Resetar();
-
-                this.tmrPartidaJogando_Tick(sender, e);
-            }
-            else
-            {
-                if (this.bot)
-                {
-                    this.FlagBotJogada = true;
-                }
+                this.btnVoltar_Click(sender, e);
+                // MessageBox.Show("Ocooreu um erro de sincronia", "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -663,6 +671,9 @@ namespace cantStop
 
         private async void tmrJogadaBot_Tick(object sender, EventArgs e)
         {
+            if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
+            this.inteligencia.verificarJogada((int)this.jogador.id);
+            this.lblJogadas.Text = Convert.ToString(this.inteligencia.Jogadas);
             if (!this.FlagBotJogada) return;
             this.FlagBotJogada = false;
             int delay = 100 * ((int)this.nmrDelay.Value);
@@ -685,19 +696,10 @@ namespace cantStop
 
             // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
             // lblProbabilidadeCair.Text = probabilidadePerder + "%";
-            this.flagContinuar = true;
-            DataTable alpinistas = this.tabuleiro.SelecioneJogador((int)jogador.id, "A");
-            if ( alpinistas.Rows.Count == 3 )
-            {
-                int[] colunasComAlpinistas = new int[3];
-                for (int i = 0; i < alpinistas.Rows.Count; i++ )
-                {
-                    colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
-                }
-                this.inteligencia.colunasComAlpinistas = colunasComAlpinistas;
-                this.flagContinuar = this.inteligencia.Continuar();
-                lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
-            }
+            // this.flagContinuar = true;
+
+            this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
+            lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
 
             this.btnJogar_Click(sender, e);
             await Task.Delay(delay);

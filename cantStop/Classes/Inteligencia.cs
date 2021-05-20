@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,10 @@ namespace cantStop.Classes
 {
     public class Inteligencia
     {
-        private int Jogadas;
+        public int Jogadas;
         public Probabilidades probabilidade { get; set; }
-        public int[] colunasComAlpinistas { get; set; }
+        public int[] colunasDominadas { get; set; }
+        public Tabuleiro tabuleiro { get; set; }
 
         public Inteligencia()
         {
@@ -44,9 +46,45 @@ namespace cantStop.Classes
             return jogada;
         }
 
-        internal bool Continuar()
+        internal void atribuirListaColunasDominadas()
         {
-            this.probabilidade.calculaProbabilidadePerderVez(this.colunasComAlpinistas[0], this.colunasComAlpinistas[1], this.colunasComAlpinistas[2], this.Jogadas);
+            List<int> aux = new List<int>();
+            for ( int i = 2; i <= 12; i++)
+            {
+                if (this.tabuleiro.ColunaDominada(i))
+                {
+                     aux.Add(i);
+                }
+            }
+            this.colunasDominadas = aux.ToArray();
+        }
+        public void verificarJogada(int idJogaador)
+        {
+            DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
+            if ( alpinistas.Rows.Count == 0 ) this.Resetar();
+        }
+
+        internal bool Continuar(int idJogaador)
+        {
+            this.probabilidade.resetarProbabilidade();
+            this.atribuirListaColunasDominadas();
+           
+            DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
+            int[] colunasComAlpinistas = new int[alpinistas.Rows.Count];
+            
+            for (int i = 0; i < alpinistas.Rows.Count; i++)
+            {
+                colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
+            }
+            if (colunasComAlpinistas.Length == 3)
+            {
+                this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
+
+            }else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
+            {
+                this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
+            }
+        
             if (this.probabilidade.getProbabilidadeCair() < 60) return true;
             return false;
         }

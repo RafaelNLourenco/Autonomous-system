@@ -5,7 +5,7 @@ using CantStopServer;
 
 namespace cantStop.Classes
 {
-    class Tabuleiro
+    public class Tabuleiro
     {
         public DataTable locais { get; set; }
 
