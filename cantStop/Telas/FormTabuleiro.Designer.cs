@@ -74,6 +74,7 @@ namespace cantStop
             this.gbxBotDebug = new System.Windows.Forms.GroupBox();
             this.lblDelay = new System.Windows.Forms.Label();
             this.lblProbabilidadeCair = new System.Windows.Forms.Label();
+            this.lblJogadas = new System.Windows.Forms.Label();
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -517,7 +518,7 @@ namespace cantStop
             this.btnContinuar.Visible = false;
             this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
             // 
-            // nmrTick
+            // nmrDelay
             // 
             this.nmrDelay.Enabled = false;
             this.nmrDelay.Increment = new decimal(new int[] {
@@ -531,7 +532,7 @@ namespace cantStop
             0,
             0,
             0});
-            this.nmrDelay.Name = "nmrTick";
+            this.nmrDelay.Name = "nmrDelay";
             this.nmrDelay.Size = new System.Drawing.Size(78, 20);
             this.nmrDelay.TabIndex = 37;
             this.nmrDelay.Value = new decimal(new int[] {
@@ -579,6 +580,7 @@ namespace cantStop
             this.lblDelay.Size = new System.Drawing.Size(105, 13);
             this.lblDelay.TabIndex = 39;
             this.lblDelay.Text = "Delay(100ms * Valor)";
+            // 
             // lblProbabilidadeCair
             // 
             this.lblProbabilidadeCair.AutoSize = true;
@@ -590,12 +592,24 @@ namespace cantStop
             this.lblProbabilidadeCair.TabIndex = 37;
             this.lblProbabilidadeCair.Text = "Probabilidade";
             // 
+            // lblJogadas
+            // 
+            this.lblJogadas.AutoSize = true;
+            this.lblJogadas.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJogadas.ForeColor = System.Drawing.Color.White;
+            this.lblJogadas.Location = new System.Drawing.Point(925, 284);
+            this.lblJogadas.Name = "lblJogadas";
+            this.lblJogadas.Size = new System.Drawing.Size(83, 28);
+            this.lblJogadas.TabIndex = 40;
+            this.lblJogadas.Text = "Jogadas";
+            // 
             // FormTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1148, 646);
+            this.Controls.Add(this.lblJogadas);
             this.Controls.Add(this.gbxBotDebug);
             this.Controls.Add(this.lblProbabilidadeCair);
             this.Controls.Add(this.btnVoltar);
@@ -689,5 +703,6 @@ namespace cantStop
         private System.Windows.Forms.GroupBox gbxBotDebug;
         private System.Windows.Forms.Label lblDelay;
         private System.Windows.Forms.Label lblProbabilidadeCair;
+        private System.Windows.Forms.Label lblJogadas;
     }
 }
