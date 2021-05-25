@@ -639,7 +639,7 @@ namespace cantStop
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormTabuleiro";
-            this.Text = ",";
+            this.Text = "Tabuleiro";
             this.Load += new System.EventHandler(this.Tabuleiro_Load);
             this.gbxJogadas.ResumeLayout(false);
             this.gbxJogadas.PerformLayout();
