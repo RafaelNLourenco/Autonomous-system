@@ -13,6 +13,7 @@ namespace cantStop.Classes
         public Probabilidades probabilidade { get; set; }
         public int[] colunasDominadas { get; set; }
         public Tabuleiro tabuleiro { get; set; }
+        public int qntdColunasDominadas { get; set; }
 
         public Inteligencia()
         {
@@ -159,8 +160,47 @@ namespace cantStop.Classes
             if ( alpinistas.Rows.Count == 0 ) this.Resetar();
         }
 
+        internal void atualizarQuantidadeColunasDominadas(int idJogaador)
+        {
+            int contadorColunasDominadas = 0;
+            for (int i = 2; i <= 12; i++)
+            {
+                if (this.tabuleiro.ColunaDominadaJogador(idJogaador, i) ) contadorColunasDominadas++;
+
+            }
+            this.qntdColunasDominadas = contadorColunasDominadas;
+
+        }
+
+        internal bool sePararAcaba(int idJogaador)
+        {
+            int contadorAlpinistasNoTopo = 0;
+            for (int i = 2; i <= 12; i++)
+            {
+                if (this.tabuleiro.EstaNoTopo(i, idJogaador)) contadorAlpinistasNoTopo++;
+
+            }
+            if ((this.qntdColunasDominadas + contadorAlpinistasNoTopo) == 3)
+            {
+                return true;
+            }
+            return false;
+        } 
+
         internal bool Continuar(int idJogaador)
         {
+            // this.atualizarQuantidadeColunasDominadas(idJogaador);
+            //if (this.sePararAcaba(idJogaador)) return false;
+
+            for (int i = 2; i <= 12; i++)
+            {
+                if (this.tabuleiro.EstaNoTopo(i, idJogaador))
+                {
+                    return false;
+                }
+
+            }
+
             this.probabilidade.resetarProbabilidade();
             this.atribuirListaColunasDominadas();
            
@@ -180,7 +220,7 @@ namespace cantStop.Classes
                 this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
             }
         
-            if (this.probabilidade.getProbabilidadeCair() < 60) return true;
+            if (this.probabilidade.getProbabilidadeCair() < 50) return true;
             return false;
         }
 
