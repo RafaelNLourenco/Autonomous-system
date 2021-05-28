@@ -20,8 +20,100 @@ namespace cantStop.Classes
             this.probabilidade = new Probabilidades();
         }
 
-        internal int EscolherJogada(List<Dictionary<string, int[]>> combinacoes)
+        private int coeficienteLinear(int coluna)
         {
+            int constante = coluna - 1;
+            if(coluna > 7)
+            {
+                constante = 13 - coluna;
+            }
+            return constante;
+        }
+
+        private double calcularPeso(int coluna, DataTable alpinistasTable, DataTable basesTable, bool duplicado = false)
+        {
+            int x = 0;
+            if (duplicado)
+                x++;
+
+            DataRow[] alpinistaRow = alpinistasTable.Select("coluna = '" + coluna + "'");
+            if (alpinistaRow.Length != 0)
+            {
+                x = int.Parse(alpinistaRow[0].Field<string>("posicao")) + 1;
+            }
+            else
+            {
+                DataRow[] baseRow = basesTable.Select("coluna = '" + coluna + "'");
+                if (baseRow.Length != 0)
+                {
+                    x = int.Parse(baseRow[0].Field<string>("posicao")) + 1;
+                }
+            }
+
+            double coeficiente_linear = coeficienteLinear(coluna);
+            double metade_trilha = ((FormTabuleiro.getQuantidadePosicao(coluna) - 1) / 2);
+            double coeficiente_angular = (18 - coeficiente_linear) / (metade_trilha);
+
+            return (coeficiente_angular * x) + coeficiente_linear;
+        }
+
+        internal int EscolherJogada(int idJogaador, List<Dictionary<string, int[]>> combinacoes)
+        {
+            int jogada = 0;
+            int count = 0;
+            double peso = 0;
+
+            DataTable alpinistasTable = tabuleiro.SelecioneJogador(idJogaador, "A");
+            DataTable basesTable = tabuleiro.SelecioneJogador(idJogaador, "B");
+            foreach (Dictionary<string, int[]> combinacao in combinacoes)
+            {
+                if (combinacao.ElementAt(0).Key != "") 
+                {
+                    double novoPeso = 0;
+                    if(combinacao.Count > 1)
+                    {
+                        double novoSubPeso1 = calcularPeso(combinacao.ElementAt(0).Value[0], alpinistasTable, basesTable);
+                        double novoSubPeso2 = calcularPeso(combinacao.ElementAt(0).Value[1], alpinistasTable, basesTable);
+
+                        if (novoSubPeso1 > novoSubPeso2 && novoSubPeso1 > peso)
+                        {
+                            novoPeso = novoSubPeso1;
+                            jogada = count;
+                        }
+
+                        if (novoSubPeso2 > novoSubPeso1 && novoSubPeso2 > peso)
+                        {
+                            novoPeso = novoSubPeso2;
+                            jogada = count + 3;
+                        }
+                    }
+                    else{
+                        novoPeso = calcularPeso(combinacao.ElementAt(0).Value[0], alpinistasTable, basesTable);
+                        if (combinacao.ElementAt(0).Value[1] >= 2)
+                        {
+                            if (combinacao.ElementAt(0).Value[0] == combinacao.ElementAt(0).Value[1])
+                            {
+                                novoPeso += calcularPeso(combinacao.ElementAt(0).Value[1], alpinistasTable, basesTable, true);
+                            }
+                            else
+                            {
+                                novoPeso += calcularPeso(combinacao.ElementAt(0).Value[1], alpinistasTable, basesTable);
+                            }
+                        }
+                        
+
+                        if (novoPeso > peso)
+                        {
+                            peso = novoPeso;
+                            jogada = count;
+                        }
+                    }
+
+                    
+                }
+                count++;
+            }
+            /* Legado
             bool fezJogada = false;
             Random randomJogada = new Random();
             int jogada = 0;
@@ -42,6 +134,9 @@ namespace cantStop.Classes
                     fezJogada = true;
                 }
             }
+            this.Jogadas++;
+            return jogada;
+            */
             this.Jogadas++;
             return jogada;
         }
