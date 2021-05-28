@@ -178,12 +178,12 @@ namespace cantStop
 
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
-            this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             this.atualizarHistorico();
 
             this.partida.atualizarStatus("E");
             if (this.partida.Status == "Encerrada")
             {
+                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 this.tmrJogadaBot.Stop();
                 this.tmrPartidaJogando.Stop();
                 MessageBox.Show("A partida foi finalizada", "Partida finalizada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -194,6 +194,7 @@ namespace cantStop
             Jogador jogadorVez = this.partida.VerificarVez();
             this.lblJogadorVez.Text = jogadorVez.nome; 
             if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
+                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 if (this.bot)
                 {
                     this.setBotoes(false);
@@ -207,6 +208,10 @@ namespace cantStop
                 {
                     this.setBotoes(true);
                 }
+            }
+            else
+            {
+                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             }
                 
             foreach (PictureBox peca in this.pecas)
@@ -677,7 +682,7 @@ namespace cantStop
             this.FlagBotJogada = false;
             int delay = 100 * ((int)this.nmrDelay.Value);
 
-            int jogada = this.inteligencia.EscolherJogada(this.Combinacoes);
+            int jogada = this.inteligencia.EscolherJogada((int)this.jogador.id, this.Combinacoes);
             await Task.Delay(delay);
             this.radios[jogada].Checked = true;
 
