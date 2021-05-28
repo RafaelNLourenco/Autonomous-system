@@ -101,7 +101,7 @@ namespace cantStop.Classes
             return false;
         }
 
-        public bool EstaNoTopo(int i, int coluna, int idJogador)
+        public bool EstaNoTopo(int coluna, int idJogador)
         {
             DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna) + "'");
             return data.Length > 0;
@@ -134,8 +134,8 @@ namespace cantStop.Classes
 
                 bool faltaUmParaDominar = this.FaltaUmParaDominar(i, ordemValor, idJogador);
 
-                bool estaNoTopoColuna1 = this.EstaNoTopo(i, ordemValor[i, 0] + ordemValor[i, 1], idJogador);
-                bool estaNoTopoColuna2 = this.EstaNoTopo(i, ordemValor[i, 2] + ordemValor[i, 3], idJogador);
+                bool estaNoTopoColuna1 = this.EstaNoTopo(ordemValor[i, 0] + ordemValor[i, 1], idJogador);
+                bool estaNoTopoColuna2 = this.EstaNoTopo(ordemValor[i, 2] + ordemValor[i, 3], idJogador);
 
                 Dictionary<string, int[]> movimento = new Dictionary<string, int[]>();
 
@@ -253,6 +253,22 @@ namespace cantStop.Classes
             
 
             return combinacoes;
+        }
+        public bool ColunaDominadaJogador(int idJogador, int coluna)
+        {
+            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND tipo = 'B' AND jogador ='" + idJogador.ToString() + "'");
+            Dictionary<int, int> jogadores = new Dictionary<int, int>();
+            int quantidadesPosicoes = FormTabuleiro.getQuantidadePosicao(coluna);
+
+            foreach (DataRow linha in data)
+            {
+                if (int.Parse(linha.Field<string>("posicao")) == quantidadesPosicoes)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
