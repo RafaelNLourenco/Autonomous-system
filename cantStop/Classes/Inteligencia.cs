@@ -211,6 +211,7 @@ namespace cantStop.Classes
             {
                 colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
             }
+            
             if (colunasComAlpinistas.Length == 3)
             {
                 this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
@@ -219,7 +220,7 @@ namespace cantStop.Classes
             {
                 this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
             }
-        
+            
             if (this.probabilidade.getProbabilidadeCair() < 50) return true;
             return false;
         }
