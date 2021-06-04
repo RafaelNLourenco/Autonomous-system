@@ -9,7 +9,6 @@ namespace cantStop.Classes
     public class Probabilidades
     {
         private int[][] listaCombinacoesPossiveis { get; set; }
-        private double[][] probabilidadeSomaColunas { get; set; }
         private double probabilidadeCair { get; set; }
 
         public Probabilidades()
@@ -31,74 +30,6 @@ namespace cantStop.Classes
 
             this.listaCombinacoesPossiveis = produtoCartesiano.ToArray();
 
-            this.calcularPossibilidadeSomaColunas();
-        }
-
-        // calcula o atributo probabilidadeSomaColunas quando se instancia um objeto do tipo inteligencia
-        private void calcularPossibilidadeSomaColunas()
-        {
-            for (int coluna = 2; coluna <= 7; coluna++)
-            {
-                this.calcularProbabilidadeUmaColuna(coluna);
-            }
-
-            /* 
-             * há colunas equiprovaveis, ou seja, que tem a mesma porcentagem de combinações (probabilidade de os dados derem aquela soma)
-             * coluna 2 é equiprovavel com a 12
-             * coluna 3 é equiprovavel com a 11
-             * coluna 4 é equiprovavel com a 10
-             * coluna 5 é equiprovavel com a 9
-             * coluna 6 é equiprovavel com a 8
-             */
-            int colunaB = 8;
-            for (int colunaA = 6; colunaA >= 2; colunaA--)
-            {
-                this.probabilidadeSomaColunas[colunaB - 2] = new double[] { colunaB, this.probabilidadeSomaColunas[colunaA - 2][1] };
-                colunaB++;
-            }
-
-        }
-
-        // auxiliar ao metodo calcularPossibilidadeSomaColunas
-        private void calcularProbabilidadeUmaColuna(int colunaSelecionada)
-        {
-            int countPossibilidadesFavoraveis = 0;
-            double porcentagemColuna = 0;
-            foreach (int[] linha in this.listaCombinacoesPossiveis)
-            {
-
-                if (
-
-                // combinação dado 1 com dado 2 e dado 3 com dado 4
-                linha[0] + linha[1] == colunaSelecionada || linha[0] + linha[1] == colunaSelecionada || linha[0] + linha[1] == colunaSelecionada || linha[2] + linha[3] == colunaSelecionada || linha[2] + linha[3] == colunaSelecionada || linha[2] + linha[3] == colunaSelecionada ||
-
-                // combinação dado 1 com dado 3 e dado 2 com dado 4
-                linha[0] + linha[2] == colunaSelecionada || linha[0] + linha[2] == colunaSelecionada || linha[0] + linha[2] == colunaSelecionada || linha[1] + linha[3] == colunaSelecionada || linha[1] + linha[3] == colunaSelecionada || linha[1] + linha[3] == colunaSelecionada ||
-
-                // combinação dado 1 com dado 4 e dado 2 com dado 3
-                linha[0] + linha[3] == colunaSelecionada || linha[0] + linha[3] == colunaSelecionada || linha[0] + linha[3] == colunaSelecionada || linha[1] + linha[2] == colunaSelecionada || linha[1] + linha[2] == colunaSelecionada || linha[1] + linha[2] == colunaSelecionada
-                )
-                {
-                    countPossibilidadesFavoraveis++;
-                }
-
-            }
-
-            porcentagemColuna = ((double)countPossibilidadesFavoraveis / (double)this.listaCombinacoesPossiveis.Length) * 100;
-
-            if (this.probabilidadeSomaColunas is null) this.probabilidadeSomaColunas = new double[11][];
-
-            this.probabilidadeSomaColunas[colunaSelecionada - 2] = new double[] { colunaSelecionada, porcentagemColuna };
-
-        }
-
-        // metodo para acessar indiretamente o atributo probabilidadeSomaColunas
-
-        public double pegarProbabilidadeColunaUnica(int numeroColunaDesejada)
-        {
-            int i;
-            for (i = 0; i < this.probabilidadeSomaColunas.Length || this.probabilidadeSomaColunas[i][0] == numeroColunaDesejada; i++);
-            return this.probabilidadeSomaColunas[i][1];
         }
 
         // calcula a probabilida de cair quando se tem 3 alpinistas usando
