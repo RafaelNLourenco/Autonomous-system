@@ -189,23 +189,16 @@ namespace cantStop.Classes
 
         internal bool Continuar(int idJogaador)
         {
-            // this.atualizarQuantidadeColunasDominadas(idJogaador);
-            //if (this.sePararAcaba(idJogaador)) return false;
-
-            for (int i = 2; i <= 12; i++)
-            {
-                if (this.tabuleiro.EstaNoTopo(i, idJogaador))
-                {
-                    return false;
-                }
-
-            }
-
             this.probabilidade.resetarProbabilidade();
+
+            this.atualizarQuantidadeColunasDominadas(idJogaador);
+            if (this.sePararAcaba(idJogaador)) return false;
+
             this.atribuirListaColunasDominadas();
            
             DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
             int[] colunasComAlpinistas = new int[alpinistas.Rows.Count];
+            
             
             for (int i = 0; i < alpinistas.Rows.Count; i++)
             {

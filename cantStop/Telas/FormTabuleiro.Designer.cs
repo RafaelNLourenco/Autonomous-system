@@ -591,7 +591,6 @@ namespace cantStop
             this.lblProbabilidadeCair.Size = new System.Drawing.Size(135, 28);
             this.lblProbabilidadeCair.TabIndex = 37;
             this.lblProbabilidadeCair.Text = "Probabilidade";
-            this.lblProbabilidadeCair.Visible = false;
             // 
             // lblJogadas
             // 
