@@ -254,20 +254,19 @@ namespace cantStop.Classes
 
             return combinacoes;
         }
-        public bool ColunaDominadaJogador(int idJogador, int coluna)
+
+        public bool AlpinistaEstaNoTopo(int idJogador, int coluna)
         {
-            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND tipo = 'B' AND jogador ='" + idJogador.ToString() + "'");
-            Dictionary<int, int> jogadores = new Dictionary<int, int>();
-            int quantidadesPosicoes = FormTabuleiro.getQuantidadePosicao(coluna);
+            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna) + "' AND tipo = 'A'");
+            return data.Length > 0;
+        }
 
-            foreach (DataRow linha in data)
+        public bool ExisteAlgumAlpinistaNoTopo(int idJogador)
+        {
+            for ( int i = 2; i <=12; i++)
             {
-                if (int.Parse(linha.Field<string>("posicao")) == quantidadesPosicoes)
-                {
-                    return true;
-                }
+                if (this.AlpinistaEstaNoTopo(idJogador, i)) return true; 
             }
-
             return false;
         }
     }
