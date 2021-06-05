@@ -69,6 +69,64 @@ namespace cantStop.Classes
             return countPossibilidadesFavoraveis;
         }
 
+        // metodo que pega a probabilidade quando tem um alpinista para ser utilizado e 2 travados/concluiu a coluna
+        public void calcularProbabilidadeCairUmAlpnistaDisponivel(int colunaDisponivel, int qntdJogadasNaRodadaJaFeitas)
+        {
+            int countPossibilidadesFavoraveis = 0;
+            foreach (int[] linha in this.listaCombinacoesPossiveis)
+            {
+
+                if (
+
+                // combinação dado 1 com dado 2 e dado 3 com dado 4
+                linha[0] + linha[1] == colunaDisponivel || linha[2] + linha[3] == colunaDisponivel ||
+
+                // combinação dado 1 com dado 3 e dado 2 com dado 4
+                linha[0] + linha[2] == colunaDisponivel || linha[1] + linha[3] == colunaDisponivel ||
+
+                // combinação dado 1 com dado 4 e dado 2 com dado 3
+                linha[0] + linha[3] == colunaDisponivel || linha[1] + linha[2] == colunaDisponivel
+                )
+                {
+                    countPossibilidadesFavoraveis++;
+                }
+
+            }
+
+            // eh uma hipotese da proxima jogada
+            double probabilidadeFavoraveis = ((Math.Pow(countPossibilidadesFavoraveis, qntdJogadasNaRodadaJaFeitas + 1) / Math.Pow(this.listaCombinacoesPossiveis.Length, qntdJogadasNaRodadaJaFeitas + 1)) * 100);
+            this.probabilidadeCair = 100 - probabilidadeFavoraveis;
+        }
+
+        // metodo que pega a probabilidade quando tem dois alpinistas para ser utilizado e 1 travados/concluiu a coluna
+        public void calcularProbabilidadeCairDoisAlpnistsaDisponiveis(int colunaA, int colunaB, int qntdJogadasNaRodadaJaFeitas)
+        {
+            double countPossibilidadesFavoraveis = 0;
+
+            foreach (int[] linha in this.listaCombinacoesPossiveis)
+            {
+                if (
+                    //combinação dado 1 com dado 2 e dado 3 com dado 4
+                    linha[0] + linha[1] == colunaA || linha[2] + linha[3] == colunaB || linha[0] + linha[1] == colunaB || linha[2] + linha[3] == colunaA ||
+
+                    // combinação dado 1 com dado 3 e dado 2 com dado 4
+                    linha[0] + linha[2] == colunaA || linha[1] + linha[3] == colunaB || linha[0] + linha[2] == colunaB || linha[1] + linha[3] == colunaA ||
+
+                    //combinação dado 1 com dado 4 e dado 2 com dado 3
+                    linha[0] + linha[3] == colunaA || linha[1] + linha[2] == colunaB || linha[0] + linha[3] == colunaB || linha[1] + linha[2] == colunaA
+                )
+                {
+                    countPossibilidadesFavoraveis++;
+                }
+
+            }
+
+            // eh uma hipotese da proxima jogada
+            double probabilidadeFavoraveis = ((Math.Pow(countPossibilidadesFavoraveis, qntdJogadasNaRodadaJaFeitas + 1) / Math.Pow(this.listaCombinacoesPossiveis.Length, qntdJogadasNaRodadaJaFeitas + 1)) * 100);
+            this.probabilidadeCair = 100 - probabilidadeFavoraveis;
+        }
+        
+        // metodo para calcular probabilidade quando há chance de cair apenas com colunas dominadas
         public void calcularProbabilidadeCairApenasEmColunasDominadas(int[] colunasDominadas, int qntdJogadasNaRodadaJaFeitas)
         {
             /*

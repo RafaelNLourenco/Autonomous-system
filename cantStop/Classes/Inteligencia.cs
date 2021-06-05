@@ -13,7 +13,6 @@ namespace cantStop.Classes
         public Probabilidades probabilidade { get; set; }
         public int[] colunasDominadas { get; set; }
         public Tabuleiro tabuleiro { get; set; }
-        public int qntdColunasDominadas { get; set; }
 
         public Inteligencia()
         {
@@ -160,18 +159,6 @@ namespace cantStop.Classes
             if ( alpinistas.Rows.Count == 0 ) this.Resetar();
         }
 
-        internal void atualizarQuantidadeColunasDominadas(int idJogaador)
-        {
-            int contadorColunasDominadas = 0;
-            for (int i = 2; i <= 12; i++)
-            {
-                if (this.tabuleiro.ColunaDominadaJogador(idJogaador, i) ) contadorColunasDominadas++;
-
-            }
-            this.qntdColunasDominadas = contadorColunasDominadas;
-
-        }
-
         internal bool sePararAcaba(int idJogaador)
         {
             int contadorAlpinistasNoTopo = 0;
@@ -180,7 +167,7 @@ namespace cantStop.Classes
                 if (this.tabuleiro.EstaNoTopo(i, idJogaador)) contadorAlpinistasNoTopo++;
 
             }
-            if ((this.qntdColunasDominadas + contadorAlpinistasNoTopo) == 3)
+            if (contadorAlpinistasNoTopo >= 3)
             {
                 return true;
             }
@@ -189,10 +176,10 @@ namespace cantStop.Classes
 
         internal bool Continuar(int idJogaador)
         {
-            this.probabilidade.resetarProbabilidade();
-
-            this.atualizarQuantidadeColunasDominadas(idJogaador);
-            if (this.sePararAcaba(idJogaador)) return false;
+            if (this.sePararAcaba(idJogaador))
+            {
+                return false;
+            }
 
             this.atribuirListaColunasDominadas();
            
@@ -204,16 +191,38 @@ namespace cantStop.Classes
             {
                 colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
             }
-            
+
+            this.probabilidade.resetarProbabilidade();
+
             if (colunasComAlpinistas.Length == 3)
             {
-                this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
+                if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))
+                {
+                    List<int> trilhasDisponiveis = new List<int>();
+                    foreach (int coluna in colunasComAlpinistas)
+                    {
+                        if (!this.tabuleiro.AlpinistaEstaNoTopo(idJogaador, coluna)) trilhasDisponiveis.Add(coluna);
+                    }
 
-            }else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
+                    if (trilhasDisponiveis.Count == 1)
+                    {
+                        this.probabilidade.calcularProbabilidadeCairUmAlpnistaDisponivel(trilhasDisponiveis[0], this.Jogadas);
+                    }
+                    else
+                    {
+                        this.probabilidade.calcularProbabilidadeCairDoisAlpnistsaDisponiveis(trilhasDisponiveis[0], trilhasDisponiveis[1], this.Jogadas);
+                    }
+                }
+                else
+                {
+                    this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
+                }
+            }
+            else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
             {
                 this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
             }
-            
+
             if (this.probabilidade.getProbabilidadeCair() < 50) return true;
             return false;
         }
