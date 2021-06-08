@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using cantStop.Classes;
+using cantStop.Telas;
 using CantStopServer;
 
 namespace cantStop
@@ -238,7 +239,10 @@ namespace cantStop
 
         private void btnSobreBot_Click(object sender, EventArgs e)
         {
-
+            FormsobreBot sobreBot = new FormsobreBot();
+            this.Hide();
+            sobreBot.ShowDialog();
+            this.Show();
         }
 
         // botoes baseados em eventos de pictureBox
