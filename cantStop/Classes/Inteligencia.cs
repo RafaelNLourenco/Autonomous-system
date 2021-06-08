@@ -13,10 +13,14 @@ namespace cantStop.Classes
         public Probabilidades probabilidade { get; set; }
         public int[] colunasDominadas { get; set; }
         public Tabuleiro tabuleiro { get; set; }
+        private bool flagFator { get; set; } 
+        public float taxaLimite { get; set; }
 
         public Inteligencia()
         {
-            Jogadas = 0;
+            this.Jogadas = 0;
+           this.taxaLimite = 0;
+            this.flagFator = true;
             this.probabilidade = new Probabilidades();
         }
 
@@ -197,6 +201,16 @@ namespace cantStop.Classes
 
                 if (colunasComAlpinistas.Length == 3)
                 {
+                    if (this.flagFator)
+                    {
+                        foreach( int coluna in colunasComAlpinistas)
+                        {
+                            this.taxaLimite += this.tabuleiro.calculaFator(coluna, idJogaador);
+                        }
+                        this.taxaLimite /= colunasComAlpinistas.Length;
+                        this.taxaLimite *= 10;
+                        this.flagFator = false;
+                    }
                     if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))
                     {
                         List<int> trilhasDisponiveis = new List<int>();
@@ -224,7 +238,7 @@ namespace cantStop.Classes
                     this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
                 }
 
-                if (this.probabilidade.getProbabilidadeCair() < 50) return true;
+                if (this.probabilidade.getProbabilidadeCair() < 50 + this.taxaLimite) return true;
                 return false;
             }
             
@@ -233,6 +247,8 @@ namespace cantStop.Classes
         internal void Resetar()
         {
             this.Jogadas = 0;
+            this.flagFator = true;
+            this.taxaLimite = 0;
         }
 
     }

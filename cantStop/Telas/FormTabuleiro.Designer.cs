@@ -77,7 +77,6 @@ namespace cantStop
             this.lblJogadas = new System.Windows.Forms.Label();
             this.lblLimite = new System.Windows.Forms.Label();
             this.lblTituloProbabilidadeCair = new System.Windows.Forms.Label();
-            this.tmrAtializarTabuleiroSpec = new System.Windows.Forms.Timer(this.components);
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -617,7 +616,7 @@ namespace cantStop
             this.lblJogadas.AutoSize = true;
             this.lblJogadas.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJogadas.ForeColor = System.Drawing.Color.White;
-            this.lblJogadas.Location = new System.Drawing.Point(903, 455);
+            this.lblJogadas.Location = new System.Drawing.Point(1018, 423);
             this.lblJogadas.Name = "lblJogadas";
             this.lblJogadas.Size = new System.Drawing.Size(83, 28);
             this.lblJogadas.TabIndex = 40;
@@ -647,11 +646,6 @@ namespace cantStop
             this.lblTituloProbabilidadeCair.TabIndex = 42;
             this.lblTituloProbabilidadeCair.Text = "Probabilidade de cair";
             this.lblTituloProbabilidadeCair.Visible = false;
-            // 
-            // tmrAtializarTabuleiroSpec
-            // 
-            this.tmrAtializarTabuleiroSpec.Interval = 2000;
-            this.tmrAtializarTabuleiroSpec.Tick += new System.EventHandler(this.tmrAtializarTabuleiroSpec_Tick);
             // 
             // FormTabuleiro
             // 
@@ -758,6 +752,5 @@ namespace cantStop
         private System.Windows.Forms.Label lblJogadas;
         private System.Windows.Forms.Label lblLimite;
         private System.Windows.Forms.Label lblTituloProbabilidadeCair;
-        private System.Windows.Forms.Timer tmrAtializarTabuleiroSpec;
     }
 }

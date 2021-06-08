@@ -715,16 +715,9 @@ namespace cantStop
             }
             this.ProximoPasso = false;
 
-            // calcular probabilidade
-            // TODO: fica dentro de um if quando ja tem 3 alpinistas e precisa pegar os numeros das colunas dos alpinistas
-            // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(valorColuna1, valorColuna2, valorColuna3, this.qntdJogadasTurno);
-
-            // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
-            // lblProbabilidadeCair.Text = probabilidadePerder + "%";
-            // this.flagContinuar = true;
-
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
+            lblLimite.Text = "Limite ~" + Convert.ToString(((int)this.inteligencia.taxaLimite + (int)50));
 
             this.btnJogar_Click(sender, e);
             await Task.Delay(delay);
@@ -815,19 +808,5 @@ namespace cantStop
             }
         }
 
-        private void tmrAtializarTabuleiroSpec_Tick(object sender, EventArgs e)
-        {
-            this.partida.atualizarStatus("E");
-            if (this.partida.Status == "Encerrada")
-            {
-                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
-                this.tmrJogadaBot.Stop();
-                this.tmrPartidaJogando.Stop();
-                MessageBox.Show("A partida foi finalizada", "Partida finalizada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-                return;
-            }
-            this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
-        }
     }
 }
