@@ -31,6 +31,8 @@ namespace cantStop
 
         private String[] historico;
 
+        private bool spec; 
+
         private bool bot;
         private Inteligencia inteligencia;
 
@@ -38,20 +40,22 @@ namespace cantStop
 
         private bool ProximoPasso;
 
-        public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot)
+        public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot, bool spec)
         {
             InitializeComponent();
 
             this.tabuleiro = new Tabuleiro();
             this.partida = partidaSelecionada;
             this.jogador = jogadorCriado;
+            this.spec = spec;
 
+            if (spec) this.Text = "Assistindo ";
             this.Text += " - " + this.partida.Nome;
 
             this.pecas = new List<PictureBox>();
 
             this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
-            this.atualizarHistorico();
+            //this.atualizarHistorico();
 
             this.lblJogador.Text = this.jogador.nome;
             this.lblCorJogador.Text = this.jogador.cor;
@@ -60,57 +64,71 @@ namespace cantStop
             this.fazendoJogada = false;
 
             this.tmrPartidaIniciada.Start();
-
-            this.pcbDados = new List<PictureBox>
+            /*
+            if (spec)
             {
-                pcbDado1,
-                pcbDado2,
-                pcbDado3,
-                pcbDado4
-            };
-
-            this.radios = new List<RadioButton>
-            {
-                rbxOpcao1,
-                rbxOpcao2,
-                rbxOpcao3,
-                rbxOpcao4,
-                rbxOpcao5,
-                rbxOpcao6
-            };
-
-            this.labels = new List<Label>
-            {
-                lblOu1,
-                lblOu2,
-                lblOu3
-            };
-
-            this.dados = new List<int>();
-
-            this.Combinacoes = new List<Dictionary<string, int[]>>();
-
-            this.flagContinuar = true;
-
-            // this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
-            this.nmrDelay.Visible = this.nmrDelay.Enabled =
-            this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
-            this.btnContinuar.Visible =
-            this.bot = bot;
-
-            this.FlagBotJogada = false;
-            if (this.bot == true)
-            {
-                this.tmrJogadaBot.Start();
-                this.inteligencia = new Inteligencia();
+                this.tmrAtializarTabuleiroSpec.Start();
             }
+            else
+            {
+            */
 
-            this.ProximoPasso = false;
+                this.pcbDados = new List<PictureBox>
+                {
+                    pcbDado1,
+                    pcbDado2,
+                    pcbDado3,
+                    pcbDado4
+                };
+
+                this.radios = new List<RadioButton>
+                {
+                    rbxOpcao1,
+                    rbxOpcao2,
+                    rbxOpcao3,
+                    rbxOpcao4,
+                    rbxOpcao5,
+                    rbxOpcao6
+                };
+
+                this.labels = new List<Label>
+                {
+                    lblOu1,
+                    lblOu2,
+                    lblOu3
+                };
+
+                this.dados = new List<int>();
+
+                this.Combinacoes = new List<Dictionary<string, int[]>>();
+
+                this.flagContinuar = true;
+
+                // this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
+                this.nmrDelay.Visible = this.nmrDelay.Enabled =
+                this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
+                this.btnContinuar.Visible =
+                this.bot = bot;
+
+                this.FlagBotJogada = false;
+                if (this.bot == true)
+                {
+                    this.tmrJogadaBot.Start();
+                    this.inteligencia = new Inteligencia();
+                }
+
+                this.ProximoPasso = false;
+            //}
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
-
+            if (this.spec)
+            {
+                this.pcbStatusBot.Visible = false;
+                this.lblSistemaAutonomo.Text = "Espectador";
+                this.btnIniciarPartida.Visible = false;
+            }
             //if (this.bot) {
             //    this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
             //}
@@ -136,8 +154,8 @@ namespace cantStop
             this.lblPartidaIniciada.Text = "Iniciada";
 
             this.lblJogadorVez.Visible = true;
-
             this.tmrPartidaJogando.Start();
+            
         }
 
         private void tmrPartidaIniciada_Tick(object sender, EventArgs e)
@@ -178,7 +196,7 @@ namespace cantStop
 
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
-            this.atualizarHistorico();
+            //this.atualizarHistorico();
 
             this.partida.atualizarStatus("E");
             if (this.partida.Status == "Encerrada")
@@ -795,6 +813,21 @@ namespace cantStop
             {
                 this.btnContinuar.Enabled = false;
             }
+        }
+
+        private void tmrAtializarTabuleiroSpec_Tick(object sender, EventArgs e)
+        {
+            this.partida.atualizarStatus("E");
+            if (this.partida.Status == "Encerrada")
+            {
+                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
+                this.tmrJogadaBot.Stop();
+                this.tmrPartidaJogando.Stop();
+                MessageBox.Show("A partida foi finalizada", "Partida finalizada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+                return;
+            }
+            this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
         }
     }
 }

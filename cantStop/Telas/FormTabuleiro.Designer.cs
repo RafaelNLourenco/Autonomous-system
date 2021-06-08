@@ -61,7 +61,7 @@ namespace cantStop
             this.lblPenultinaJogada = new System.Windows.Forms.Label();
             this.lblJogadorVez = new System.Windows.Forms.Label();
             this.lblVezDe = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSistemaAutonomo = new System.Windows.Forms.Label();
             this.pcbStatusBot = new System.Windows.Forms.PictureBox();
             this.tmrJogadaBot = new System.Windows.Forms.Timer(this.components);
             this.btnRolarDados = new System.Windows.Forms.Button();
@@ -77,6 +77,7 @@ namespace cantStop
             this.lblJogadas = new System.Windows.Forms.Label();
             this.lblLimite = new System.Windows.Forms.Label();
             this.lblTituloProbabilidadeCair = new System.Windows.Forms.Label();
+            this.tmrAtializarTabuleiroSpec = new System.Windows.Forms.Timer(this.components);
             this.gbxJogadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbDado3)).BeginInit();
@@ -430,16 +431,16 @@ namespace cantStop
             this.lblVezDe.TabIndex = 29;
             this.lblVezDe.Text = "Vez do Jogador:";
             // 
-            // label1
+            // lblSistemaAutonomo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(16, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 28);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Sistema autônomo:";
+            this.lblSistemaAutonomo.AutoSize = true;
+            this.lblSistemaAutonomo.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSistemaAutonomo.ForeColor = System.Drawing.Color.White;
+            this.lblSistemaAutonomo.Location = new System.Drawing.Point(16, 11);
+            this.lblSistemaAutonomo.Name = "lblSistemaAutonomo";
+            this.lblSistemaAutonomo.Size = new System.Drawing.Size(181, 28);
+            this.lblSistemaAutonomo.TabIndex = 30;
+            this.lblSistemaAutonomo.Text = "Sistema autônomo:";
             // 
             // pcbStatusBot
             // 
@@ -647,6 +648,11 @@ namespace cantStop
             this.lblTituloProbabilidadeCair.Text = "Probabilidade de cair";
             this.lblTituloProbabilidadeCair.Visible = false;
             // 
+            // tmrAtializarTabuleiroSpec
+            // 
+            this.tmrAtializarTabuleiroSpec.Interval = 2000;
+            this.tmrAtializarTabuleiroSpec.Tick += new System.EventHandler(this.tmrAtializarTabuleiroSpec_Tick);
+            // 
             // FormTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -663,7 +669,7 @@ namespace cantStop
             this.Controls.Add(this.btnPassarVez);
             this.Controls.Add(this.btnRolarDados);
             this.Controls.Add(this.pcbStatusBot);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSistemaAutonomo);
             this.Controls.Add(this.lblVezDe);
             this.Controls.Add(this.lblJogadorVez);
             this.Controls.Add(this.lblAntipenultimaJogada);
@@ -735,7 +741,7 @@ namespace cantStop
         private System.Windows.Forms.Label lblPenultinaJogada;
         private System.Windows.Forms.Label lblJogadorVez;
         private System.Windows.Forms.Label lblVezDe;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSistemaAutonomo;
         private System.Windows.Forms.PictureBox pcbStatusBot;
         private System.Windows.Forms.Timer tmrJogadaBot;
         private System.Windows.Forms.Button btnRolarDados;
@@ -752,5 +758,6 @@ namespace cantStop
         private System.Windows.Forms.Label lblJogadas;
         private System.Windows.Forms.Label lblLimite;
         private System.Windows.Forms.Label lblTituloProbabilidadeCair;
+        private System.Windows.Forms.Timer tmrAtializarTabuleiroSpec;
     }
 }
