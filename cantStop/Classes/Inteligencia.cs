@@ -179,52 +179,55 @@ namespace cantStop.Classes
             if (this.sePararAcaba(idJogaador))
             {
                 return false;
-            }
-
-            this.atribuirListaColunasDominadas();
-           
-            DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
-            int[] colunasComAlpinistas = new int[alpinistas.Rows.Count];
-            
-            
-            for (int i = 0; i < alpinistas.Rows.Count; i++)
+            } 
+            else
             {
-                colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
-            }
+                this.atribuirListaColunasDominadas();
 
-            this.probabilidade.resetarProbabilidade();
+                DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
+                int[] colunasComAlpinistas = new int[alpinistas.Rows.Count];
 
-            if (colunasComAlpinistas.Length == 3)
-            {
-                if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))
+
+                for (int i = 0; i < alpinistas.Rows.Count; i++)
                 {
-                    List<int> trilhasDisponiveis = new List<int>();
-                    foreach (int coluna in colunasComAlpinistas)
-                    {
-                        if (!this.tabuleiro.AlpinistaEstaNoTopo(idJogaador, coluna)) trilhasDisponiveis.Add(coluna);
-                    }
+                    colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
+                }
 
-                    if (trilhasDisponiveis.Count == 1)
+                this.probabilidade.resetarProbabilidade();
+
+                if (colunasComAlpinistas.Length == 3)
+                {
+                    if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))
                     {
-                        this.probabilidade.calcularProbabilidadeCairUmAlpnistaDisponivel(trilhasDisponiveis[0], this.Jogadas);
+                        List<int> trilhasDisponiveis = new List<int>();
+                        foreach (int coluna in colunasComAlpinistas)
+                        {
+                            if (!this.tabuleiro.AlpinistaEstaNoTopo(idJogaador, coluna)) trilhasDisponiveis.Add(coluna);
+                        }
+
+                        if (trilhasDisponiveis.Count == 1)
+                        {
+                            this.probabilidade.calcularProbabilidadeCairUmAlpnistaDisponivel(trilhasDisponiveis[0], this.Jogadas);
+                        }
+                        else
+                        {
+                            this.probabilidade.calcularProbabilidadeCairDoisAlpnistsaDisponiveis(trilhasDisponiveis[0], trilhasDisponiveis[1], this.Jogadas);
+                        }
                     }
                     else
                     {
-                        this.probabilidade.calcularProbabilidadeCairDoisAlpnistsaDisponiveis(trilhasDisponiveis[0], trilhasDisponiveis[1], this.Jogadas);
+                        this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
                     }
                 }
-                else
+                else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
                 {
-                    this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
+                    this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
                 }
-            }
-            else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
-            {
-                this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
-            }
 
-            if (this.probabilidade.getProbabilidadeCair() < 50) return true;
-            return false;
+                if (this.probabilidade.getProbabilidadeCair() < 50) return true;
+                return false;
+            }
+            
         }
 
         internal void Resetar()

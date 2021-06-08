@@ -92,7 +92,7 @@ namespace cantStop
 
             this.flagContinuar = true;
 
-            this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
+            // this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
             this.nmrDelay.Visible = this.nmrDelay.Enabled =
             this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
             this.btnContinuar.Visible =
@@ -111,9 +111,9 @@ namespace cantStop
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
 
-            if (this.bot) {
-                this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
-            }
+            //if (this.bot) {
+            //    this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
+            //}
         }
 
         private void btnIniciarPartida_Click(object sender, EventArgs e)
@@ -213,7 +213,10 @@ namespace cantStop
             {
                 this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             }
-                
+
+            if (jogadorVez.id == this.jogador.id) this.estaJogando(true);
+            else this.estaJogando(false);
+
             foreach (PictureBox peca in this.pecas)
             {
                 this.Controls.Remove(peca);
@@ -768,6 +771,18 @@ namespace cantStop
         private void btnContinuar_Click(object sender, EventArgs e)
         {
             this.ProximoPasso = true;
+        }
+
+        private void estaJogando(bool flag)
+        {
+            pcbDado1.Visible = pcbDado2.Visible =
+            pcbDado3.Visible = pcbDado4.Visible =
+            btnRolarDados.Visible = btnPassarVez.Visible =
+            lblTituloProbabilidadeCair.Visible =
+            lblProbabilidadeCair.Visible = lblLimite.Visible = flag;
+
+            if (flag) this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
+            else this.pcbStatusBot.Image = cantStop.Properties.Resources.pointR;
         }
 
         private void chbPorPasso_CheckedChanged(object sender, EventArgs e)

@@ -104,11 +104,12 @@ namespace cantStop
             this.lblJogador.AutoSize = true;
             this.lblJogador.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJogador.ForeColor = System.Drawing.Color.White;
-            this.lblJogador.Location = new System.Drawing.Point(1067, 127);
+            this.lblJogador.Location = new System.Drawing.Point(1020, 492);
             this.lblJogador.Name = "lblJogador";
             this.lblJogador.Size = new System.Drawing.Size(45, 13);
             this.lblJogador.TabIndex = 9;
             this.lblJogador.Text = "Jogador";
+            this.lblJogador.Visible = false;
             // 
             // lblSenha
             // 
@@ -125,18 +126,19 @@ namespace cantStop
             // 
             this.lblCorJogador.AutoSize = true;
             this.lblCorJogador.ForeColor = System.Drawing.Color.White;
-            this.lblCorJogador.Location = new System.Drawing.Point(962, 127);
+            this.lblCorJogador.Location = new System.Drawing.Point(1020, 467);
             this.lblCorJogador.Name = "lblCorJogador";
             this.lblCorJogador.Size = new System.Drawing.Size(61, 13);
             this.lblCorJogador.TabIndex = 11;
             this.lblCorJogador.Text = "CorJogador";
+            this.lblCorJogador.Visible = false;
             // 
             // lblPartidaIniciada
             // 
             this.lblPartidaIniciada.AutoSize = true;
             this.lblPartidaIniciada.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPartidaIniciada.ForeColor = System.Drawing.Color.White;
-            this.lblPartidaIniciada.Location = new System.Drawing.Point(12, 554);
+            this.lblPartidaIniciada.Location = new System.Drawing.Point(12, 572);
             this.lblPartidaIniciada.Name = "lblPartidaIniciada";
             this.lblPartidaIniciada.Size = new System.Drawing.Size(146, 21);
             this.lblPartidaIniciada.TabIndex = 12;
@@ -167,7 +169,7 @@ namespace cantStop
             this.gbxJogadas.Enabled = false;
             this.gbxJogadas.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxJogadas.ForeColor = System.Drawing.Color.White;
-            this.gbxJogadas.Location = new System.Drawing.Point(15, 284);
+            this.gbxJogadas.Location = new System.Drawing.Point(15, 310);
             this.gbxJogadas.Name = "gbxJogadas";
             this.gbxJogadas.Size = new System.Drawing.Size(232, 130);
             this.gbxJogadas.TabIndex = 23;
@@ -302,42 +304,46 @@ namespace cantStop
             // pcbDado4
             // 
             this.pcbDado4.Image = global::cantStop.Properties.Resources.dado1;
-            this.pcbDado4.Location = new System.Drawing.Point(153, 183);
+            this.pcbDado4.Location = new System.Drawing.Point(132, 170);
             this.pcbDado4.Name = "pcbDado4";
-            this.pcbDado4.Size = new System.Drawing.Size(80, 80);
+            this.pcbDado4.Size = new System.Drawing.Size(70, 70);
             this.pcbDado4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbDado4.TabIndex = 22;
             this.pcbDado4.TabStop = false;
+            this.pcbDado4.Visible = false;
             // 
             // pcbDado3
             // 
             this.pcbDado3.Image = global::cantStop.Properties.Resources.dado1;
-            this.pcbDado3.Location = new System.Drawing.Point(29, 183);
+            this.pcbDado3.Location = new System.Drawing.Point(21, 170);
             this.pcbDado3.Name = "pcbDado3";
-            this.pcbDado3.Size = new System.Drawing.Size(80, 80);
+            this.pcbDado3.Size = new System.Drawing.Size(70, 70);
             this.pcbDado3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbDado3.TabIndex = 21;
             this.pcbDado3.TabStop = false;
+            this.pcbDado3.Visible = false;
             // 
             // pcbDado1
             // 
             this.pcbDado1.Image = global::cantStop.Properties.Resources.dado1;
-            this.pcbDado1.Location = new System.Drawing.Point(29, 60);
+            this.pcbDado1.Location = new System.Drawing.Point(21, 57);
             this.pcbDado1.Name = "pcbDado1";
-            this.pcbDado1.Size = new System.Drawing.Size(80, 80);
+            this.pcbDado1.Size = new System.Drawing.Size(70, 70);
             this.pcbDado1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbDado1.TabIndex = 20;
             this.pcbDado1.TabStop = false;
+            this.pcbDado1.Visible = false;
             // 
             // pcbDado2
             // 
             this.pcbDado2.Image = global::cantStop.Properties.Resources.dado1;
-            this.pcbDado2.Location = new System.Drawing.Point(153, 60);
+            this.pcbDado2.Location = new System.Drawing.Point(132, 57);
             this.pcbDado2.Name = "pcbDado2";
-            this.pcbDado2.Size = new System.Drawing.Size(80, 80);
+            this.pcbDado2.Size = new System.Drawing.Size(70, 70);
             this.pcbDado2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbDado2.TabIndex = 19;
             this.pcbDado2.TabStop = false;
+            this.pcbDado2.Visible = false;
             // 
             // pcbTabuleiro
             // 
@@ -361,7 +367,7 @@ namespace cantStop
             // 
             this.lblUltimasJogadas.AutoSize = true;
             this.lblUltimasJogadas.ForeColor = System.Drawing.Color.White;
-            this.lblUltimasJogadas.Location = new System.Drawing.Point(903, 416);
+            this.lblUltimasJogadas.Location = new System.Drawing.Point(905, 494);
             this.lblUltimasJogadas.Name = "lblUltimasJogadas";
             this.lblUltimasJogadas.Size = new System.Drawing.Size(81, 13);
             this.lblUltimasJogadas.TabIndex = 24;
@@ -372,7 +378,7 @@ namespace cantStop
             // 
             this.lblUltimaJogada.AutoSize = true;
             this.lblUltimaJogada.ForeColor = System.Drawing.Color.White;
-            this.lblUltimaJogada.Location = new System.Drawing.Point(903, 441);
+            this.lblUltimaJogada.Location = new System.Drawing.Point(905, 519);
             this.lblUltimaJogada.Name = "lblUltimaJogada";
             this.lblUltimaJogada.Size = new System.Drawing.Size(74, 13);
             this.lblUltimaJogada.TabIndex = 25;
@@ -383,7 +389,7 @@ namespace cantStop
             // 
             this.lblAntipenultimaJogada.AutoSize = true;
             this.lblAntipenultimaJogada.ForeColor = System.Drawing.Color.White;
-            this.lblAntipenultimaJogada.Location = new System.Drawing.Point(903, 489);
+            this.lblAntipenultimaJogada.Location = new System.Drawing.Point(905, 567);
             this.lblAntipenultimaJogada.Name = "lblAntipenultimaJogada";
             this.lblAntipenultimaJogada.Size = new System.Drawing.Size(106, 13);
             this.lblAntipenultimaJogada.TabIndex = 27;
@@ -394,7 +400,7 @@ namespace cantStop
             // 
             this.lblPenultinaJogada.AutoSize = true;
             this.lblPenultinaJogada.ForeColor = System.Drawing.Color.White;
-            this.lblPenultinaJogada.Location = new System.Drawing.Point(903, 464);
+            this.lblPenultinaJogada.Location = new System.Drawing.Point(905, 542);
             this.lblPenultinaJogada.Name = "lblPenultinaJogada";
             this.lblPenultinaJogada.Size = new System.Drawing.Size(91, 13);
             this.lblPenultinaJogada.TabIndex = 26;
@@ -427,20 +433,20 @@ namespace cantStop
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 575);
+            this.label1.Location = new System.Drawing.Point(16, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 21);
+            this.label1.Size = new System.Drawing.Size(181, 28);
             this.label1.TabIndex = 30;
             this.label1.Text = "Sistema autônomo:";
             // 
             // pcbStatusBot
             // 
             this.pcbStatusBot.Image = global::cantStop.Properties.Resources.pointR;
-            this.pcbStatusBot.Location = new System.Drawing.Point(155, 582);
+            this.pcbStatusBot.Location = new System.Drawing.Point(199, 23);
             this.pcbStatusBot.Name = "pcbStatusBot";
-            this.pcbStatusBot.Size = new System.Drawing.Size(10, 10);
+            this.pcbStatusBot.Size = new System.Drawing.Size(12, 12);
             this.pcbStatusBot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbStatusBot.TabIndex = 31;
             this.pcbStatusBot.TabStop = false;
@@ -457,12 +463,13 @@ namespace cantStop
             this.btnRolarDados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRolarDados.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRolarDados.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnRolarDados.Location = new System.Drawing.Point(12, 12);
+            this.btnRolarDados.Location = new System.Drawing.Point(16, 271);
             this.btnRolarDados.Name = "btnRolarDados";
             this.btnRolarDados.Size = new System.Drawing.Size(106, 30);
             this.btnRolarDados.TabIndex = 32;
             this.btnRolarDados.Text = "Rolar Dados";
             this.btnRolarDados.UseVisualStyleBackColor = false;
+            this.btnRolarDados.Visible = false;
             this.btnRolarDados.Click += new System.EventHandler(this.btnRolarDados_Click);
             // 
             // btnPassarVez
@@ -473,12 +480,13 @@ namespace cantStop
             this.btnPassarVez.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPassarVez.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPassarVez.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPassarVez.Location = new System.Drawing.Point(141, 12);
+            this.btnPassarVez.Location = new System.Drawing.Point(135, 271);
             this.btnPassarVez.Name = "btnPassarVez";
             this.btnPassarVez.Size = new System.Drawing.Size(106, 30);
             this.btnPassarVez.TabIndex = 33;
             this.btnPassarVez.Text = "Passar Vez";
             this.btnPassarVez.UseVisualStyleBackColor = false;
+            this.btnPassarVez.Visible = false;
             this.btnPassarVez.Click += new System.EventHandler(this.btnPassarVez_Click);
             // 
             // btnIniciarPartida
@@ -546,7 +554,7 @@ namespace cantStop
             this.nmrDelay.Size = new System.Drawing.Size(78, 20);
             this.nmrDelay.TabIndex = 37;
             this.nmrDelay.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -574,7 +582,7 @@ namespace cantStop
             this.gbxBotDebug.Controls.Add(this.nmrDelay);
             this.gbxBotDebug.Enabled = false;
             this.gbxBotDebug.ForeColor = System.Drawing.Color.White;
-            this.gbxBotDebug.Location = new System.Drawing.Point(15, 420);
+            this.gbxBotDebug.Location = new System.Drawing.Point(12, 455);
             this.gbxBotDebug.Name = "gbxBotDebug";
             this.gbxBotDebug.Size = new System.Drawing.Size(232, 105);
             this.gbxBotDebug.TabIndex = 39;
@@ -596,18 +604,19 @@ namespace cantStop
             this.lblProbabilidadeCair.AutoSize = true;
             this.lblProbabilidadeCair.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProbabilidadeCair.ForeColor = System.Drawing.Color.White;
-            this.lblProbabilidadeCair.Location = new System.Drawing.Point(925, 245);
+            this.lblProbabilidadeCair.Location = new System.Drawing.Point(924, 300);
             this.lblProbabilidadeCair.Name = "lblProbabilidadeCair";
             this.lblProbabilidadeCair.Size = new System.Drawing.Size(135, 28);
             this.lblProbabilidadeCair.TabIndex = 37;
             this.lblProbabilidadeCair.Text = "Probabilidade";
+            this.lblProbabilidadeCair.Visible = false;
             // 
             // lblJogadas
             // 
             this.lblJogadas.AutoSize = true;
             this.lblJogadas.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJogadas.ForeColor = System.Drawing.Color.White;
-            this.lblJogadas.Location = new System.Drawing.Point(907, 376);
+            this.lblJogadas.Location = new System.Drawing.Point(903, 455);
             this.lblJogadas.Name = "lblJogadas";
             this.lblJogadas.Size = new System.Drawing.Size(83, 28);
             this.lblJogadas.TabIndex = 40;
@@ -619,22 +628,24 @@ namespace cantStop
             this.lblLimite.AutoSize = true;
             this.lblLimite.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLimite.ForeColor = System.Drawing.Color.White;
-            this.lblLimite.Location = new System.Drawing.Point(929, 284);
+            this.lblLimite.Location = new System.Drawing.Point(928, 339);
             this.lblLimite.Name = "lblLimite";
             this.lblLimite.Size = new System.Drawing.Size(65, 28);
             this.lblLimite.TabIndex = 41;
             this.lblLimite.Text = "Limite";
+            this.lblLimite.Visible = false;
             // 
             // lblTituloProbabilidadeCair
             // 
             this.lblTituloProbabilidadeCair.AutoSize = true;
             this.lblTituloProbabilidadeCair.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloProbabilidadeCair.ForeColor = System.Drawing.Color.White;
-            this.lblTituloProbabilidadeCair.Location = new System.Drawing.Point(925, 206);
+            this.lblTituloProbabilidadeCair.Location = new System.Drawing.Point(924, 261);
             this.lblTituloProbabilidadeCair.Name = "lblTituloProbabilidadeCair";
             this.lblTituloProbabilidadeCair.Size = new System.Drawing.Size(198, 28);
             this.lblTituloProbabilidadeCair.TabIndex = 42;
             this.lblTituloProbabilidadeCair.Text = "Probabilidade de cair";
+            this.lblTituloProbabilidadeCair.Visible = false;
             // 
             // FormTabuleiro
             // 
