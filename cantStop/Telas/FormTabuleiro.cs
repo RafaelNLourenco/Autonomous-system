@@ -38,6 +38,8 @@ namespace cantStop
 
         private bool ProximoPasso;
 
+        private bool FlagEsperarAtualizarTabuleiro;
+
         public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot)
         {
             InitializeComponent();
@@ -106,6 +108,8 @@ namespace cantStop
             }
 
             this.ProximoPasso = false;
+
+            FlagEsperarAtualizarTabuleiro = false;
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
@@ -192,7 +196,7 @@ namespace cantStop
             }
 
             Jogador jogadorVez = this.partida.VerificarVez();
-            this.lblJogadorVez.Text = jogadorVez.nome; 
+            this.lblJogadorVez.Text = jogadorVez.nome;
             if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
                 this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 if (this.bot)
@@ -213,7 +217,17 @@ namespace cantStop
             {
                 this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             }
-                
+
+            if (this.FlagEsperarAtualizarTabuleiro)
+            {
+                this.FlagEsperarAtualizarTabuleiro = false;
+            }
+
+            this.DesenharTabuleiro();
+        }
+
+        private void DesenharTabuleiro()
+        {
             foreach (PictureBox peca in this.pecas)
             {
                 this.Controls.Remove(peca);
@@ -228,7 +242,7 @@ namespace cantStop
                 for (int j = 1; j <= getQuantidadePosicao(i) && coluna.Rows.Count > 0; j++)
                 {
                     DataRow[] linhas = coluna.Select("posicao = '" + j.ToString() + "' AND tipo = 'B'");
-                    if (linhas.Length > 0) 
+                    if (linhas.Length > 0)
                     {
                         string cor = "";
                         foreach (DataRow linha in linhas)
@@ -258,7 +272,7 @@ namespace cantStop
                     }
 
                     linhas = coluna.Select("posicao = '" + j.ToString() + "' AND tipo = 'A'");
-                    if(linhas.Length > 0)
+                    if (linhas.Length > 0)
                     {
                         PictureBox alpinista = new PictureBox();
                         alpinista.Image = cantStop.Properties.Resources.pointW;
@@ -541,8 +555,6 @@ namespace cantStop
 
             try
             {
-
-
                 for (int i = 0; i < 4; i++)
                 {
                     switch (dados[i])
@@ -683,6 +695,13 @@ namespace cantStop
             int delay = 100 * ((int)this.nmrDelay.Value);
 
             int jogada = this.inteligencia.EscolherJogada((int)this.jogador.id, this.Combinacoes);
+
+            this.FlagEsperarAtualizarTabuleiro = true;
+            while (this.FlagEsperarAtualizarTabuleiro)
+            {
+                await Task.Delay(50);
+            }
+
             await Task.Delay(delay);
             this.radios[jogada].Checked = true;
 
