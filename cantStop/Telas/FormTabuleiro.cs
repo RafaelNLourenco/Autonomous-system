@@ -31,92 +31,107 @@ namespace cantStop
 
         private String[] historico;
 
+        private bool spec; 
+
         private bool bot;
         private Inteligencia inteligencia;
 
         private bool FlagBotJogada;
 
         private bool ProximoPasso;
-
+        
         private bool FlagEsperarAtualizarTabuleiro;
 
-        public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot)
+        public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot, bool spec)
         {
             InitializeComponent();
 
             this.tabuleiro = new Tabuleiro();
             this.partida = partidaSelecionada;
             this.jogador = jogadorCriado;
+            this.spec = spec;
 
+            if (spec) this.Text = "Assistindo ";
             this.Text += " - " + this.partida.Nome;
 
             this.pecas = new List<PictureBox>();
 
             this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
-            this.atualizarHistorico();
+            if ( this.spec) this.atualizarHistorico();
 
-            this.lblJogador.Text = this.jogador.nome;
-            this.lblCorJogador.Text = this.jogador.cor;
+           
             this.lblSenha.Text = this.jogador.senha;
 
             this.fazendoJogada = false;
 
             this.tmrPartidaIniciada.Start();
+          
 
-            this.pcbDados = new List<PictureBox>
-            {
-                pcbDado1,
-                pcbDado2,
-                pcbDado3,
-                pcbDado4
-            };
+                this.pcbDados = new List<PictureBox>
+                {
+                    pcbDado1,
+                    pcbDado2,
+                    pcbDado3,
+                    pcbDado4
+                };
 
-            this.radios = new List<RadioButton>
-            {
-                rbxOpcao1,
-                rbxOpcao2,
-                rbxOpcao3,
-                rbxOpcao4,
-                rbxOpcao5,
-                rbxOpcao6
-            };
+                this.radios = new List<RadioButton>
+                {
+                    rbxOpcao1,
+                    rbxOpcao2,
+                    rbxOpcao3,
+                    rbxOpcao4,
+                    rbxOpcao5,
+                    rbxOpcao6
+                };
 
-            this.labels = new List<Label>
-            {
-                lblOu1,
-                lblOu2,
-                lblOu3
-            };
+                this.labels = new List<Label>
+                {
+                    lblOu1,
+                    lblOu2,
+                    lblOu3
+                };
 
-            this.dados = new List<int>();
+                this.dados = new List<int>();
 
-            this.Combinacoes = new List<Dictionary<string, int[]>>();
+                this.Combinacoes = new List<Dictionary<string, int[]>>();
 
-            this.flagContinuar = true;
+                this.flagContinuar = true;
 
-            this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
-            this.nmrDelay.Visible = this.nmrDelay.Enabled =
-            this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
-            this.btnContinuar.Visible =
-            this.bot = bot;
+                // this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
+                this.nmrDelay.Visible = this.nmrDelay.Enabled =
+                this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
+                this.btnContinuar.Visible =
+                this.bot = bot;
 
-            this.FlagBotJogada = false;
-            if (this.bot == true)
-            {
-                this.tmrJogadaBot.Start();
-                this.inteligencia = new Inteligencia();
-            }
+                this.FlagBotJogada = false;
+                if (this.bot == true)
+                {
+                    this.tmrJogadaBot.Start();
+                    this.inteligencia = new Inteligencia();
+                }
 
             this.ProximoPasso = false;
 
             FlagEsperarAtualizarTabuleiro = false;
+
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
+            if (this.spec)
+            {
+                this.pcbStatusBot.Visible = false;
+                this.lblSistemaAutonomo.Text = "Espectador";
+                this.btnIniciarPartida.Visible = false;
+                this.pcbTabuleiro.Location = new Point(40, 7);
+                this.lblUltimasJogadas.Visible = this.lblUltimaJogada.Visible =
+                this.lblPenultinaJogada.Visible = this.lblAntipenultimaJogada.Visible = true;
 
-            if (this.bot) {
-                this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
+                this.lblUltimasJogadas.Location = new Point(700, 250);
+                this.lblUltimaJogada.Location = new Point(700, 290);
+                this.lblPenultinaJogada.Location = new Point(700, 310);
+                this.lblAntipenultimaJogada.Location = new Point(700, 335);
             }
         }
 
@@ -140,15 +155,15 @@ namespace cantStop
             this.lblPartidaIniciada.Text = "Iniciada";
 
             this.lblJogadorVez.Visible = true;
-
             this.tmrPartidaJogando.Start();
+            
         }
 
         private void tmrPartidaIniciada_Tick(object sender, EventArgs e)
         {
             this.partida.atualizarStatus("J");
             this.partida.ListarJogadores();
-            this.atualizarHistorico();
+            if ( this.spec) this.atualizarHistorico();
 
             if (this.partida.Status == "Jogando")
             {
@@ -182,7 +197,7 @@ namespace cantStop
 
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
-            this.atualizarHistorico();
+            if (this.spec) this.atualizarHistorico();
 
             this.partida.atualizarStatus("E");
             if (this.partida.Status == "Encerrada")
@@ -217,6 +232,10 @@ namespace cantStop
             {
                 this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             }
+
+            if (jogadorVez.id == this.jogador.id) this.estaJogando(true);
+            else this.estaJogando(false);
+
 
             if (this.FlagEsperarAtualizarTabuleiro)
             {
@@ -689,7 +708,6 @@ namespace cantStop
         {
             if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
             this.inteligencia.verificarJogada((int)this.jogador.id);
-            this.lblJogadas.Text = Convert.ToString(this.inteligencia.Jogadas);
             if (!this.FlagBotJogada) return;
             this.FlagBotJogada = false;
             int delay = 100 * ((int)this.nmrDelay.Value);
@@ -713,16 +731,9 @@ namespace cantStop
             }
             this.ProximoPasso = false;
 
-            // calcular probabilidade
-            // TODO: fica dentro de um if quando ja tem 3 alpinistas e precisa pegar os numeros das colunas dos alpinistas
-            // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(valorColuna1, valorColuna2, valorColuna3, this.qntdJogadasTurno);
-
-            // double probabilidadePerder = this.probabilidade.calculaProbabilidadePerderVez(6, 7,8, this.qntdJogadasTurno);
-            // lblProbabilidadeCair.Text = probabilidadePerder + "%";
-            // this.flagContinuar = true;
-
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
+            lblLimite.Text = "Limite ~" + Convert.ToString(((int)this.inteligencia.taxaLimite + (int)50));
 
             this.btnJogar_Click(sender, e);
             await Task.Delay(delay);
@@ -789,6 +800,18 @@ namespace cantStop
             this.ProximoPasso = true;
         }
 
+        private void estaJogando(bool flag)
+        {
+            pcbDado1.Visible = pcbDado2.Visible =
+            pcbDado3.Visible = pcbDado4.Visible =
+            btnRolarDados.Visible = btnPassarVez.Visible =
+            lblTituloProbabilidadeCair.Visible =
+            lblProbabilidadeCair.Visible = lblLimite.Visible = flag;
+
+            if (flag) this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
+            else this.pcbStatusBot.Image = cantStop.Properties.Resources.pointR;
+        }
+
         private void chbPorPasso_CheckedChanged(object sender, EventArgs e)
         {
             if (this.chbPorPasso.Checked)
@@ -800,5 +823,6 @@ namespace cantStop
                 this.btnContinuar.Enabled = false;
             }
         }
+
     }
 }

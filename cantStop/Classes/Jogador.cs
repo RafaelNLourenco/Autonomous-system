@@ -22,6 +22,12 @@ namespace cantStop
             this.cor = itens[2];
         }
 
+        public void entrarPartidaSpec()
+        {
+            this.nome = "espectador";
+            this.id = -1;
+        }
+
         public List<int> RolarDados()
         {
             string retorno = Jogo.RolarDados((int)this.id, this.senha);

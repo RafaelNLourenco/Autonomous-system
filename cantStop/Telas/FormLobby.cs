@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using cantStop.Classes;
+using cantStop.Telas;
 using CantStopServer;
 
 namespace cantStop
@@ -207,14 +208,14 @@ namespace cantStop
                 this.jogadorCriado.entrandoPartida(retorno, txbNomeEntrarPartida.Text);
 
                 this.entrou = true;
-                tmrAtualizarPartidaSelecionada.Enabled = false;
+                tmrAtualizarPartidaSelecionada.Stop();
 
-                FormTabuleiro tabuleiro = new FormTabuleiro(this.partidaSelecionada, this.jogadorCriado, this.bot);
+                FormTabuleiro tabuleiro = new FormTabuleiro(this.partidaSelecionada, this.jogadorCriado, this.bot, false);
                 this.Hide();
                 tabuleiro.ShowDialog();
 
                 // apos voltar ao lobby(fechar o tabuleiro)
-                tmrAtualizarPartidaSelecionada.Enabled = true;
+                tmrAtualizarPartidaSelecionada.Start();
                 this.iniciarParametrosForm();
                 this.limparCamposDeTexto();
                 this.Show();
@@ -233,12 +234,20 @@ namespace cantStop
 
         private void btnVisualizarPartida_Click(object sender, EventArgs e)
         {
-
+            Jogador espectador = new Jogador();
+            espectador.entrarPartidaSpec();
+            FormTabuleiro formTabuleiro = new FormTabuleiro(this.partidaSelecionada, espectador, false, true);
+            this.Hide();
+            formTabuleiro.ShowDialog();
+            this.Show();
         }
 
         private void btnSobreBot_Click(object sender, EventArgs e)
         {
-
+            FormsobreBot sobreBot = new FormsobreBot();
+            this.Hide();
+            sobreBot.ShowDialog();
+            this.Show();
         }
 
         // botoes baseados em eventos de pictureBox

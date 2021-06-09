@@ -13,10 +13,14 @@ namespace cantStop.Classes
         public Probabilidades probabilidade { get; set; }
         public int[] colunasDominadas { get; set; }
         public Tabuleiro tabuleiro { get; set; }
+        private bool flagFator { get; set; } 
+        public float taxaLimite { get; set; }
 
         public Inteligencia()
         {
-            Jogadas = 0;
+            this.Jogadas = 0;
+           this.taxaLimite = 0;
+            this.flagFator = true;
             this.probabilidade = new Probabilidades();
         }
 
@@ -161,13 +165,13 @@ namespace cantStop.Classes
 
         internal bool sePararAcaba(int idJogaador)
         {
-            int contadorAlpinistasNoTopo = 0;
+            int contadorAlpinistasNoTopoEColunasDominadas = 0;
             for (int i = 2; i <= 12; i++)
             {
-                if (this.tabuleiro.EstaNoTopo(i, idJogaador)) contadorAlpinistasNoTopo++;
+                if (this.tabuleiro.AlpinistasEColunasDominadas(i, idJogaador)) contadorAlpinistasNoTopoEColunasDominadas++;
 
             }
-            if (contadorAlpinistasNoTopo >= 3)
+            if (contadorAlpinistasNoTopoEColunasDominadas >= 3)
             {
                 return true;
             }
@@ -179,57 +183,72 @@ namespace cantStop.Classes
             if (this.sePararAcaba(idJogaador))
             {
                 return false;
-            }
-
-            this.atribuirListaColunasDominadas();
-           
-            DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
-            int[] colunasComAlpinistas = new int[alpinistas.Rows.Count];
-            
-            
-            for (int i = 0; i < alpinistas.Rows.Count; i++)
+            } 
+            else
             {
-                colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
-            }
+                this.atribuirListaColunasDominadas();
 
-            this.probabilidade.resetarProbabilidade();
+                DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
+                int[] colunasComAlpinistas = new int[alpinistas.Rows.Count];
 
-            if (colunasComAlpinistas.Length == 3)
-            {
-                if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))
+
+                for (int i = 0; i < alpinistas.Rows.Count; i++)
                 {
-                    List<int> trilhasDisponiveis = new List<int>();
-                    foreach (int coluna in colunasComAlpinistas)
-                    {
-                        if (!this.tabuleiro.AlpinistaEstaNoTopo(idJogaador, coluna)) trilhasDisponiveis.Add(coluna);
-                    }
+                    colunasComAlpinistas[i] = (int.Parse(alpinistas.Rows[i].Field<string>("coluna")));
+                }
 
-                    if (trilhasDisponiveis.Count == 1)
+                this.probabilidade.resetarProbabilidade();
+
+                if (colunasComAlpinistas.Length == 3)
+                {
+                    if (this.flagFator)
                     {
-                        this.probabilidade.calcularProbabilidadeCairUmAlpnistaDisponivel(trilhasDisponiveis[0], this.Jogadas);
+                        foreach( int coluna in colunasComAlpinistas)
+                        {
+                            this.taxaLimite += this.tabuleiro.calculaFator(coluna, idJogaador);
+                        }
+                        this.taxaLimite /= colunasComAlpinistas.Length;
+                        this.taxaLimite *= 10;
+                        this.flagFator = false;
+                    }
+                    if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))
+                    {
+                        List<int> trilhasDisponiveis = new List<int>();
+                        foreach (int coluna in colunasComAlpinistas)
+                        {
+                            if (!this.tabuleiro.AlpinistaEstaNoTopo(coluna, idJogaador)) trilhasDisponiveis.Add(coluna);
+                        }
+
+                        if (trilhasDisponiveis.Count == 1)
+                        {
+                            this.probabilidade.calcularProbabilidadeCairUmAlpnistaDisponivel(trilhasDisponiveis[0], this.Jogadas);
+                        }
+                        else
+                        {
+                            this.probabilidade.calcularProbabilidadeCairDoisAlpnistsaDisponiveis(trilhasDisponiveis[0], trilhasDisponiveis[1], this.Jogadas);
+                        }
                     }
                     else
                     {
-                        this.probabilidade.calcularProbabilidadeCairDoisAlpnistsaDisponiveis(trilhasDisponiveis[0], trilhasDisponiveis[1], this.Jogadas);
+                        this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
                     }
                 }
-                else
+                else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
                 {
-                    this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
+                    this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
                 }
-            }
-            else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
-            {
-                this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
-            }
 
-            if (this.probabilidade.getProbabilidadeCair() < 50) return true;
-            return false;
+                if (this.probabilidade.getProbabilidadeCair() < 50 + this.taxaLimite) return true;
+                return false;
+            }
+            
         }
 
         internal void Resetar()
         {
             this.Jogadas = 0;
+            this.flagFator = true;
+            this.taxaLimite = 0;
         }
 
     }

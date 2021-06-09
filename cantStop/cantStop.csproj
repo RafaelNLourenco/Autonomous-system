@@ -76,6 +76,12 @@
     <Compile Include="Telas\FormTabuleiro.Designer.cs">
       <DependentUpon>FormTabuleiro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\FormsobreBot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\FormsobreBot.Designer.cs">
+      <DependentUpon>FormsobreBot.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Telas\FormLobby.resx">
       <DependentUpon>FormLobby.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\FormTabuleiro.resx">
       <DependentUpon>FormTabuleiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\FormsobreBot.resx">
+      <DependentUpon>FormsobreBot.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
