@@ -68,19 +68,8 @@ namespace cantStop.Classes
 
         public bool ColunaDominada(int coluna)
         {
-            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND tipo = 'B'");
-            Dictionary<int, int> jogadores = new Dictionary<int, int>();
-            int quantidadesPosicoes = FormTabuleiro.getQuantidadePosicao(coluna);
-
-            foreach (DataRow linha in data)
-            {
-                if (int.Parse(linha.Field<string>("posicao")) == quantidadesPosicoes)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna) + "' AND tipo = 'B'");
+            return data.Length > 0;
         }
 
         public bool FaltaUmParaDominar(int i, int[,] ordemValor, int idJogador)
@@ -89,7 +78,7 @@ namespace cantStop.Classes
             int coluna2 = ordemValor[i, 2] + ordemValor[i, 3];
 
             if (coluna1 == coluna2) { 
-                DataRow[] data = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '"+ idJogador.ToString() + "'");
+                DataRow[] data = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '"+ idJogador.ToString() + "' AND tipo = 'A'");
                 foreach(DataRow linha in data)
                 {
                     if( FormTabuleiro.getQuantidadePosicao(coluna1) - int.Parse(linha.Field<string>("posicao")) == 1)
