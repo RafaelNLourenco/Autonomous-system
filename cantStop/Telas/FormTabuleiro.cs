@@ -55,23 +55,15 @@ namespace cantStop
             this.pecas = new List<PictureBox>();
 
             this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
-            //this.atualizarHistorico();
+            if ( this.spec) this.atualizarHistorico();
 
-            this.lblJogador.Text = this.jogador.nome;
-            this.lblCorJogador.Text = this.jogador.cor;
+           
             this.lblSenha.Text = this.jogador.senha;
 
             this.fazendoJogada = false;
 
             this.tmrPartidaIniciada.Start();
-            /*
-            if (spec)
-            {
-                this.tmrAtializarTabuleiroSpec.Start();
-            }
-            else
-            {
-            */
+          
 
                 this.pcbDados = new List<PictureBox>
                 {
@@ -128,10 +120,15 @@ namespace cantStop
                 this.pcbStatusBot.Visible = false;
                 this.lblSistemaAutonomo.Text = "Espectador";
                 this.btnIniciarPartida.Visible = false;
+                this.pcbTabuleiro.Location = new Point(40, 7);
+                this.lblUltimasJogadas.Visible = this.lblUltimaJogada.Visible =
+                this.lblPenultinaJogada.Visible = this.lblAntipenultimaJogada.Visible = true;
+
+                this.lblUltimasJogadas.Location = new Point(700, 250);
+                this.lblUltimaJogada.Location = new Point(700, 290);
+                this.lblPenultinaJogada.Location = new Point(700, 310);
+                this.lblAntipenultimaJogada.Location = new Point(700, 335);
             }
-            //if (this.bot) {
-            //    this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
-            //}
         }
 
         private void btnIniciarPartida_Click(object sender, EventArgs e)
@@ -162,7 +159,7 @@ namespace cantStop
         {
             this.partida.atualizarStatus("J");
             this.partida.ListarJogadores();
-            this.atualizarHistorico();
+            if ( this.spec) this.atualizarHistorico();
 
             if (this.partida.Status == "Jogando")
             {
@@ -196,7 +193,7 @@ namespace cantStop
 
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
-            //this.atualizarHistorico();
+            if (this.spec) this.atualizarHistorico();
 
             this.partida.atualizarStatus("E");
             if (this.partida.Status == "Encerrada")
@@ -698,7 +695,6 @@ namespace cantStop
         {
             if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
             this.inteligencia.verificarJogada((int)this.jogador.id);
-            this.lblJogadas.Text = Convert.ToString(this.inteligencia.Jogadas);
             if (!this.FlagBotJogada) return;
             this.FlagBotJogada = false;
             int delay = 100 * ((int)this.nmrDelay.Value);

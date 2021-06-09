@@ -101,7 +101,13 @@ namespace cantStop.Classes
             return false;
         }
 
-        public bool EstaNoTopo(int coluna, int idJogador)
+        public bool AlpinistaEstaNoTopo(int coluna, int idJogador)
+        {
+            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna) + "' AND tipo = 'A'");
+            return data.Length > 0;
+        }
+
+        public bool AlpinistasEColunasDominadas(int coluna, int idJogador)
         {
             DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna) + "'");
             return data.Length > 0;
@@ -134,8 +140,8 @@ namespace cantStop.Classes
 
                 bool faltaUmParaDominar = this.FaltaUmParaDominar(i, ordemValor, idJogador);
 
-                bool estaNoTopoColuna1 = this.EstaNoTopo(ordemValor[i, 0] + ordemValor[i, 1], idJogador);
-                bool estaNoTopoColuna2 = this.EstaNoTopo(ordemValor[i, 2] + ordemValor[i, 3], idJogador);
+                bool estaNoTopoColuna1 = this.AlpinistaEstaNoTopo(ordemValor[i, 0] + ordemValor[i, 1], idJogador);
+                bool estaNoTopoColuna2 = this.AlpinistaEstaNoTopo(ordemValor[i, 2] + ordemValor[i, 3], idJogador);
 
                 Dictionary<string, int[]> movimento = new Dictionary<string, int[]>();
 
@@ -255,17 +261,11 @@ namespace cantStop.Classes
             return combinacoes;
         }
 
-        public bool AlpinistaEstaNoTopo(int idJogador, int coluna)
-        {
-            DataRow[] data = this.locais.Select("coluna = '" + coluna.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND posicao = '" + FormTabuleiro.getQuantidadePosicao(coluna) + "' AND tipo = 'A'");
-            return data.Length > 0;
-        }
-
         public bool ExisteAlgumAlpinistaNoTopo(int idJogador)
         {
             for ( int i = 2; i <=12; i++)
             {
-                if (this.AlpinistaEstaNoTopo(idJogador, i)) return true; 
+                if (this.AlpinistaEstaNoTopo(i, idJogador)) return true; 
             }
             return false;
         }

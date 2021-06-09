@@ -32,9 +32,7 @@ namespace cantStop
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTabuleiro));
             this.lblVersao = new System.Windows.Forms.Label();
-            this.lblJogador = new System.Windows.Forms.Label();
             this.lblSenha = new System.Windows.Forms.Label();
-            this.lblCorJogador = new System.Windows.Forms.Label();
             this.lblPartidaIniciada = new System.Windows.Forms.Label();
             this.tmrPartidaIniciada = new System.Windows.Forms.Timer(this.components);
             this.tmrPartidaJogando = new System.Windows.Forms.Timer(this.components);
@@ -74,7 +72,6 @@ namespace cantStop
             this.gbxBotDebug = new System.Windows.Forms.GroupBox();
             this.lblDelay = new System.Windows.Forms.Label();
             this.lblProbabilidadeCair = new System.Windows.Forms.Label();
-            this.lblJogadas = new System.Windows.Forms.Label();
             this.lblLimite = new System.Windows.Forms.Label();
             this.lblTituloProbabilidadeCair = new System.Windows.Forms.Label();
             this.gbxJogadas.SuspendLayout();
@@ -99,18 +96,6 @@ namespace cantStop
             this.lblVersao.TabIndex = 0;
             this.lblVersao.Text = "Versão DLL: 0.0";
             // 
-            // lblJogador
-            // 
-            this.lblJogador.AutoSize = true;
-            this.lblJogador.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJogador.ForeColor = System.Drawing.Color.White;
-            this.lblJogador.Location = new System.Drawing.Point(1020, 492);
-            this.lblJogador.Name = "lblJogador";
-            this.lblJogador.Size = new System.Drawing.Size(45, 13);
-            this.lblJogador.TabIndex = 9;
-            this.lblJogador.Text = "Jogador";
-            this.lblJogador.Visible = false;
-            // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
@@ -121,17 +106,6 @@ namespace cantStop
             this.lblSenha.TabIndex = 10;
             this.lblSenha.Text = "SenhaJogador";
             this.lblSenha.Visible = false;
-            // 
-            // lblCorJogador
-            // 
-            this.lblCorJogador.AutoSize = true;
-            this.lblCorJogador.ForeColor = System.Drawing.Color.White;
-            this.lblCorJogador.Location = new System.Drawing.Point(1020, 467);
-            this.lblCorJogador.Name = "lblCorJogador";
-            this.lblCorJogador.Size = new System.Drawing.Size(61, 13);
-            this.lblCorJogador.TabIndex = 11;
-            this.lblCorJogador.Text = "CorJogador";
-            this.lblCorJogador.Visible = false;
             // 
             // lblPartidaIniciada
             // 
@@ -366,10 +340,11 @@ namespace cantStop
             // lblUltimasJogadas
             // 
             this.lblUltimasJogadas.AutoSize = true;
+            this.lblUltimasJogadas.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUltimasJogadas.ForeColor = System.Drawing.Color.White;
-            this.lblUltimasJogadas.Location = new System.Drawing.Point(905, 494);
+            this.lblUltimasJogadas.Location = new System.Drawing.Point(912, 387);
             this.lblUltimasJogadas.Name = "lblUltimasJogadas";
-            this.lblUltimasJogadas.Size = new System.Drawing.Size(81, 13);
+            this.lblUltimasJogadas.Size = new System.Drawing.Size(152, 28);
             this.lblUltimasJogadas.TabIndex = 24;
             this.lblUltimasJogadas.Text = "Ultimas jogadas";
             this.lblUltimasJogadas.Visible = false;
@@ -377,10 +352,11 @@ namespace cantStop
             // lblUltimaJogada
             // 
             this.lblUltimaJogada.AutoSize = true;
+            this.lblUltimaJogada.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUltimaJogada.ForeColor = System.Drawing.Color.White;
-            this.lblUltimaJogada.Location = new System.Drawing.Point(905, 519);
+            this.lblUltimaJogada.Location = new System.Drawing.Point(914, 427);
             this.lblUltimaJogada.Name = "lblUltimaJogada";
-            this.lblUltimaJogada.Size = new System.Drawing.Size(74, 13);
+            this.lblUltimaJogada.Size = new System.Drawing.Size(105, 20);
             this.lblUltimaJogada.TabIndex = 25;
             this.lblUltimaJogada.Text = "Ultima Jogada";
             this.lblUltimaJogada.Visible = false;
@@ -388,10 +364,11 @@ namespace cantStop
             // lblAntipenultimaJogada
             // 
             this.lblAntipenultimaJogada.AutoSize = true;
+            this.lblAntipenultimaJogada.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAntipenultimaJogada.ForeColor = System.Drawing.Color.White;
-            this.lblAntipenultimaJogada.Location = new System.Drawing.Point(905, 567);
+            this.lblAntipenultimaJogada.Location = new System.Drawing.Point(913, 489);
             this.lblAntipenultimaJogada.Name = "lblAntipenultimaJogada";
-            this.lblAntipenultimaJogada.Size = new System.Drawing.Size(106, 13);
+            this.lblAntipenultimaJogada.Size = new System.Drawing.Size(150, 20);
             this.lblAntipenultimaJogada.TabIndex = 27;
             this.lblAntipenultimaJogada.Text = "Antipenultina Jogada";
             this.lblAntipenultimaJogada.Visible = false;
@@ -399,10 +376,11 @@ namespace cantStop
             // lblPenultinaJogada
             // 
             this.lblPenultinaJogada.AutoSize = true;
+            this.lblPenultinaJogada.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPenultinaJogada.ForeColor = System.Drawing.Color.White;
-            this.lblPenultinaJogada.Location = new System.Drawing.Point(905, 542);
+            this.lblPenultinaJogada.Location = new System.Drawing.Point(912, 455);
             this.lblPenultinaJogada.Name = "lblPenultinaJogada";
-            this.lblPenultinaJogada.Size = new System.Drawing.Size(91, 13);
+            this.lblPenultinaJogada.Size = new System.Drawing.Size(127, 20);
             this.lblPenultinaJogada.TabIndex = 26;
             this.lblPenultinaJogada.Text = "Penultima Jogada";
             this.lblPenultinaJogada.Visible = false;
@@ -611,18 +589,6 @@ namespace cantStop
             this.lblProbabilidadeCair.Text = "Probabilidade";
             this.lblProbabilidadeCair.Visible = false;
             // 
-            // lblJogadas
-            // 
-            this.lblJogadas.AutoSize = true;
-            this.lblJogadas.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJogadas.ForeColor = System.Drawing.Color.White;
-            this.lblJogadas.Location = new System.Drawing.Point(1018, 423);
-            this.lblJogadas.Name = "lblJogadas";
-            this.lblJogadas.Size = new System.Drawing.Size(83, 28);
-            this.lblJogadas.TabIndex = 40;
-            this.lblJogadas.Text = "Jogadas";
-            this.lblJogadas.Visible = false;
-            // 
             // lblLimite
             // 
             this.lblLimite.AutoSize = true;
@@ -655,7 +621,6 @@ namespace cantStop
             this.ClientSize = new System.Drawing.Size(1148, 646);
             this.Controls.Add(this.lblTituloProbabilidadeCair);
             this.Controls.Add(this.lblLimite);
-            this.Controls.Add(this.lblJogadas);
             this.Controls.Add(this.gbxBotDebug);
             this.Controls.Add(this.lblProbabilidadeCair);
             this.Controls.Add(this.btnVoltar);
@@ -678,9 +643,7 @@ namespace cantStop
             this.Controls.Add(this.lblVersao);
             this.Controls.Add(this.pcbTabuleiro);
             this.Controls.Add(this.lblPartidaIniciada);
-            this.Controls.Add(this.lblCorJogador);
             this.Controls.Add(this.lblSenha);
-            this.Controls.Add(this.lblJogador);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -707,9 +670,7 @@ namespace cantStop
         #endregion
 
         private System.Windows.Forms.Label lblVersao;
-        private System.Windows.Forms.Label lblJogador;
         private System.Windows.Forms.Label lblSenha;
-        private System.Windows.Forms.Label lblCorJogador;
         private System.Windows.Forms.Label lblPartidaIniciada;
         private System.Windows.Forms.Timer tmrPartidaIniciada;
         private System.Windows.Forms.Timer tmrPartidaJogando;
@@ -749,7 +710,6 @@ namespace cantStop
         private System.Windows.Forms.GroupBox gbxBotDebug;
         private System.Windows.Forms.Label lblDelay;
         private System.Windows.Forms.Label lblProbabilidadeCair;
-        private System.Windows.Forms.Label lblJogadas;
         private System.Windows.Forms.Label lblLimite;
         private System.Windows.Forms.Label lblTituloProbabilidadeCair;
     }

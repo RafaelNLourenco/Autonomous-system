@@ -165,13 +165,13 @@ namespace cantStop.Classes
 
         internal bool sePararAcaba(int idJogaador)
         {
-            int contadorAlpinistasNoTopo = 0;
+            int contadorAlpinistasNoTopoEColunasDominadas = 0;
             for (int i = 2; i <= 12; i++)
             {
-                if (this.tabuleiro.EstaNoTopo(i, idJogaador)) contadorAlpinistasNoTopo++;
+                if (this.tabuleiro.AlpinistasEColunasDominadas(i, idJogaador)) contadorAlpinistasNoTopoEColunasDominadas++;
 
             }
-            if (contadorAlpinistasNoTopo >= 3)
+            if (contadorAlpinistasNoTopoEColunasDominadas >= 3)
             {
                 return true;
             }
@@ -216,7 +216,7 @@ namespace cantStop.Classes
                         List<int> trilhasDisponiveis = new List<int>();
                         foreach (int coluna in colunasComAlpinistas)
                         {
-                            if (!this.tabuleiro.AlpinistaEstaNoTopo(idJogaador, coluna)) trilhasDisponiveis.Add(coluna);
+                            if (!this.tabuleiro.AlpinistaEstaNoTopo(coluna, idJogaador)) trilhasDisponiveis.Add(coluna);
                         }
 
                         if (trilhasDisponiveis.Count == 1)
