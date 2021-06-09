@@ -725,6 +725,9 @@ namespace cantStop
 
             await Task.Delay(delay);
 
+            this.btnJogar_Click(sender, e);
+            await Task.Delay(delay);
+
             while (!this.ProximoPasso && this.chbPorPasso.Checked)
             {
                 await Task.Delay(50);
@@ -733,10 +736,8 @@ namespace cantStop
 
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
-            lblLimite.Text = "Limite ~" + Convert.ToString(((int)this.inteligencia.taxaLimite + (int)50));
+            lblLimite.Text = "Limite ~" + Convert.ToString(((float)this.inteligencia.taxaLimite + (float)50));
 
-            this.btnJogar_Click(sender, e);
-            await Task.Delay(delay);
            
 
             if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
