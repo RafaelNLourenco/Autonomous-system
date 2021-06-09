@@ -736,7 +736,7 @@ namespace cantStop
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
 
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
-            lblLimite.Text = "Limite ~" + Convert.ToString(((int)this.inteligencia.taxaLimite + (int)50));
+            lblLimite.Text = "Limite ~" + Convert.ToString(((float)this.inteligencia.taxaLimite + (float)50));
             lblLimite.Update();
             lblLimite.Refresh();
             Application.DoEvents();
