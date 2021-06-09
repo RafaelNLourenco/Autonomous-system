@@ -274,20 +274,24 @@ namespace cantStop.Classes
         {
             DataRow[] bases = this.locais.Select("coluna = '" + coluna.ToString() + "' AND tipo = 'B' AND jogador <> '" + idJogador + "'");
             DataRow[] alpinista = this.locais.Select("coluna = '" + coluna.ToString() + "' AND tipo = 'A'");
-            int posicaoAlp = int.Parse(alpinista[0].Field<string>("posicao"));
-            int diff = 0;
+            float posicaoAlp = float.Parse(alpinista[0].Field<string>("posicao"));
+            float diff = 0;
             float res = 0;
             
             if (bases.Length > 0)
             {
-                int maiorPosicaoBase = 0;
+                float maiorPosicaoBase = 0;
                 foreach( DataRow b in  bases)
                 {
-                    int posicao = int.Parse(b.Field<string>("posicao"));
+                    float posicao = float.Parse(b.Field<string>("posicao"));
                     maiorPosicaoBase = Math.Max(maiorPosicaoBase, posicao);
                 }
                 diff = maiorPosicaoBase - posicaoAlp;
 
+            }
+            else
+            {
+                diff = 0 - posicaoAlp;
             }
             res = (float)diff / (float)FormTabuleiro.getQuantidadePosicao(coluna);
             return res;

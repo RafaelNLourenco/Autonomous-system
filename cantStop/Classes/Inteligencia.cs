@@ -205,6 +205,7 @@ namespace cantStop.Classes
                     {
                         foreach( int coluna in colunasComAlpinistas)
                         {
+                            
                             this.taxaLimite += this.tabuleiro.calculaFator(coluna, idJogaador);
                         }
                         this.taxaLimite /= colunasComAlpinistas.Length;
