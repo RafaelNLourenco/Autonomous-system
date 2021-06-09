@@ -120,12 +120,12 @@ namespace cantStop
             // 
             // tmrPartidaIniciada
             // 
-            this.tmrPartidaIniciada.Interval = 5000;
+            this.tmrPartidaIniciada.Interval = 2000;
             this.tmrPartidaIniciada.Tick += new System.EventHandler(this.tmrPartidaIniciada_Tick);
             // 
             // tmrPartidaJogando
             // 
-            this.tmrPartidaJogando.Interval = 2700;
+            this.tmrPartidaJogando.Interval = 2000;
             this.tmrPartidaJogando.Tick += new System.EventHandler(this.tmrPartidaJogando_Tick);
             // 
             // gbxJogadas
@@ -532,7 +532,7 @@ namespace cantStop
             this.nmrDelay.Size = new System.Drawing.Size(78, 20);
             this.nmrDelay.TabIndex = 37;
             this.nmrDelay.Value = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
             0});
@@ -582,7 +582,7 @@ namespace cantStop
             this.lblProbabilidadeCair.AutoSize = true;
             this.lblProbabilidadeCair.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProbabilidadeCair.ForeColor = System.Drawing.Color.White;
-            this.lblProbabilidadeCair.Location = new System.Drawing.Point(924, 300);
+            this.lblProbabilidadeCair.Location = new System.Drawing.Point(924, 289);
             this.lblProbabilidadeCair.Name = "lblProbabilidadeCair";
             this.lblProbabilidadeCair.Size = new System.Drawing.Size(135, 28);
             this.lblProbabilidadeCair.TabIndex = 37;
@@ -594,7 +594,7 @@ namespace cantStop
             this.lblLimite.AutoSize = true;
             this.lblLimite.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLimite.ForeColor = System.Drawing.Color.White;
-            this.lblLimite.Location = new System.Drawing.Point(928, 339);
+            this.lblLimite.Location = new System.Drawing.Point(924, 317);
             this.lblLimite.Name = "lblLimite";
             this.lblLimite.Size = new System.Drawing.Size(65, 28);
             this.lblLimite.TabIndex = 41;

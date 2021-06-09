@@ -61,14 +61,14 @@ namespace cantStop.Classes
             return (coeficiente_angular * x) + coeficiente_linear;
         }
 
-        internal int EscolherJogada(int idJogaador, List<Dictionary<string, int[]>> combinacoes)
+        internal int EscolherJogada(int idJogador, List<Dictionary<string, int[]>> combinacoes)
         {
             int jogada = 0;
             int count = 0;
             double peso = 0;
 
-            DataTable alpinistasTable = tabuleiro.SelecioneJogador(idJogaador, "A");
-            DataTable basesTable = tabuleiro.SelecioneJogador(idJogaador, "B");
+            DataTable alpinistasTable = tabuleiro.SelecioneJogador(idJogador, "A");
+            DataTable basesTable = tabuleiro.SelecioneJogador(idJogador, "B");
             foreach (Dictionary<string, int[]> combinacao in combinacoes)
             {
                 if (combinacao.ElementAt(0).Key != "") 
@@ -77,17 +77,17 @@ namespace cantStop.Classes
                     if(combinacao.Count > 1)
                     {
                         double novoSubPeso1 = calcularPeso(combinacao.ElementAt(0).Value[0], alpinistasTable, basesTable);
-                        double novoSubPeso2 = calcularPeso(combinacao.ElementAt(0).Value[1], alpinistasTable, basesTable);
+                        double novoSubPeso2 = calcularPeso(combinacao.ElementAt(1).Value[0], alpinistasTable, basesTable);
 
-                        if (novoSubPeso1 > novoSubPeso2 && novoSubPeso1 > peso)
+                        if (novoSubPeso1 >= novoSubPeso2 && novoSubPeso1 > peso)
                         {
-                            novoPeso = novoSubPeso1;
+                            peso = novoSubPeso1;
                             jogada = count;
                         }
 
-                        if (novoSubPeso2 > novoSubPeso1 && novoSubPeso2 > peso)
+                        if (novoSubPeso2 >= novoSubPeso1 && novoSubPeso2 > peso)
                         {
-                            novoPeso = novoSubPeso2;
+                            peso = novoSubPeso2;
                             jogada = count + 3;
                         }
                     }
@@ -117,30 +117,7 @@ namespace cantStop.Classes
                 }
                 count++;
             }
-            /* Legado
-            bool fezJogada = false;
-            Random randomJogada = new Random();
-            int jogada = 0;
-            while (!fezJogada)
-            {
-                jogada = randomJogada.Next(0, 3);
-                if (combinacoes[jogada].ElementAt(0).Key != "")
-                {
-                    if (combinacoes[jogada].Count > 1)
-                    {
-                        int subjogada = randomJogada.Next(0, 2);
 
-                        if (subjogada >= 1)
-                        {
-                            jogada += 3;
-                        }
-                    }
-                    fezJogada = true;
-                }
-            }
-            this.Jogadas++;
-            return jogada;
-            */
             this.Jogadas++;
             return jogada;
         }
@@ -239,7 +216,7 @@ namespace cantStop.Classes
                     this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
                 }
 
-                if (this.probabilidade.getProbabilidadeCair() < 50 + this.taxaLimite) return true;
+                if (this.probabilidade.getProbabilidadeCair() < 50f + this.taxaLimite) return true;
                 return false;
             }
             

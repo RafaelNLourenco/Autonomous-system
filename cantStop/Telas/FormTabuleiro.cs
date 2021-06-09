@@ -706,27 +706,20 @@ namespace cantStop
 
         private async void tmrJogadaBot_Tick(object sender, EventArgs e)
         {
-            if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
-            this.inteligencia.verificarJogada((int)this.jogador.id);
             if (!this.FlagBotJogada) return;
+            if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
             this.FlagBotJogada = false;
+
+            this.inteligencia.verificarJogada((int)this.jogador.id);
+
             int delay = 100 * ((int)this.nmrDelay.Value);
-
             int jogada = this.inteligencia.EscolherJogada((int)this.jogador.id, this.Combinacoes);
-
-            this.FlagEsperarAtualizarTabuleiro = true;
-            while (this.FlagEsperarAtualizarTabuleiro)
-            {
-                await Task.Delay(50);
-            }
 
             await Task.Delay(delay);
             this.radios[jogada].Checked = true;
 
             await Task.Delay(delay);
-
             this.btnJogar_Click(sender, e);
-            await Task.Delay(delay);
 
             while (!this.ProximoPasso && this.chbPorPasso.Checked)
             {
@@ -734,14 +727,23 @@ namespace cantStop
             }
             this.ProximoPasso = false;
 
+            this.FlagEsperarAtualizarTabuleiro = true;
+            while (this.FlagEsperarAtualizarTabuleiro)
+            {
+                await Task.Delay(50);
+            }
+
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
+
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
             lblLimite.Text = "Limite ~" + Convert.ToString(((float)this.inteligencia.taxaLimite + (float)50));
+            lblLimite.Update();
+            lblLimite.Refresh();
+            Application.DoEvents();
 
+            await Task.Delay(delay);
            
-
             if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
-
         }
 
         private void setJogadasView(bool valor)
@@ -824,6 +826,5 @@ namespace cantStop
                 this.btnContinuar.Enabled = false;
             }
         }
-
     }
 }
