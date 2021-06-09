@@ -47,7 +47,11 @@ namespace cantStop
 
         public void Parar()
         {
-            Jogo.Parar((int)this.id, this.senha);
+            string retorno = Jogo.Parar((int)this.id, this.senha);
+            if(retorno != "")
+            {
+                MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void Mover(string ordem, int[] posicoes)

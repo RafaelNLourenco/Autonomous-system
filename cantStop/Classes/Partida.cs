@@ -42,7 +42,7 @@ namespace cantStop
 
         public Jogador VerificarVez()
         {
-            string retornoVez = Jogo.VerificarVez(this.Id);
+             string retornoVez = Jogo.VerificarVez(this.Id);
             retornoVez = retornoVez.Replace("\r\n", "");
             string[] retornoVezProcessado = retornoVez.Split(',');
 

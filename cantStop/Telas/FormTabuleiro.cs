@@ -42,6 +42,8 @@ namespace cantStop
         
         private bool FlagEsperarAtualizarTabuleiro;
 
+        private bool ProcessandoJogar;
+
         public FormTabuleiro(Partida partidaSelecionada, Jogador jogadorCriado, bool bot, bool spec)
         {
             InitializeComponent();
@@ -113,8 +115,9 @@ namespace cantStop
 
             this.ProximoPasso = false;
 
-            FlagEsperarAtualizarTabuleiro = false;
+            this.FlagEsperarAtualizarTabuleiro = false;
 
+            this.ProcessandoJogar = false;
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
@@ -212,7 +215,8 @@ namespace cantStop
 
             Jogador jogadorVez = this.partida.VerificarVez();
             this.lblJogadorVez.Text = jogadorVez.nome;
-            if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
+            if (jogadorVez.id == this.jogador.id && !this.fazendoJogada && !this.ProcessandoJogar)
+            {
                 this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 if (this.bot)
                 {
@@ -315,7 +319,6 @@ namespace cantStop
         {
             this.setBotoes(false);
             jogador.Parar();
-            this.tmrPartidaJogando_Tick(sender, e);
             this.flagContinuar = true;
         }
 
@@ -647,7 +650,6 @@ namespace cantStop
                     this.setJogadasView(false);
 
                     this.flagContinuar = true;
-                    this.tmrPartidaJogando_Tick(sender, e);
                 }
                 else
                 {
@@ -701,15 +703,14 @@ namespace cantStop
 
             this.fazendoJogada = false;
             this.setJogadasView(false);
-            this.tmrPartidaJogando_Tick(sender, e);
         }
 
         private async void tmrJogadaBot_Tick(object sender, EventArgs e)
         {
             if (!this.FlagBotJogada) return;
-            if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
             this.FlagBotJogada = false;
-
+            if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
+            
             this.inteligencia.verificarJogada((int)this.jogador.id);
 
             int delay = 100 * ((int)this.nmrDelay.Value);
@@ -720,6 +721,7 @@ namespace cantStop
 
             await Task.Delay(delay);
             this.btnJogar_Click(sender, e);
+            this.ProcessandoJogar = true;
 
             while (!this.ProximoPasso && this.chbPorPasso.Checked)
             {
@@ -737,13 +739,14 @@ namespace cantStop
 
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
             lblLimite.Text = "Limite ~" + Convert.ToString(((float)this.inteligencia.taxaLimite + (float)50));
-            lblLimite.Update();
-            lblLimite.Refresh();
-            Application.DoEvents();
 
             await Task.Delay(delay);
-           
-            if (!this.flagContinuar) this.btnPassarVez_Click(sender, e);
+
+            if (!this.flagContinuar) { 
+                this.btnPassarVez_Click(sender, e);
+            }
+
+            this.ProcessandoJogar = false;
         }
 
         private void setJogadasView(bool valor)
