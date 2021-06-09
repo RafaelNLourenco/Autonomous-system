@@ -78,10 +78,23 @@ namespace cantStop.Classes
             int coluna2 = ordemValor[i, 2] + ordemValor[i, 3];
 
             if (coluna1 == coluna2) { 
-                DataRow[] data = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '"+ idJogador.ToString() + "' AND tipo = 'A'");
-                foreach(DataRow linha in data)
+                DataRow[] alpinistas = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '"+ idJogador.ToString() + "' AND tipo = 'A'");
+                foreach(DataRow linha in alpinistas)
                 {
                     if( FormTabuleiro.getQuantidadePosicao(coluna1) - int.Parse(linha.Field<string>("posicao")) == 1)
+                    {
+                        return true;
+                    }
+                }
+
+                DataRow[] baseA = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND tipo = 'B'");
+                if (baseA.Length > 1) {
+                    return false;
+                }
+
+                foreach (DataRow linha in baseA)
+                {
+                    if (FormTabuleiro.getQuantidadePosicao(coluna1) - int.Parse(linha.Field<string>("posicao")) == 1)
                     {
                         return true;
                     }
