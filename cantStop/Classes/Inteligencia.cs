@@ -15,6 +15,7 @@ namespace cantStop.Classes
         public Tabuleiro tabuleiro { get; set; }
         private bool flagFator { get; set; } 
         public float taxaLimite { get; set; }
+        public int qntdJogadores { get; set; }
 
         public Inteligencia()
         {
@@ -183,10 +184,10 @@ namespace cantStop.Classes
                         foreach( int coluna in colunasComAlpinistas)
                         {
                             
-                            this.taxaLimite += this.tabuleiro.calculaFator(coluna, idJogaador);
+                            this.taxaLimite += this.tabuleiro.calculaFator(coluna, idJogaador); // esse fator resulta um numero no intervalo de -1 e 1
                         }
-                        this.taxaLimite /= colunasComAlpinistas.Length;
-                        this.taxaLimite *= 10;
+                        this.taxaLimite /= colunasComAlpinistas.Length; // faz a media entre os 3 fatores
+                        this.taxaLimite *= 10; // multiplica por 10 e pelo numero de jogadores para o intervalo ser de -10 a 10
                         this.flagFator = false;
                     }
                     if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))

@@ -132,6 +132,13 @@ namespace cantStop
                 this.lblUltimaJogada.Location = new Point(700, 290);
                 this.lblPenultinaJogada.Location = new Point(700, 310);
                 this.lblAntipenultimaJogada.Location = new Point(700, 335);
+
+                if (this.partida.Status != "Aberta")
+                {
+                    this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
+                    this.DesenharTabuleiro();
+                    this.iniciar();
+                }
             }
         }
 
@@ -153,6 +160,7 @@ namespace cantStop
             this.btnIniciarPartida.Hide();
             this.lblPartidaIniciada.Location = new Point(12, 612);
             this.lblPartidaIniciada.Text = "Iniciada";
+            if (this.spec) this.lblPartidaIniciada.Visible = false;
 
             this.lblJogadorVez.Visible = true;
             this.tmrPartidaJogando.Start();
@@ -212,7 +220,8 @@ namespace cantStop
 
             Jogador jogadorVez = this.partida.VerificarVez();
             this.lblJogadorVez.Text = jogadorVez.nome;
-            if (jogadorVez.id == this.jogador.id && !this.fazendoJogada){
+            if (jogadorVez.id == this.jogador.id && !this.fazendoJogada && !this.spec)
+            {
                 this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 if (this.bot)
                 {
@@ -233,7 +242,7 @@ namespace cantStop
                 this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             }
 
-            if (jogadorVez.id == this.jogador.id) this.estaJogando(true);
+            if (jogadorVez.id == this.jogador.id && !this.spec) this.estaJogando(true);
             else this.estaJogando(false);
 
 
@@ -715,11 +724,14 @@ namespace cantStop
             int delay = 100 * ((int)this.nmrDelay.Value);
             int jogada = this.inteligencia.EscolherJogada((int)this.jogador.id, this.Combinacoes);
 
-            await Task.Delay(delay);
-            this.radios[jogada].Checked = true;
+            this.FlagEsperarAtualizarTabuleiro = true;
+            while (this.FlagEsperarAtualizarTabuleiro)
+            {
+                await Task.Delay(50);
+            }
 
             await Task.Delay(delay);
-            this.btnJogar_Click(sender, e);
+            this.radios[jogada].Checked = true;
 
             while (!this.ProximoPasso && this.chbPorPasso.Checked)
             {
@@ -727,11 +739,8 @@ namespace cantStop
             }
             this.ProximoPasso = false;
 
-            this.FlagEsperarAtualizarTabuleiro = true;
-            while (this.FlagEsperarAtualizarTabuleiro)
-            {
-                await Task.Delay(50);
-            }
+            this.btnJogar_Click(sender, e);
+            await Task.Delay(delay);
 
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
 
