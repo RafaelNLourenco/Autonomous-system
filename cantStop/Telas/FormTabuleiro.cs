@@ -719,22 +719,16 @@ namespace cantStop
             if (!this.FlagBotJogada) return;
             this.FlagBotJogada = false;
             if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
-            
+
             this.inteligencia.verificarJogada((int)this.jogador.id);
 
             int delay = 100 * ((int)this.nmrDelay.Value);
             int jogada = this.inteligencia.EscolherJogada((int)this.jogador.id, this.Combinacoes);
 
-            this.FlagEsperarAtualizarTabuleiro = true;
-            while (this.FlagEsperarAtualizarTabuleiro)
-            {
-                await Task.Delay(50);
-            }
-
             await Task.Delay(delay);
-
             this.radios[jogada].Checked = true;
 
+            await Task.Delay(delay);
             this.btnJogar_Click(sender, e);
             this.ProcessandoJogar = true;
 
@@ -744,6 +738,12 @@ namespace cantStop
             }
             this.ProximoPasso = false;
 
+            this.FlagEsperarAtualizarTabuleiro = true;
+            while (this.FlagEsperarAtualizarTabuleiro)
+            {
+                await Task.Delay(50);
+            }
+
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
 
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
@@ -751,7 +751,8 @@ namespace cantStop
 
             await Task.Delay(delay);
 
-            if (!this.flagContinuar) { 
+            if (!this.flagContinuar)
+            {
                 this.btnPassarVez_Click(sender, e);
             }
 

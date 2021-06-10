@@ -15,7 +15,6 @@ namespace cantStop.Classes
         public Tabuleiro tabuleiro { get; set; }
         private bool flagFator { get; set; } 
         public float taxaLimite { get; set; }
-        public int qntdJogadores { get; set; }
 
         public Inteligencia()
         {
