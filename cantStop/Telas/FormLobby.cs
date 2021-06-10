@@ -132,7 +132,6 @@ namespace cantStop
             dgvListaPartidas.Columns[2].Width = 99;
             dgvListaPartidas.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-
             this.partidaSelecionada = (Partida)listaPartidas.dadosPartidas[0];
             this.atualizarDadosPartida();
 
