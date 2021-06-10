@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using cantStop.Classes;
+﻿using cantStop.Classes;
 using CantStopServer;
+using System;
+using System.Collections.Generic;
 
 namespace cantStop
 {
@@ -42,11 +42,11 @@ namespace cantStop
 
         public Jogador VerificarVez()
         {
-             string retornoVez = Jogo.VerificarVez(this.Id);
+            string retornoVez = Jogo.VerificarVez(this.Id);
             retornoVez = retornoVez.Replace("\r\n", "");
             string[] retornoVezProcessado = retornoVez.Split(',');
 
-            foreach(Jogador jogador in this.jogadores)
+            foreach (Jogador jogador in this.jogadores)
             {
                 if (jogador.id == int.Parse(retornoVezProcessado[1])) return jogador;
             }

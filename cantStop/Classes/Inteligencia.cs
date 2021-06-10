@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace cantStop.Classes
 {
@@ -13,13 +10,14 @@ namespace cantStop.Classes
         public Probabilidades probabilidade { get; set; }
         public int[] colunasDominadas { get; set; }
         public Tabuleiro tabuleiro { get; set; }
-        private bool flagFator { get; set; } 
+        private bool flagFator { get; set; }
         public float taxaLimite { get; set; }
+        public int qntdJogadores { get; set; }
 
         public Inteligencia()
         {
             this.Jogadas = 0;
-           this.taxaLimite = 0;
+            this.taxaLimite = 0;
             this.flagFator = true;
             this.probabilidade = new Probabilidades();
         }
@@ -27,7 +25,7 @@ namespace cantStop.Classes
         private int coeficienteLinear(int coluna)
         {
             int constante = coluna - 1;
-            if(coluna > 7)
+            if (coluna > 7)
             {
                 constante = 13 - coluna;
             }
@@ -71,10 +69,10 @@ namespace cantStop.Classes
             DataTable basesTable = tabuleiro.SelecioneJogador(idJogador, "B");
             foreach (Dictionary<string, int[]> combinacao in combinacoes)
             {
-                if (combinacao.ElementAt(0).Key != "") 
+                if (combinacao.ElementAt(0).Key != "")
                 {
                     double novoPeso = 0;
-                    if(combinacao.Count > 1)
+                    if (combinacao.Count > 1)
                     {
                         double novoSubPeso1 = calcularPeso(combinacao.ElementAt(0).Value[0], alpinistasTable, basesTable);
                         double novoSubPeso2 = calcularPeso(combinacao.ElementAt(1).Value[0], alpinistasTable, basesTable);
@@ -91,7 +89,8 @@ namespace cantStop.Classes
                             jogada = count + 3;
                         }
                     }
-                    else{
+                    else
+                    {
                         novoPeso = calcularPeso(combinacao.ElementAt(0).Value[0], alpinistasTable, basesTable);
                         if (combinacao.ElementAt(0).Value[1] >= 2)
                         {
@@ -104,7 +103,7 @@ namespace cantStop.Classes
                                 novoPeso += calcularPeso(combinacao.ElementAt(0).Value[1], alpinistasTable, basesTable);
                             }
                         }
-                        
+
 
                         if (novoPeso > peso)
                         {
@@ -113,7 +112,7 @@ namespace cantStop.Classes
                         }
                     }
 
-                    
+
                 }
                 count++;
             }
@@ -125,11 +124,11 @@ namespace cantStop.Classes
         internal void atribuirListaColunasDominadas()
         {
             List<int> aux = new List<int>();
-            for ( int i = 2; i <= 12; i++)
+            for (int i = 2; i <= 12; i++)
             {
                 if (this.tabuleiro.ColunaDominada(i))
                 {
-                     aux.Add(i);
+                    aux.Add(i);
                 }
             }
             this.colunasDominadas = aux.ToArray();
@@ -137,7 +136,7 @@ namespace cantStop.Classes
         public void verificarJogada(int idJogaador)
         {
             DataTable alpinistas = this.tabuleiro.SelecioneJogador(idJogaador, "A");
-            if ( alpinistas.Rows.Count == 0 ) this.Resetar();
+            if (alpinistas.Rows.Count == 0) this.Resetar();
         }
 
         internal bool sePararAcaba(int idJogaador)
@@ -153,14 +152,14 @@ namespace cantStop.Classes
                 return true;
             }
             return false;
-        } 
+        }
 
         internal bool Continuar(int idJogaador)
         {
             if (this.sePararAcaba(idJogaador))
             {
                 return false;
-            } 
+            }
             else
             {
                 this.atribuirListaColunasDominadas();
@@ -180,13 +179,13 @@ namespace cantStop.Classes
                 {
                     if (this.flagFator)
                     {
-                        foreach( int coluna in colunasComAlpinistas)
+                        foreach (int coluna in colunasComAlpinistas)
                         {
-                            
-                            this.taxaLimite += this.tabuleiro.calculaFator(coluna, idJogaador);
+
+                            this.taxaLimite += this.tabuleiro.calculaFator(coluna, idJogaador); // esse fator resulta um numero no intervalo de -1 e 1
                         }
-                        this.taxaLimite /= colunasComAlpinistas.Length;
-                        this.taxaLimite *= 10;
+                        this.taxaLimite /= colunasComAlpinistas.Length; // faz a media entre os 3 fatores
+                        this.taxaLimite *= 10; // multiplica por 10 e pelo numero de jogadores para o intervalo ser de -10 a 10
                         this.flagFator = false;
                     }
                     if (this.tabuleiro.ExisteAlgumAlpinistaNoTopo(idJogaador))
@@ -219,7 +218,7 @@ namespace cantStop.Classes
                 if (this.probabilidade.getProbabilidadeCair() < 50f + this.taxaLimite) return true;
                 return false;
             }
-            
+
         }
 
         internal void Resetar()

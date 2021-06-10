@@ -1,7 +1,7 @@
-﻿using System;
+﻿using CantStopServer;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using CantStopServer;
 
 namespace cantStop.Classes
 {
@@ -51,7 +51,7 @@ namespace cantStop.Classes
             {
                 dataTable.ImportRow(linha);
             }
-            
+
             return dataTable;
         }
 
@@ -77,18 +77,20 @@ namespace cantStop.Classes
             int coluna1 = ordemValor[i, 0] + ordemValor[i, 1];
             int coluna2 = ordemValor[i, 2] + ordemValor[i, 3];
 
-            if (coluna1 == coluna2) { 
-                DataRow[] alpinistas = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '"+ idJogador.ToString() + "' AND tipo = 'A'");
-                foreach(DataRow linha in alpinistas)
+            if (coluna1 == coluna2)
+            {
+                DataRow[] alpinistas = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND tipo = 'A'");
+                foreach (DataRow linha in alpinistas)
                 {
-                    if( FormTabuleiro.getQuantidadePosicao(coluna1) - int.Parse(linha.Field<string>("posicao")) == 1)
+                    if (FormTabuleiro.getQuantidadePosicao(coluna1) - int.Parse(linha.Field<string>("posicao")) == 1)
                     {
                         return true;
                     }
                 }
 
                 DataRow[] baseA = this.locais.Select("coluna = '" + coluna1.ToString() + "' AND jogador = '" + idJogador.ToString() + "' AND tipo = 'B'");
-                if (baseA.Length > 1) {
+                if (baseA.Length > 1)
+                {
                     return false;
                 }
 
@@ -218,7 +220,7 @@ namespace cantStop.Classes
                                 }
                             }
                         }
-                        
+
                     }
                     else
                     {
@@ -238,7 +240,8 @@ namespace cantStop.Classes
                                 }
                                 else
                                 {
-                                    if (alpinistas2.Length != 0  && !estaNoTopoColuna2) { 
+                                    if (alpinistas2.Length != 0 && !estaNoTopoColuna2)
+                                    {
                                         string ordem = ordemDados[i, 2] + ordemDados[i, 3] + ordemDados[i, 0] + ordemDados[i, 1];
                                         movimento.Add(ordem, new[] { ordemValor[i, 2] + ordemValor[i, 3], 0 });
                                     }
@@ -258,16 +261,16 @@ namespace cantStop.Classes
                 combinacoes.Add(movimento);
             }
 
-            
+
 
             return combinacoes;
         }
 
         public bool ExisteAlgumAlpinistaNoTopo(int idJogador)
         {
-            for ( int i = 2; i <=12; i++)
+            for (int i = 2; i <= 12; i++)
             {
-                if (this.AlpinistaEstaNoTopo(i, idJogador)) return true; 
+                if (this.AlpinistaEstaNoTopo(i, idJogador)) return true;
             }
             return false;
         }
@@ -279,11 +282,11 @@ namespace cantStop.Classes
             float posicaoAlp = float.Parse(alpinista[0].Field<string>("posicao"));
             float diff = 0;
             float res = 0;
-            
+
             if (bases.Length > 0)
             {
                 float maiorPosicaoBase = 0;
-                foreach( DataRow b in  bases)
+                foreach (DataRow b in bases)
                 {
                     float posicao = float.Parse(b.Field<string>("posicao"));
                     maiorPosicaoBase = Math.Max(maiorPosicaoBase, posicao);

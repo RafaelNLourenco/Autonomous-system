@@ -578,7 +578,7 @@ namespace cantStop
             this.lblProbabilidadeCair.AutoSize = true;
             this.lblProbabilidadeCair.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProbabilidadeCair.ForeColor = System.Drawing.Color.White;
-            this.lblProbabilidadeCair.Location = new System.Drawing.Point(924, 289);
+            this.lblProbabilidadeCair.Location = new System.Drawing.Point(919, 301);
             this.lblProbabilidadeCair.Name = "lblProbabilidadeCair";
             this.lblProbabilidadeCair.Size = new System.Drawing.Size(135, 28);
             this.lblProbabilidadeCair.TabIndex = 37;
@@ -590,7 +590,7 @@ namespace cantStop
             this.lblLimite.AutoSize = true;
             this.lblLimite.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLimite.ForeColor = System.Drawing.Color.White;
-            this.lblLimite.Location = new System.Drawing.Point(924, 317);
+            this.lblLimite.Location = new System.Drawing.Point(919, 329);
             this.lblLimite.Name = "lblLimite";
             this.lblLimite.Size = new System.Drawing.Size(65, 28);
             this.lblLimite.TabIndex = 41;
@@ -602,7 +602,7 @@ namespace cantStop
             this.lblTituloProbabilidadeCair.AutoSize = true;
             this.lblTituloProbabilidadeCair.Font = new System.Drawing.Font("Yu Gothic UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloProbabilidadeCair.ForeColor = System.Drawing.Color.White;
-            this.lblTituloProbabilidadeCair.Location = new System.Drawing.Point(924, 261);
+            this.lblTituloProbabilidadeCair.Location = new System.Drawing.Point(919, 273);
             this.lblTituloProbabilidadeCair.Name = "lblTituloProbabilidadeCair";
             this.lblTituloProbabilidadeCair.Size = new System.Drawing.Size(198, 28);
             this.lblTituloProbabilidadeCair.TabIndex = 42;

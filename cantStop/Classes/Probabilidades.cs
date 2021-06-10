@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace cantStop.Classes
 {
@@ -23,10 +21,10 @@ namespace cantStop.Classes
              */
             IEnumerable<int[]> produtoCartesiano =
                 (from dado1 in facesDado
-                from dado2 in facesDado
-                from dado3 in facesDado
-                from dado4 in facesDado
-                select new[] { dado1, dado2, dado3, dado4 });
+                 from dado2 in facesDado
+                 from dado3 in facesDado
+                 from dado4 in facesDado
+                 select new[] { dado1, dado2, dado3, dado4 });
 
             this.listaCombinacoesPossiveis = produtoCartesiano.ToArray();
 
@@ -45,7 +43,7 @@ namespace cantStop.Classes
         private double calcularProbalidadeCairEntre3Colunas(int a, int b, int c)
         {
             double countPossibilidadesFavoraveis = 0;
-            
+
             foreach (int[] linha in this.listaCombinacoesPossiveis)
             {
 
@@ -125,7 +123,7 @@ namespace cantStop.Classes
             double probabilidadeFavoraveis = ((Math.Pow(countPossibilidadesFavoraveis, qntdJogadasNaRodadaJaFeitas + 1) / Math.Pow(this.listaCombinacoesPossiveis.Length, qntdJogadasNaRodadaJaFeitas + 1)) * 100);
             this.probabilidadeCair = 100 - probabilidadeFavoraveis;
         }
-        
+
         // metodo para calcular probabilidade quando há chance de cair apenas com colunas dominadas
         public void calcularProbabilidadeCairApenasEmColunasDominadas(int[] colunasDominadas, int qntdJogadasNaRodadaJaFeitas)
         {
@@ -140,28 +138,28 @@ namespace cantStop.Classes
             IEnumerable<int[]> produtoCartesianoPares =
                 (from par1Coluna1 in colunasDominadas
                  from par1Coluna2 in colunasDominadas
-                 
+
                  from par2Coluna1 in colunasDominadas
                  from par2Coluna2 in colunasDominadas
-                 
+
                  from par3Coluna1 in colunasDominadas
                  from par3Coluna2 in colunasDominadas
-                 
-                 select new[] { par1Coluna1, par1Coluna2 , par2Coluna1, par2Coluna2, par3Coluna1, par3Coluna2 });
+
+                 select new[] { par1Coluna1, par1Coluna2, par2Coluna1, par2Coluna2, par3Coluna1, par3Coluna2 });
 
 
             int[][] combinacoesPossiveisParaCair = produtoCartesianoPares.ToArray();
 
-            
+
             // eh um calculo da chance de nao cair somente nas colunas ja dominadas
             double countPossibilidadeParaCair = 0;
-           
+
             /*
              * checa quantas possibilidades de cair existem
              */
-            foreach( int[] coluna in combinacoesPossiveisParaCair)
+            foreach (int[] coluna in combinacoesPossiveisParaCair)
             {
-                foreach ( int[] dados in this.listaCombinacoesPossiveis)
+                foreach (int[] dados in this.listaCombinacoesPossiveis)
                 {
                     if (
                         dados[0] + dados[1] == coluna[0] &&

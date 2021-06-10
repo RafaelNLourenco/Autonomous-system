@@ -1,7 +1,7 @@
-﻿using System;
+﻿using CantStopServer;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using CantStopServer;
 
 namespace cantStop
 {
@@ -48,7 +48,7 @@ namespace cantStop
         public void Parar()
         {
             string retorno = Jogo.Parar((int)this.id, this.senha);
-            if(retorno != "")
+            if (retorno != "")
             {
                 MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

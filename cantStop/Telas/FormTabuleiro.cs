@@ -1,14 +1,12 @@
-﻿using System;
+﻿using cantStop.Classes;
+using CantStopServer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using cantStop.Classes;
-using CantStopServer;
 
 
 namespace cantStop
@@ -31,7 +29,7 @@ namespace cantStop
 
         private String[] historico;
 
-        private bool spec; 
+        private bool spec;
 
         private bool bot;
         private Inteligencia inteligencia;
@@ -39,7 +37,7 @@ namespace cantStop
         private bool FlagBotJogada;
 
         private bool ProximoPasso;
-        
+
         private bool FlagEsperarAtualizarTabuleiro;
 
         private bool ProcessandoJogar;
@@ -61,17 +59,17 @@ namespace cantStop
             this.pecas = new List<PictureBox>();
 
             this.lblVersao.Text = "Versão DLL: " + Jogo.Versao;
-            if ( this.spec) this.atualizarHistorico();
+            if (this.spec) this.atualizarHistorico();
 
-           
+
             this.lblSenha.Text = this.jogador.senha;
 
             this.fazendoJogada = false;
 
             this.tmrPartidaIniciada.Start();
-          
 
-                this.pcbDados = new List<PictureBox>
+
+            this.pcbDados = new List<PictureBox>
                 {
                     pcbDado1,
                     pcbDado2,
@@ -79,7 +77,7 @@ namespace cantStop
                     pcbDado4
                 };
 
-                this.radios = new List<RadioButton>
+            this.radios = new List<RadioButton>
                 {
                     rbxOpcao1,
                     rbxOpcao2,
@@ -89,31 +87,31 @@ namespace cantStop
                     rbxOpcao6
                 };
 
-                this.labels = new List<Label>
+            this.labels = new List<Label>
                 {
                     lblOu1,
                     lblOu2,
                     lblOu3
                 };
 
-                this.dados = new List<int>();
+            this.dados = new List<int>();
 
-                this.Combinacoes = new List<Dictionary<string, int[]>>();
+            this.Combinacoes = new List<Dictionary<string, int[]>>();
 
-                this.flagContinuar = true;
+            this.flagContinuar = true;
 
-                // this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
-                this.nmrDelay.Visible = this.nmrDelay.Enabled =
-                this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
-                this.btnContinuar.Visible =
-                this.bot = bot;
+            // this.gbxBotDebug.Visible = this.gbxBotDebug.Enabled =
+            this.nmrDelay.Visible = this.nmrDelay.Enabled =
+            this.chbPorPasso.Visible = this.chbPorPasso.Enabled =
+            this.btnContinuar.Visible =
+            this.bot = bot;
 
-                this.FlagBotJogada = false;
-                if (this.bot == true)
-                {
-                    this.tmrJogadaBot.Start();
-                    this.inteligencia = new Inteligencia();
-                }
+            this.FlagBotJogada = false;
+            if (this.bot == true)
+            {
+                this.tmrJogadaBot.Start();
+                this.inteligencia = new Inteligencia();
+            }
 
             this.ProximoPasso = false;
 
@@ -225,6 +223,13 @@ namespace cantStop
                 this.lblUltimaJogada.Location = new Point(700, 290);
                 this.lblPenultinaJogada.Location = new Point(700, 310);
                 this.lblAntipenultimaJogada.Location = new Point(700, 335);
+
+                if (this.partida.Status != "Aberta")
+                {
+                    this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
+                    this.DesenharTabuleiro();
+                    this.iniciar();
+                }
             }
         }
 
@@ -236,7 +241,8 @@ namespace cantStop
             }
 
             int count = 0;
-            foreach(Jogador jogador in this.partida.jogadores){
+            foreach (Jogador jogador in this.partida.jogadores)
+            {
                 if (jogador.id == jogadorVez.id)
                 {
                     this.Vez[count].Visible = true;
@@ -249,10 +255,12 @@ namespace cantStop
         private void btnIniciarPartida_Click(object sender, EventArgs e)
         {
             string retorno = Jogo.IniciarPartida((int)this.jogador.id, this.jogador.senha);
-            if (retorno[0] == 'E'){
+            if (retorno[0] == 'E')
+            {
                 MessageBox.Show(retorno.Split(':')[1], "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else{
+            else
+            {
                 this.iniciar();
             }
         }
@@ -264,29 +272,31 @@ namespace cantStop
             this.btnIniciarPartida.Hide();
             this.lblPartidaIniciada.Location = new Point(12, 612);
             this.lblPartidaIniciada.Text = "Iniciada";
+            if (this.spec) this.lblPartidaIniciada.Visible = false;
 
             this.tmrPartidaJogando.Start();
-            
+
         }
 
         private void tmrPartidaIniciada_Tick(object sender, EventArgs e)
         {
             this.partida.atualizarStatus("J");
             this.atualizarListaJogadores();
-            if ( this.spec) this.atualizarHistorico();
+            if (this.spec) this.atualizarHistorico();
 
             if (this.partida.Status == "Jogando")
             {
                 this.partida.ListarJogadores();
                 this.iniciar();
             }
-            
+
         }
 
         private void atualizarHistorico()
         {
             this.historico = this.partida.pegarHistorico();
-            if (this.historico.Length == 1 ){
+            if (this.historico.Length == 1)
+            {
                 lblUltimaJogada.Text = this.historico[0];
                 lblPenultinaJogada.Text = "";
                 lblAntipenultimaJogada.Text = "";
@@ -323,28 +333,30 @@ namespace cantStop
             Jogador jogadorVez = this.partida.VerificarVez();
             this.setarVez(jogadorVez);
             if (jogadorVez.id == this.jogador.id && !this.fazendoJogada && !this.ProcessandoJogar)
-            {
-                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
-                if (this.bot)
+
+                if (jogadorVez.id == this.jogador.id && !this.fazendoJogada && !this.spec && !this.ProcessandoJogar)
                 {
-                    this.setBotoes(false);
-                    if (this.flagContinuar)
+                    this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
+                    if (this.bot)
                     {
-                        this.flagContinuar = false;
-                        this.btnRolarDados_Click(sender, e);
+                        this.setBotoes(false);
+                        if (this.flagContinuar)
+                        {
+                            this.flagContinuar = false;
+                            this.btnRolarDados_Click(sender, e);
+                        }
+                    }
+                    else
+                    {
+                        this.setBotoes(true);
                     }
                 }
                 else
                 {
-                    this.setBotoes(true);
+                    this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 }
-            }
-            else
-            {
-                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
-            }
 
-            if (jogadorVez.id == this.jogador.id) this.estaJogando(true);
+            if (jogadorVez.id == this.jogador.id && !this.spec) this.estaJogando(true);
             else this.estaJogando(false);
 
 
@@ -518,7 +530,7 @@ namespace cantStop
                         break;
                 }
             }
-            
+
             if (coluna == 4 || coluna == 10)
             {
                 ponto.X = (coluna == 4) ? 172 : 423;
@@ -683,7 +695,8 @@ namespace cantStop
             this.dados = jogador.RolarDados();
 
             bool reenviar = false;
-            do {
+            do
+            {
                 try
                 {
                     for (int i = 0; i < 4; i++)
@@ -771,8 +784,6 @@ namespace cantStop
                 catch
                 {
                     reenviar = true;
-                    //this.btnVoltar_Click(sender, e);
-                    // MessageBox.Show("Ocooreu um erro de sincronia", "Mensagem de erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } while (reenviar);
         }
@@ -782,7 +793,8 @@ namespace cantStop
             bool haSelecionado = false;
             for (int i = 0; i < 3; i++)
             {
-                if(this.radios[i].Checked || this.radios[i + 3].Checked) { 
+                if (this.radios[i].Checked || this.radios[i + 3].Checked)
+                {
                     if (this.radios[i + 3].Enabled)
                     {
                         if (this.radios[i].Checked)
@@ -821,16 +833,22 @@ namespace cantStop
             if (!this.FlagBotJogada) return;
             this.FlagBotJogada = false;
             if (this.inteligencia.tabuleiro is null) this.inteligencia.tabuleiro = this.tabuleiro;
-            
+
             this.inteligencia.verificarJogada((int)this.jogador.id);
 
             int delay = 100 * ((int)this.nmrDelay.Value);
             int jogada = this.inteligencia.EscolherJogada((int)this.jogador.id, this.Combinacoes);
 
-            await Task.Delay(delay);
-            this.radios[jogada].Checked = true;
+            this.FlagEsperarAtualizarTabuleiro = true;
+            while (this.FlagEsperarAtualizarTabuleiro)
+            {
+                await Task.Delay(50);
+            }
 
             await Task.Delay(delay);
+
+            this.radios[jogada].Checked = true;
+
             this.btnJogar_Click(sender, e);
             this.ProcessandoJogar = true;
 
@@ -840,12 +858,6 @@ namespace cantStop
             }
             this.ProximoPasso = false;
 
-            this.FlagEsperarAtualizarTabuleiro = true;
-            while (this.FlagEsperarAtualizarTabuleiro)
-            {
-                await Task.Delay(50);
-            }
-
             this.flagContinuar = this.inteligencia.Continuar((int)jogador.id);
 
             lblProbabilidadeCair.Text = this.inteligencia.probabilidade.getProbabilidadeCair() + "%";
@@ -853,7 +865,8 @@ namespace cantStop
 
             await Task.Delay(delay);
 
-            if (!this.flagContinuar) { 
+            if (!this.flagContinuar)
+            {
                 this.btnPassarVez_Click(sender, e);
             }
 

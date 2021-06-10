@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using cantStop.Classes;
+﻿using cantStop.Classes;
 using cantStop.Telas;
 using CantStopServer;
+using System;
+using System.Windows.Forms;
 
 namespace cantStop
 {
@@ -235,18 +234,22 @@ namespace cantStop
         {
             Jogador espectador = new Jogador();
             espectador.entrarPartidaSpec();
+            this.tmrAtualizarPartidaSelecionada.Stop();
             FormTabuleiro formTabuleiro = new FormTabuleiro(this.partidaSelecionada, espectador, false, true);
             this.Hide();
             formTabuleiro.ShowDialog();
             this.Show();
+            this.tmrAtualizarPartidaSelecionada.Start();
         }
 
         private void btnSobreBot_Click(object sender, EventArgs e)
         {
+            this.tmrAtualizarPartidaSelecionada.Stop();
             FormsobreBot sobreBot = new FormsobreBot();
             this.Hide();
             sobreBot.ShowDialog();
             this.Show();
+            this.tmrAtualizarPartidaSelecionada.Start();
         }
 
         // botoes baseados em eventos de pictureBox
