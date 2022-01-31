@@ -433,7 +433,7 @@ namespace cantStop
             // 
             this.pcbSenhaEntrarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.pcbSenhaEntrarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbSenhaEntrarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
+            this.pcbSenhaEntrarPartida.Image = global::cantStop.Properties.Resources.icon_hide;
             this.pcbSenhaEntrarPartida.Location = new System.Drawing.Point(588, 487);
             this.pcbSenhaEntrarPartida.Margin = new System.Windows.Forms.Padding(10);
             this.pcbSenhaEntrarPartida.Name = "pcbSenhaEntrarPartida";
@@ -447,7 +447,7 @@ namespace cantStop
             // 
             this.pcbSenhaCriarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.pcbSenhaCriarPartida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pcbSenhaCriarPartida.Image = global::cantStop.Properties.Resources.icon_visualize;
+            this.pcbSenhaCriarPartida.Image = global::cantStop.Properties.Resources.icon_hide;
             this.pcbSenhaCriarPartida.Location = new System.Drawing.Point(272, 675);
             this.pcbSenhaCriarPartida.Margin = new System.Windows.Forms.Padding(10);
             this.pcbSenhaCriarPartida.Name = "pcbSenhaCriarPartida";

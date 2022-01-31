@@ -131,6 +131,9 @@ namespace cantStop
             dgvListaPartidas.Columns[2].Width = 99;
             dgvListaPartidas.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+
+            if (listaPartidas.dadosPartidas.Count <= 0) { return; }
+
             this.partidaSelecionada = (Partida)listaPartidas.dadosPartidas[0];
             this.atualizarDadosPartida();
 
@@ -138,6 +141,9 @@ namespace cantStop
 
         private void atualizaPartidaSelecionada()
         {
+
+            if (dgvListaPartidas.SelectedRows.Count <= 0) { return; }
+
             this.partidaSelecionada = (Partida)dgvListaPartidas.SelectedRows[0].DataBoundItem;
 
             int numLinhasAntes = dgvListaPartidas.Rows.Count;
@@ -257,12 +263,12 @@ namespace cantStop
         {
             if (txbSenhaEntrarPartida.UseSystemPasswordChar == true)
             {
-                pcbSenhaEntrarPartida.Image = Properties.Resources.icon_hide;
+                pcbSenhaEntrarPartida.Image = Properties.Resources.icon_visualize;
                 txbSenhaEntrarPartida.UseSystemPasswordChar = false;
             }
             else
             {
-                pcbSenhaEntrarPartida.Image = Properties.Resources.icon_visualize;
+                pcbSenhaEntrarPartida.Image = Properties.Resources.icon_hide;
                 txbSenhaEntrarPartida.UseSystemPasswordChar = true;
             }
         }
@@ -271,12 +277,12 @@ namespace cantStop
         {
             if (txbSenhaCriarPartida.UseSystemPasswordChar == true)
             {
-                pcbSenhaCriarPartida.Image = Properties.Resources.icon_hide;
+                pcbSenhaCriarPartida.Image = Properties.Resources.icon_visualize;
                 txbSenhaCriarPartida.UseSystemPasswordChar = false;
             }
             else
             {
-                pcbSenhaCriarPartida.Image = Properties.Resources.icon_visualize;
+                pcbSenhaCriarPartida.Image = Properties.Resources.icon_hide;
                 txbSenhaCriarPartida.UseSystemPasswordChar = true;
             }
         }
