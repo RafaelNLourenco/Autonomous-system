@@ -212,6 +212,7 @@ namespace cantStop
         {
             if (this.spec)
             {
+                this.atualizarListaJogadores();
                 this.pcbStatusBot.Visible = false;
                 this.lblSistemaAutonomo.Text = "Espectador";
                 this.btnIniciarPartida.Visible = false;
@@ -317,12 +318,14 @@ namespace cantStop
 
         private void tmrPartidaJogando_Tick(object sender, EventArgs e)
         {
+            this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
             if (this.spec) this.atualizarHistorico();
+            
+            if (this.partida.jogadores.Count == 0) { this.atualizarListaJogadores(); }
 
             this.partida.atualizarStatus("E");
             if (this.partida.Status == "Encerrada")
             {
-                this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 this.tmrJogadaBot.Stop();
                 this.tmrPartidaJogando.Stop();
                 MessageBox.Show("A partida foi finalizada", "Partida finalizada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -336,7 +339,6 @@ namespace cantStop
 
                 if (jogadorVez.id == this.jogador.id && !this.fazendoJogada && !this.spec && !this.ProcessandoJogar)
                 {
-                    this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                     if (this.bot)
                     {
                         this.setBotoes(false);
@@ -350,10 +352,6 @@ namespace cantStop
                     {
                         this.setBotoes(true);
                     }
-                }
-                else
-                {
-                    this.tabuleiro.atualizarTabuleiro((int)this.partida.Id);
                 }
 
             if (jogadorVez.id == this.jogador.id && !this.spec) this.estaJogando(true);
