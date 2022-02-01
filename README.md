@@ -8,7 +8,7 @@
 ## Changelog
 
 
-### [v1.0.1](https://github.com/Rafasputnick/Sistema-autonomo/releases/tag/1.0.0)
+### [v1.0.1]
 - **Version Bump:** Fix all errors and update read me file.
 
 ### [v1.0.0](https://github.com/Rafasputnick/Sistema-autonomo/releases/tag/1.0.0) First version (June 10th, 2021)
