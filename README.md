@@ -3,7 +3,10 @@
 
 > Status: Concluded ✔️
 
-
+### What the program can do: ###
+- Play as autonomous system
+- Play by yourself
+- Whatch a game in real-time
 
 ## Changelog
 
