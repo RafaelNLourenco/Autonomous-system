@@ -2,7 +2,7 @@
 > College competition
 
 ![image](https://user-images.githubusercontent.com/52457167/151896814-91066a22-3235-4575-bfed-18b649fcda65.png)
-### [Click](https://www.youtube.com/watch?v=alJcLo4X_DQ) to see a full match!
+### [Click](https://youtu.be/vs7BnnzVwEE) to see a full match!
 ---
 ## Features ###
 + Play as autonomous system
@@ -12,7 +12,8 @@
 ## Getting started 
 1. [Download](https://visualstudio.microsoft.com/downloads/) Visual Studio Community
 2. In the Visual Studio Installer, choose the .NET desktop development
-3. Clone this repository
+3. Clone this repositor
+
     ```
     git clone git@github.com:Rafasputnick/Sistema-autonomo.git 
     ```
