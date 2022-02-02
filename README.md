@@ -31,8 +31,8 @@ For more details check this quick guide [here](https://www.youtube.com/watch?v=V
 ## How A.S. make decisions
 The game is based on math and statistic fundamentals and each decision calls for a different strategy:
 + Continue or stop - It uses some combinations, comparing the good cases and all possibilities
-+ Make pairs of dice - It uses a couple of first degree polynomial functions comparing all union
-    ![WhatsApp Image 2022-02-02 at 00 23 44](https://user-images.githubusercontent.com/52457167/152244911-0ef00854-974c-4c26-86d8-b508a04fefee.jpeg)
++ Make pairs of dice - It uses a couple of first degree polynomial functions comparing all union. Check the image bellow to have a ideia
+![WhatsApp Image 2022-02-02 at 00 23 44](https://user-images.githubusercontent.com/52457167/152244911-0ef00854-974c-4c26-86d8-b508a04fefee.jpeg)
 
 
 ## Changelog
