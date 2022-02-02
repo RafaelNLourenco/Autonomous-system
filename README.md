@@ -7,7 +7,7 @@
 ## Features ###
 + Play as autonomous system
 + Play by yourself
-+ Whatch a match in real-time
++ Watch a match in real-time
 
 ## Getting started 
 1. [Download](https://visualstudio.microsoft.com/downloads/) Visual Studio Community
@@ -20,13 +20,13 @@
 4. Run the project
 
 ## How Can't Stop board game works
-There are 11 collumns with range of 2 until 12, the object its to be the first player to win 3 of these collumns. In your turn you roll 4 dice at once and pair two pairs horever you like and add the dice in each pair together then you can advance in collumns of the sums. Making pairs its a choice and the other one its stop or roll dice again.
+There are 11 columns with range of 2 until 12, the object is to be the first player to win 3 of these columns. In your turn you roll 4 dice at once and pair two pairs however you like and add the dice in each pair together, then you can advance in columns of the sums. Making pairs it's a choice and the other one its stop or roll dice again. <br>
 For more details check this quick guide [here](https://www.youtube.com/watch?v=VUGvOQatVDc)
 
 ## Decisions
-It's based on math and statistic fundamentals and for each decision match a diferent strategy:
-+ Make pairs of dice - It's use couple of first degree polynomial functions comparing all union
-+ Continue or stop - It's use some combinations comparing the good cases and all possibilities
+It's based on math and statistic fundamentals and for each decision match a different strategy:
++ Make pairs of dice - It's use a couple of first degree polynomial functions comparing all union
++ Continue or stop - It's use some combinations, comparing the good cases and all possibilities
 
 ## Changelog
 
