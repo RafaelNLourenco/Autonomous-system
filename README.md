@@ -12,12 +12,16 @@
 ## Getting started 
 1. [Download](https://visualstudio.microsoft.com/downloads/) Visual Studio Community
 2. In the Visual Studio Installer, choose the .NET desktop development
-3. Open the project
+3. Clone this repository
+    ```
+    git clone git@github.com:Rafasputnick/Sistema-autonomo.git 
+    ```
+5. Open the project
 
     ```
     <clone path>/Sistema-autonomo/cantStop/cantStop.sln
     ```
-4. Run the project
+5. Run the project
 
 ## How Can't Stop board game works
 There are 11 columns with range of 2 until 12, the object is to be the first player to win 3 of these columns. In your turn you roll 4 dice at once and pair two pairs however you like and add the dice in each pair together, then you can advance in columns of the sums. Making pairs it's a choice and the other one its stop or roll dice again. <br>
