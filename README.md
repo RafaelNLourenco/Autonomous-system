@@ -25,12 +25,12 @@ For more details check this quick guide [here](https://www.youtube.com/watch?v=V
 
 ## Decisions
 It's based on math and statistic fundamentals and for each decision match a diferent strategy:
-+ Make pairs of dice - It's use couple of first degree polynomial functions comparing all union;
++ Make pairs of dice - It's use couple of first degree polynomial functions comparing all union
 + Continue or stop - It's use some combinations comparing the good cases and all possibilities
 
 ## Changelog
 
 ### [v1.0.1]
-- **Version Bump:** Fix all errors and update read me file.
+- **Version Bump:** Fix all errors and update read me file
 
 ### [v1.0.0](https://github.com/Rafasputnick/Sistema-autonomo/releases/tag/1.0.0) First version (June 10th, 2021)
