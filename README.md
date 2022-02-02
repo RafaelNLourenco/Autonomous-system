@@ -1,4 +1,4 @@
-# Geneva's group Champion of 2021 edition
+# Geneva's group Champion of the 2021 edition
 > College competition
 
 ![image](https://user-images.githubusercontent.com/52457167/151896814-91066a22-3235-4575-bfed-18b649fcda65.png)
@@ -25,13 +25,15 @@
 5. Run the project
 
 ## How Can't Stop board game works
-There are 11 columns with range of 2 until 12, the object is to be the first player to win 3 of these columns. In your turn you roll 4 dice at once and pair two pairs however you like and add the dice in each pair together, then you can advance in columns of the sums. Making pairs it's a choice and the other one its stop or roll dice again. <br>
+There are 11 columns that range from 2 to 12. The objective is to be the first player to win 3 of those columns. When it is your turn, roll 4 dice at once and pair two pairs however you like. Add the total on each pair of dice, then you can advance in columns of the sums. Making pairs is a decision and the other one is stop or roll dice again. <br>
 For more details check this quick guide [here](https://www.youtube.com/watch?v=VUGvOQatVDc)
 
-## Decisions
-It's based on math and statistic fundamentals and for each decision match a different strategy:
-+ Make pairs of dice - It's use a couple of first degree polynomial functions comparing all union
-+ Continue or stop - It's use some combinations, comparing the good cases and all possibilities
+## How A.S. make decisions
+The game is based on math and statistic fundamentals and each decision calls for a different strategy:
++ Continue or stop - It uses some combinations, comparing the good cases and all possibilities
++ Make pairs of dice - It uses a couple of first degree polynomial functions comparing all union
+    ![WhatsApp Image 2022-02-02 at 00 23 44](https://user-images.githubusercontent.com/52457167/152244911-0ef00854-974c-4c26-86d8-b508a04fefee.jpeg)
+
 
 ## Changelog
 
