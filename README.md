@@ -1,4 +1,5 @@
-# Geneva's group (Champion of 2021 edition - College competition)
+# Geneva's group Champion of 2021 edition
+> College competition
 
 ![image](https://user-images.githubusercontent.com/52457167/151896814-91066a22-3235-4575-bfed-18b649fcda65.png)
 ### [Click](https://www.youtube.com/watch?v=alJcLo4X_DQ) to see a full match!
@@ -10,7 +11,7 @@
 
 ## Getting started 
 1. [Download](https://visualstudio.microsoft.com/downloads/) Visual Studio Community
-2. In the Visual Studio Installer, choose the .NET desktop development.
+2. In the Visual Studio Installer, choose the .NET desktop development
 3. Open the project
 
     ```
@@ -19,11 +20,11 @@
 4. Run the project
 
 ## How Can't Stop board game works
-There are 11 collumns enumerates 2 until 12, the winner is who finish 3 of these collumns. You can advance in collumns making pairs of 4 dice. Making pairs its a choice and the other one its stop or roll dice again.
-For more details check this quick guide here
+There are 11 collumns with range of 2 until 12, the object its to be the first player to win 3 of these collumns. In your turn you roll 4 dice at once and pair two pairs horever you like and add the dice in each pair together then you can advance in collumns of the sums. Making pairs its a choice and the other one its stop or roll dice again.
+For more details check this quick guide [here](https://www.youtube.com/watch?v=VUGvOQatVDc)
 
 ## Decisions
-Its based on math and statistic fundamentals and for each decision a diferent strategy:
+It's based on math and statistic fundamentals and for each decision match a diferent strategy:
 + Make pairs of dice - It's use couple of first degree polynomial functions comparing all union;
 + Continue or stop - It's use some combinations comparing the good cases and all possibilities
 
