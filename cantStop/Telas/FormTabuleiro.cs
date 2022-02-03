@@ -895,14 +895,7 @@ namespace cantStop
 
             this.gbxJogadas.Visible = valor;
 
-            if (this.bot)
-            {
-                this.btnJogar.Enabled = false;
-            }
-            else
-            {
-                this.btnJogar.Enabled = valor;
-            }
+            if (this.bot) { this.btnJogar.Enabled = false; }
 
             if (!valor)
             {
@@ -935,6 +928,12 @@ namespace cantStop
             btnRolarDados.Visible = btnPassarVez.Visible =
             lblTituloProbabilidadeCair.Visible =
             lblProbabilidadeCair.Visible = lblLimite.Visible = flag;
+
+            if (flag && !this.bot && this.btnRolarDados.Enabled && this.tabuleiro.QuantidadeAlpinistas((int)(this.jogador.id)) == 0)
+            {
+                this.btnRolarDados_Click(null, null);
+            }
+
 
             if (flag) this.pcbStatusBot.Image = cantStop.Properties.Resources.pointG;
             else this.pcbStatusBot.Image = cantStop.Properties.Resources.pointR;

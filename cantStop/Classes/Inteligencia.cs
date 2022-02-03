@@ -6,7 +6,7 @@ namespace cantStop.Classes
 {
     public class Inteligencia
     {
-        public int Jogadas;
+        public int jogadas;
         public Probabilidades probabilidade { get; set; }
         public int[] colunasDominadas { get; set; }
         public Tabuleiro tabuleiro { get; set; }
@@ -16,7 +16,7 @@ namespace cantStop.Classes
 
         public Inteligencia()
         {
-            this.Jogadas = 0;
+            this.jogadas = 0;
             this.taxaLimite = 0;
             this.flagFator = true;
             this.probabilidade = new Probabilidades();
@@ -117,7 +117,7 @@ namespace cantStop.Classes
                 count++;
             }
 
-            this.Jogadas++;
+            this.jogadas++;
             return jogada;
         }
 
@@ -198,21 +198,21 @@ namespace cantStop.Classes
 
                         if (trilhasDisponiveis.Count == 1)
                         {
-                            this.probabilidade.calcularProbabilidadeCairUmAlpnistaDisponivel(trilhasDisponiveis[0], this.Jogadas);
+                            this.probabilidade.calcularProbabilidadeCairUmAlpnistaDisponivel(trilhasDisponiveis[0], this.jogadas);
                         }
                         else
                         {
-                            this.probabilidade.calcularProbabilidadeCairDoisAlpnistsaDisponiveis(trilhasDisponiveis[0], trilhasDisponiveis[1], this.Jogadas);
+                            this.probabilidade.calcularProbabilidadeCairDoisAlpnistsaDisponiveis(trilhasDisponiveis[0], trilhasDisponiveis[1], this.jogadas);
                         }
                     }
                     else
                     {
-                        this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.Jogadas);
+                        this.probabilidade.calculaProbabilidadeCair3Alpinistas(colunasComAlpinistas[0], colunasComAlpinistas[1], colunasComAlpinistas[2], this.jogadas);
                     }
                 }
                 else if (this.colunasDominadas != null && this.colunasDominadas.Length > 0)
                 {
-                    this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.Jogadas);
+                    this.probabilidade.calcularProbabilidadeCairApenasEmColunasDominadas(this.colunasDominadas, this.jogadas);
                 }
 
                 if (this.probabilidade.getProbabilidadeCair() < 50f + this.taxaLimite) return true;
@@ -223,7 +223,7 @@ namespace cantStop.Classes
 
         internal void Resetar()
         {
-            this.Jogadas = 0;
+            this.jogadas = 0;
             this.flagFator = true;
             this.taxaLimite = 0;
         }
