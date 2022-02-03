@@ -1,8 +1,8 @@
-# Geneva's group Champion of the 2021 edition
-> College competition
+# Geneva's group Champion of the 2021 edition 🏆
+> College competition 🎓
 
 ![image](https://user-images.githubusercontent.com/52457167/151896814-91066a22-3235-4575-bfed-18b649fcda65.png)
-### [Click](https://youtu.be/vs7BnnzVwEE) to see a full match!
+### [Click](https://youtu.be/yoa8sVzKW3M) to see me against the AS player 😅
 ---
 ## Features ###
 + Play as autonomous system
