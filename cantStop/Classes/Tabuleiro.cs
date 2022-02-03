@@ -72,6 +72,12 @@ namespace cantStop.Classes
             return data.Length > 0;
         }
 
+        public int QuantidadeAlpinistas(int idJogador)
+        {
+            DataRow[] aplinistas = this.locais.Select("jogador = '" + idJogador.ToString() + "' AND tipo = 'A'");
+            return aplinistas.Length;
+        }
+
         public bool FaltaUmParaDominar(int i, int[,] ordemValor, int idJogador)
         {
             int coluna1 = ordemValor[i, 0] + ordemValor[i, 1];
