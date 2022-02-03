@@ -2,7 +2,7 @@
 > College competition 🎓
 
 ![image](https://user-images.githubusercontent.com/52457167/151896814-91066a22-3235-4575-bfed-18b649fcda65.png)
-### [Click](https://youtu.be/yoa8sVzKW3M) to see me against the A.S player 😅
+### [Click](https://youtu.be/yoa8sVzKW3M) to watch me against the A.S. player 😅
 ---
 ## Features ###
 + Play as autonomous system
